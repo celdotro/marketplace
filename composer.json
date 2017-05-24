@@ -1,0 +1,13 @@
+{
+    "name": "celdotro/marketplace",
+    "description": "CEL.ro Marketplace API wrapper in PHP",
+    "type": "library",
+    "authors": [
+        {
+            "name": "alint",
+            "email": "alin.tanase@cel.ro"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
