@@ -6,9 +6,12 @@ use celmarket\Dispatcher;
 
 class ProductsList
 {
-    public function getCategories($limit){
+    public function getCategories($limit)
+    {
         // Sanity check - for older versions of PHP
-        if(!isset($limit) || !is_int($limit)) throw new \Exception('$limit trebuie sa fie de tip integer');
+        if (!isset($limit) || !is_int($limit)) {
+            throw new \Exception('$limit trebuie sa fie de tip integer');
+        }
 
         // Set method and action
         $method = 'home';
@@ -22,4 +25,5 @@ class ProductsList
 
         return $result;
     }
+
 }
