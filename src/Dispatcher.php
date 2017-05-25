@@ -1,11 +1,8 @@
 <?php
-namespace celmarket;
-
 use GuzzleHttp\Client;
 
 class Dispatcher
 {
-
     #TODO change url
 //    const URL = 'http://192.168.0.85/market_api/Orders/getOrders'; // API
     const URL = 'http://192.168.0.85/an_v2/marketplaceapi';
@@ -18,11 +15,18 @@ class Dispatcher
      * @param $data
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public static function send($method, $action, $data){
+    public static function send($method, $action, $data)
+    {
         // Sanity check
-        if(is_null($method) || empty($method) || !self::whitelistMethod($method)) throw new Exception('Metoda invalida');
-        if(is_null($action) || empty($action)) throw new Exception('Actiune invalida');
-        if(is_null($data) || empty($data)) throw new Exception('Parametri invalizi');
+        if (is_null($method) || empty($method) || !self::whitelistMethod($method)) {
+            throw new Exception('Metoda invalida');
+        }
+        if (is_null($action) || empty($action)) {
+            throw new Exception('Actiune invalida');
+        }
+        if (is_null($data) || empty($data)) {
+            throw new Exception('Parametri invalizi');
+        }
 
         // Set send data
         $sData  =   array('controller' => $method, 'action' => $action, 'params' => $data);
@@ -41,7 +45,7 @@ class Dispatcher
 
         #TODO add fid
         // Set fid
-        $sData['fid']	=	22;
+        $sData['fid']    =    22;
 
         #TODO add token
         // Set token
@@ -58,7 +62,7 @@ class Dispatcher
         die($contents);
 
         $contents = json_decode($contents);
-        if($contents->status == 500) { // 500 = error
+        if ($contents->status == 500) { // 500 = error
             throw new \Exception('Eroare: ' . $contents->data);
         } elseif ($contents->status != 200) { // != 200 = unkown error
             throw new \Exception('Eroare cu status necunoscut ' . $contents->status . ' : ' . $contents->data);
@@ -73,9 +77,11 @@ class Dispatcher
      * @param $cName
      * @return bool
      */
-    public static function whitelistMethod($cName){
-        if(in_array($cName, array('home', 'products', 'orders'))) return true;
+    public static function whitelistMethod($cName)
+    {
+        if (in_array($cName, array('home', 'products', 'orders'))) {
+            return true;
+        }
         return false;
     }
-
 }
