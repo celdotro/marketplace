@@ -1,17 +1,13 @@
 <?php
-<<<<<<< HEAD
 namespace celmarket;
 
 use GuzzleHttp\Client;
-=======
 
 namespace celmarket;
->>>>>>> e50aa4219f93dc556063b0dd5f0edca3b4c86839
 
 class Dispatcher
 {
 
-<<<<<<< HEAD
     const URL = 'http://192.168.0.85/an_v2/marketplaceapi/index/'; // API
     const TIMEOUT = 5; // 5s timeout
 
@@ -80,7 +76,5 @@ class Dispatcher
         if(in_array($cName, array('home', 'products', 'orders'))) return true;
         return false;
     }
-=======
->>>>>>> e50aa4219f93dc556063b0dd5f0edca3b4c86839
 
 }
