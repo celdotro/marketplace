@@ -1,0 +1,21 @@
+{
+    "name": "celdotro/marketplace",
+    "description": "CEL.ro Marketplace API wrapper in PHP",
+    "type": "library",
+    "authors": [
+        {
+            "name": "alint",
+            "email": "alin.tanase@cel.ro"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "celmarket\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2@dev"
+    }
+}
