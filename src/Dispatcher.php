@@ -3,12 +3,12 @@ namespace celmarket;
 
 use GuzzleHttp\Client;
 
-namespace celmarket;
-
 class Dispatcher
 {
 
-    const URL = 'http://192.168.0.85/an_v2/marketplaceapi/index/'; // API
+    #TODO change url
+//    const URL = 'http://192.168.0.85/market_api/Orders/getOrders'; // API
+    const URL = 'http://192.168.0.85/an_v2/marketplaceapi';
     const TIMEOUT = 5; // 5s timeout
 
     /**
@@ -55,6 +55,7 @@ class Dispatcher
 
         // Parse contents
         $contents = $response->getBody()->getContents();
+        die($contents);
 
         $contents = json_decode($contents);
         if($contents->status == 500) { // 500 = error

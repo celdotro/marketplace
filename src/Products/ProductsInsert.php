@@ -27,5 +27,4 @@ class ProductsInsert {
 
         return $result;
     }
-
 }
