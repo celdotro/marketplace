@@ -1,27 +1,27 @@
 <?php
 
-namespace celmarket\Invoices;
+namespace celmarket\AWB;
 
 use celmarket\Dispatcher;
 
-class InvoicesGenerate {
+class AWBImport {
 
     /**
-     * Generate the invoice disposition of a specific order
+     * Add an awb for a specific order
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function generateInvoiceDisp($cmd){
+    public function setAwb($cmd){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
 
         // Set method and action
         $method = 'orders';
-        $action = 'generateInvoice';
+        $action = 'setAwb';
 
         // Set data
-        $data = array('order' => $cmd);
+        $data = array('cmd' => $cmd);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);

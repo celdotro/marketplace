@@ -6,19 +6,18 @@ use celmarket\Dispatcher;
 
 class ProductsList
 {
-    public function getCategories($limit)
+    /**
+     * Get all categories
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function getCategories()
     {
-        // Sanity check - for older versions of PHP
-        if (!isset($limit) || !is_int($limit)) {
-            throw new \Exception('$limit trebuie sa fie de tip integer');
-        }
-
         // Set method and action
-        $method = 'home';
-        $action = 'GetCategories';
+        $method = 'import';
+        $action = 'getSupplierCategories';
 
         // Set data
-        $data = array('limit' => $limit);
+        $data = array();
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);

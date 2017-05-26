@@ -5,13 +5,18 @@ use celmarket\Dispatcher;
 
 class OrdersSummary {
 
+    /**
+     * Get orders summary for the last days.
+     * @param int $nrDays
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function getSummary($nrDays = 0){
         // Sanity check
         if(!isset($nrDays) || !is_int($nrDays)) throw new Exception('$nrDays trebuie sa fie de tip integer');
 
         // Set method and action
         $method = 'home';
-        $action = 'OrdersSummary';
+        $action = 'getOrders';
 
         // Set data
         $data = array('nrDays' => $nrDays);
