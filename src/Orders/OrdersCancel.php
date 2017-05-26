@@ -6,6 +6,13 @@ use celmarket\Dispatcher;
 
 class OrdersCancel {
 
+    /**
+     * Cancel a specific order. A valid reason is necessary.
+     * @param $cmd
+     * @param $reason
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function cancelOrder($cmd, $reason){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');

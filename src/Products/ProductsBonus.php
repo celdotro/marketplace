@@ -6,6 +6,13 @@ use celmarket\Dispatcher;
 
 class ProductsBonus {
 
+    /**
+     * Set bonuses for a product
+     * @param $model
+     * @param array $bonus
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function setBonus($model, $bonus = array()){
         // Sanity check
         if(!isset($model) || trim($model) === '') throw new \Exception('Specificati modelul');
@@ -24,6 +31,12 @@ class ProductsBonus {
         return $result;
     }
 
+    /**
+     * Get a products bonuses
+     * @param $model
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function getBonus($model){
         // Sanity check
         if(!isset($model) || trim($model) === '') throw new \Exception('Specificati modelul');
