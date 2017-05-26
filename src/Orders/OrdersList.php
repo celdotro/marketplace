@@ -5,6 +5,16 @@ use celmarket\Dispatcher;
 
 class OrdersList {
 
+    /**
+     * List orders for a customer filtered by date.
+     * List can be shrinked using a start position and a limit.
+     * @param $start
+     * @param $limit
+     * @param $data
+     * @param $sign
+     * @param $customer
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function listOrders($start, $limit, $data, $sign, $customer){
         // Sanity check
         if(!isset($start) || !is_int($start)) throw new Exception('$start trebuie sa fie de tip integer');
@@ -15,7 +25,7 @@ class OrdersList {
 
         // Set method and action
         $method = 'orders';
-        $action = 'ListOrders';
+        $action = 'getOrders';
 
         // Set data
         $data = array(

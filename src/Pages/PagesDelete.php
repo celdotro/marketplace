@@ -6,16 +6,21 @@ use celmarket\Dispatcher;
 
 class PagesDelete {
 
-    public function deletePages($pages){
+    /**
+     * Delete page based on ID
+     * @param $pageID
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function deletePage($pageID){
         // Sanity check
-        if(!isset($pages) || !is_array($pages) || empty($pages)) throw new Exception('$pages trebuie sa contina un array cu id-urile paginilor ce vor fi sterse');
+        if(!isset($pageID) || !is_int($pageID)) throw new Exception('ID-ul trebuie sa fie un numar intreg');
 
         // Set method and action
-        $method = 'home';
-        $action = 'DeletePages';
+        $method = 'settings';
+        $action = 'deletePage';
 
         // Set data
-        $data = array($pages);
+        $data = array('id' => $pageID);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);

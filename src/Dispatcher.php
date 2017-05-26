@@ -1,12 +1,17 @@
 <?php
-use GuzzleHttp\Client;
 
-class Dispatcher
-{
-    #TODO change url
-//    const URL = 'http://192.168.0.85/market_api/Orders/getOrders'; // API
-    const URL = 'http://192.168.0.85/an_v2/marketplaceapi';
-    const TIMEOUT = 5; // 5s timeout
+namespace celmarket;
+
+use GuzzleHttp\Client;
+use celmarket\Auth;
+
+class Dispatcher {
+    const userName = USER;
+    const password = PASS;
+
+    #TODO schimba url pentru live
+    const URL = 'http://192.168.0.85/market_api/'; // API
+    const TIMEOUT = 60; // 60s timeout
 
     /**
      * Send data to API and retrieve response
@@ -15,61 +20,66 @@ class Dispatcher
      * @param $data
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public static function send($method, $action, $data)
-    {
+    public static function send ($method, $action, $data) {
         // Sanity check
         if (is_null($method) || empty($method) || !self::whitelistMethod($method)) {
-            throw new Exception('Metoda invalida');
+            throw new \Exception('Metoda invalida');
         }
         if (is_null($action) || empty($action)) {
-            throw new Exception('Actiune invalida');
-        }
-        if (is_null($data) || empty($data)) {
-            throw new Exception('Parametri invalizi');
+            throw new \Exception('Actiune invalida');
         }
 
-        // Set send data
-        $sData  =   array('controller' => $method, 'action' => $action, 'params' => $data);
+        // Build URL
+        $url = self::URL . $method . '/' . $action . '/';
 
-        #TODO add login
-        // Check login
-//        if($method != 'login' && 1==2) {
-//            if (empty($_SERVER['token'])) return array('status' => __LINE__, 'message' => 'Token invalid');
-//            $datadec = UserController::decodeToken($_SERVER['token']);
-//            if (empty($datadec['token'])) return array('status' => __LINE__, 'message' => 'Token invalid');
-//            $sdata['token']   =   $datadec['token'];
-//            if (empty($_SERVER['fid'])) return array('status' => __LINE__, 'message' => 'Token invalid');
-//            $sdata['fid']       =   (int)$_SERVER['fid'];
-//            if ($sdata['fid'] != (int)UserController::underute($datadec['fid'])) return array('status' => __LINE__, 'message' => 'Token invalid');
-//        }
+        // Set data to be sent
+        $sData = $data;
 
-        #TODO add fid
-        // Set fid
-        $sData['fid']    =    22;
-
-        #TODO add token
-        // Set token
-        $sData['token'] = 'abc';
+        // Retrieve token
+        Auth::setUserDetails(self::userName, self::password);
+        $auth = Auth::getInstance();
+        try {
+            $token = $auth->getToken();
+        } catch (Exception $e) {
+            $token = Auth::regenerateToken();
+        }
 
         // New GuzzleHttp client
-        $guzzleClient = new Client(array('timeout'  => self::TIMEOUT));
+        $guzzleClient = new Client(array('timeout' => self::TIMEOUT));
 
-        // Get POST request response
-        $response = $guzzleClient->request('POST', self::URL, array('form_params' => $sData));
+        // Build POST request with token placed in bearer authorization header
+        $request = $guzzleClient->request('POST', $url, array('form_params' => $sData, 'headers' => array('Authorization' => 'Bearer ' . $token)));
 
-        // Parse contents
-        $contents = $response->getBody()->getContents();
-        die($contents);
+        // Retrieve and decode contents
+        $jsonContents = $request->getBody()->getContents();
+        $contents = json_decode($jsonContents);
 
-        $contents = json_decode($contents);
-        if ($contents->status == 500) { // 500 = error
-            throw new \Exception('Eroare: ' . $contents->data);
-        } elseif ($contents->status != 200) { // != 200 = unkown error
-            throw new \Exception('Eroare cu status necunoscut ' . $contents->status . ' : ' . $contents->data);
+        // Throw customised exception in case decoding fails
+        if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+
+        // Return result
+        if(is_object($contents)){ // Valid contents
+            if(
+                isset($contents->error) && $contents->error === 0
+                && isset($contents->tokenStatus) && $contents->tokenStatus === 1
+            ){ // No error and token ok
+                if(isset($contents->message)){ // Has message
+                    return $contents->message;
+                } else { // Everything is fine, except the message
+                    throw new \Exception('Eroare: continutul nu a fost primit');
+                }
+            } elseif(!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
+                    throw new \Exception('Eroare: token invalid');
+            } elseif(!isset($contents->error) || $contents->error !== 0) { // Error returned
+                    if(isset($contents->message) && $contents->message === 1){ // Standard error
+                        throw new \Exception('Eroare: ' . $contents->message);
+                    } else { // Exotic error
+                        throw new \Exception('Eroare: ' . $jsonContents);
+                    }
+            }
+        } else { // Invalid contents
+            throw new \Exception('Eroare: continutul are un format invalid: ' . $jsonContents);
         }
-
-        // If status == 200, return data
-        return $contents->data;
     }
 
     /**
@@ -77,11 +87,11 @@ class Dispatcher
      * @param $cName
      * @return bool
      */
-    public static function whitelistMethod($cName)
-    {
-        if (in_array($cName, array('home', 'products', 'orders'))) {
+    public static function whitelistMethod ($cName) {
+        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'example'))) {
             return true;
         }
+
         return false;
     }
 }

@@ -6,10 +6,14 @@ use celmarket\Dispatcher;
 
 class PagesData {
 
+    /**
+     * Get all pages
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function getPages(){
         // Set method and action
-        $method = 'home';
-        $action = 'GetPages';
+        $method = 'settings';
+        $action = 'getPages';
 
         // Set data
         $data = array(array(1)); // At least one parameter is required by API

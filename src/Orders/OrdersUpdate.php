@@ -6,6 +6,14 @@ use celmarket\Dispatcher;
 
 class OrdersUpdate {
 
+    /**
+     * Change a products price
+     * @param $cmd
+     * @param $model
+     * @param $newPrice
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function setProductPrice($cmd, $model, $newPrice){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
@@ -25,6 +33,13 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * Add products to order
+     * @param $cmd
+     * @param $arrModels
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function addProductsToOrder($cmd, $arrModels){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
@@ -43,6 +58,13 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * Remove products from order
+     * @param $cmd
+     * @param $arrModels
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function removeProductsFromOrder($cmd, $arrModels){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
@@ -61,6 +83,13 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * Update the products of an order
+     * @param $cmd
+     * @param $arrProducts
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
     public function updateProductsFromOrder($cmd, $arrProducts){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
@@ -68,10 +97,10 @@ class OrdersUpdate {
 
         // Set method and action
         $method = 'orders';
-        $action = 'UpdateProductsFromOrder';
+        $action = 'saveOrderData';
 
         // Set data
-        $data = array('cmd' => $cmd, 'products' => $arrProducts);
+        $data = array('order' => $cmd, 'data' => json_encode($arrProducts));
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);

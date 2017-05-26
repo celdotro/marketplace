@@ -16,8 +16,8 @@ class ProductsInsert {
         if(!is_array($arrProducts)) throw new \Exception('Functia primeste ca parametru un array cu datele fiecarui produs grupate intr-un sub-array');
 
         // Set method and action
-        $method = 'products';
-        $action = 'ImportProducts';
+        $method = 'import';
+        $action = 'parseFullImport';
 
         // Set data
         $data = array('products' => $arrProducts);
