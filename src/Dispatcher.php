@@ -13,7 +13,6 @@ if(defined('TEST') && TEST) {
 }
 
 use GuzzleHttp\Client;
-use celmarket\Auth;
 
 class Dispatcher {
 
