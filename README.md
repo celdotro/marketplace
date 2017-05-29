@@ -27,7 +27,7 @@ composer require celdotro/marketplace
 composer install
 ```
 ___
-## Confiugre
+## Configure
 Call **Auth::setUserDetails** with the supplied user name and password before any other method of the API
 ```
 use celmarket\Auth;
