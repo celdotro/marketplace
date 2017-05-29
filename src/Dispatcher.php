@@ -17,14 +17,6 @@ use celmarket\Auth;
 
 class Dispatcher {
 
-    /**
-     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     * !!!!!!!! CHANGE THIS !!!!!!!!
-     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     */
-    const userName = 'USER';
-    const password = 'PASS';
-
     #TODO schimba url pentru live
     const URL = 'http://192.168.0.85/market_api/'; // API
     const TIMEOUT = 60; // 60s timeout
@@ -49,7 +41,6 @@ class Dispatcher {
         $url = self::URL . $method . '/' . $action . '/';
 
         // Retrieve token
-        Auth::setUserDetails(self::userName, self::password);
         $auth = Auth::getInstance();
         try {
             $token = $auth->getToken();
