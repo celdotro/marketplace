@@ -48,9 +48,6 @@ class Dispatcher {
         // Build URL
         $url = self::URL . $method . '/' . $action . '/';
 
-        // Set data to be sent
-        $sData = $data;
-
         // Retrieve token
         Auth::setUserDetails(self::userName, self::password);
         $auth = Auth::getInstance();
@@ -64,7 +61,7 @@ class Dispatcher {
         $guzzleClient = new Client(array('timeout' => self::TIMEOUT));
 
         // Build POST request with token placed in bearer authorization header
-        $request = $guzzleClient->request('POST', $url, array('form_params' => $sData, 'headers' => array('Authorization' => 'Bearer ' . $token)));
+        $request = $guzzleClient->request('POST', $url, array('form_params' => $data, 'headers' => array('Authorization' => 'Bearer ' . $token)));
 
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
