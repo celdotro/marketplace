@@ -7,7 +7,7 @@ use celmarket\Dispatcher;
 class ProductsInsert {
 
     /**
-     * Insert/Update an array of products. Each product has an array of characteristics.
+     * Insert/Update an array of products. Each product has an array of relevant data.
      * @param array $arrProducts
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -17,7 +17,7 @@ class ProductsInsert {
 
         // Set method and action
         $method = 'import';
-        $action = 'parseFullImport';
+        $action = 'importer';
 
         // Set data
         $data = array('products' => $arrProducts);
