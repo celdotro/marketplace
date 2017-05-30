@@ -7,20 +7,20 @@ use celmarket\Dispatcher;
 class ProductsBonus {
 
     /**
-     * Set bonuses for a product
+     * Adds bonuses for a product
      * @param $model
      * @param array $bonus
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function setBonus($model, $bonus = array()){
+    public function addBonus($model, $bonus = array()){
         // Sanity check
         if(!isset($model) || trim($model) === '') throw new \Exception('Specificati modelul');
         if(!isset($bonus) || !is_array($bonus)) throw new \Exception('$bonus trebuie sa fie un array cu bonusuri');
 
         // Set method and action
         $method = 'products';
-        $action = 'SetBonus';
+        $action = 'addBonus';
 
         // Set data
         $data = array('model' => $model, 'bonus' => $bonus);
@@ -43,10 +43,35 @@ class ProductsBonus {
 
         // Set method and action
         $method = 'products';
-        $action = 'GetBonus';
+        $action = 'getBonus';
 
         // Set data
         $data = array('model' => $model);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * Deletes a products bonuses
+     * @param $model
+     * @param array $bonus
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
+     */
+    public function deleteBonus($model, $bonus = array()){
+        // Sanity check
+        if(!isset($model) || trim($model) === '') throw new \Exception('Specificati modelul');
+        if(!isset($bonus) || !is_array($bonus)) throw new \Exception('$bonus trebuie sa fie un array cu bonusuri');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'deleteBonus';
+
+        // Set data
+        $data = array('model' => $model, 'bonus' => $bonus);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
