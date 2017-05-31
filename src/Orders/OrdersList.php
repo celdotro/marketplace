@@ -29,7 +29,7 @@ class OrdersList {
         $data = array(
             'start' =>  $start,
             'limit' =>  $limit,
-            'options'  =>  $options,
+            'filters'  =>  json_encode($options),
         );
 
         // Send request and retrieve response
