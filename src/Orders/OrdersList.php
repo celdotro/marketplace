@@ -15,13 +15,11 @@ class OrdersList {
      * @param $customer
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function listOrders($start, $limit, $data, $sign, $customer){
+    public function listOrders($start, $limit, $options){
         // Sanity check
         if(!isset($start) || !is_int($start)) throw new Exception('$start trebuie sa fie de tip integer');
         if(!isset($limit) || !is_int($limit)) throw new Exception('$limit trebuie sa fie de tip integer');
-        if(!isset($data) || strtotime($data) === false) throw new Exception('$data trebuie sa fie de tip data calendaristica');
-        if(!isset($sign) || !in_array($sign, array('gt', 'st', 'ge', 'se', 'ee'))) throw new Exception('$sign trebuie sa aiba una dintre urmatoarele valori: gt, st, ge, se, ee');
-        if(!isset($customer) || trim($customer) == '') throw new Exception('$customer trebuie sa contina cel putin 1 caracter diferit de spatiu');
+        if(!isset($options) || !is_array($options)) throw new Exception('$options trebuie sa fie un array');
 
         // Set method and action
         $method = 'orders';
@@ -31,9 +29,7 @@ class OrdersList {
         $data = array(
             'start' =>  $start,
             'limit' =>  $limit,
-            'data'  =>  $data,
-            'sign'  =>  $sign,
-            'customer'  =>  $customer
+            'options'  =>  $options,
         );
 
         // Send request and retrieve response
