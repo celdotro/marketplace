@@ -12,6 +12,8 @@ class Auth
     private static $password = null;
     private static $token = null;
 
+    const TIMEOUT = 5; // 5s timeout
+
     private function __construct($regenerate = false)
     {
         if (empty(static::$username) || empty(static::$password)) {
@@ -21,17 +23,18 @@ class Auth
             static::$token = file_get_contents(Config::TOKEN_PATH);
             return true;
         }
-        $guzzleClient = new Client(array('timeout'  => 5));
+        $guzzleClient = new Client(array('timeout'  => self::TIMEOUT));
         $response = $guzzleClient->request('POST', Config::MIDDLE_HTTP . 'login/actionLogin', array('form_params' => array('username' => static::$username, 'password' => static::$password)));
         $body = $response->getBody()->getContents();
-        try {
-            $res = json_decode($body, true);
+        $res = json_decode($body, true);
+        if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului trimis de serverul de autentificare: ' . $body);
+        try{
             if ($res['tokenStatus']) {
                 static::$token = $res['message'];
                 file_put_contents(Config::TOKEN_PATH, $res['message']);
             }
         } catch (\Exception $e) {
-            echo 'Caught exception: Error in contacting server for authentification', "\n";
+            throw new \Exception('Eroare in procesul de autentificare: ' . $e->getMessage());
         }
     }
 
@@ -49,11 +52,11 @@ class Auth
         return self::$token;
     }
 
-    public static function setUserDetails($username = null, $password = null)
+    public static function setUserDetails($username, $password)
     {
-        if (empty($username) || empty($password)) {
-            throw new \Exception('Username or password is missing');
-        }
+        if(is_null($username) || empty($username)) throw new \Exception('Specificati un nume de utilizator valid');
+        if(is_null($password) || empty($password)) throw new \Exception('Specificati o parola valida');
+
         self::$username = $username;
         self::$password = $password;
     }
