@@ -2,6 +2,10 @@
 CEL.ro Marketplace API wrapper in PHP
 
 ___
+
+## Documentation
+> [https://github.com/celdotro/marketplace/wiki](https://github.com/celdotro/marketplace/wiki)
+___
 ## Install 
 
 ### Using composer CLI
