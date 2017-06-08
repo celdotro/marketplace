@@ -25,7 +25,7 @@ class Dispatcher {
      * @param $method
      * @param $action
      * @param $data
-     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     public static function send ($method, $action, $data) {
         // Sanity check
