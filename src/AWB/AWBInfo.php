@@ -1,24 +1,24 @@
 <?php
 
+namespace celmarket\AWB;
 
-namespace celmarket\Invoices;
+use celmarket\Dispatcher;
 
-
-class InvoicesProforma {
+class AWBInfo {
 
     /**
-     * Retrieve invoice proforma
+     * Prints the AWB of a specified order
      * @param $cmd
-     * @return mixed
+     * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function getProforma($cmd){
+    public function printAwb($cmd){
         // Sanity check
-        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+        if(is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
 
         // Set method and action
         $method = 'orders';
-        $action = 'GetProforma';
+        $action = 'printAwb';
 
         // Set data
         $data = array('cmd' => $cmd);
