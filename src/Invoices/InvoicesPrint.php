@@ -9,8 +9,8 @@ class InvoicesPrint {
     /**
      * Print the invoice of a specific order. If $check is false, it won't check product stocks.
      * @param $cmd
-     * @param $skipCheck
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param $check
+     * @return bool|string
      * @throws \Exception
      */
     public function printInvoice($cmd, $check){
