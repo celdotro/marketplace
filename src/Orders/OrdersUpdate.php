@@ -7,33 +7,6 @@ use celmarket\Dispatcher;
 class OrdersUpdate {
 
     /**
-     * Change a products price
-     * @param $cmd
-     * @param $model
-     * @param $newPrice
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \Exception
-     */
-    public function setProductPrice($cmd, $model, $newPrice){
-        // Sanity check
-        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
-        if(!isset($model) || trim($model) === '') throw new \Exception('Specificati modelul');
-        if(!isset($newPrice) || !is_numeric($newPrice)) throw new \Exception('Specificati un pret valid');
-
-        // Set method and action
-        $method = 'orders';
-        $action = 'SetProductPrice';
-
-        // Set data
-        $data = array('cmd' => $cmd, 'model' => $model, 'new_price' => $newPrice);
-
-        // Send request and retrieve response
-        $result = Dispatcher::send($method, $action, $data);
-
-        return $result;
-    }
-
-    /**
      * Add products to order
      * @param $cmd
      * @param $arrModels
