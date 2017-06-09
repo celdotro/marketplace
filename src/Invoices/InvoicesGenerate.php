@@ -12,7 +12,7 @@ class InvoicesGenerate {
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function generateInvoiceDisp($cmd){
+    public function generateInvoice($cmd){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
 
