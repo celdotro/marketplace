@@ -21,10 +21,10 @@ class OrdersCancel {
 
         // Set method and action
         $method = 'orders';
-        $action = 'CancelOrder';
+        $action = 'cancelOrder';
 
         // Set data
-        $data = array('cmd' => $cmd, 'motiv' => $reason);
+        $data = array('order' => $cmd, 'reason' => $reason);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
