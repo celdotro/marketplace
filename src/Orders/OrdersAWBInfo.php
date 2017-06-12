@@ -17,7 +17,7 @@ class OrdersAWBInfo {
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function setAwbInfo($cmd, $courier, $plic = null, $packages = null, $kg = null){
+    public function setAwbInfo($cmd, $courier, $plic = null, $packages = null, $kg = null, $sambata = 0){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
         if(!isset($courier) || trim($courier) == '') throw new \Exception('Specificati curierul');
@@ -41,6 +41,7 @@ class OrdersAWBInfo {
             $data['packages'] = $packages;
             $data['kg'] = $kg;
         }
+        $data['sambata'] = $sambata;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
