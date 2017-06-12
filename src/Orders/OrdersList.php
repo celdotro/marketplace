@@ -6,14 +6,13 @@ use celmarket\Dispatcher;
 class OrdersList {
 
     /**
-     * List orders for a customer filtered by date.
-     * List can be shrinked using a start position and a limit.
+     * [RO] Listeaza comenzile unui client filtrate in functie de data. Lista poate fi scurtata folosind o pozitie
+     * de start si o limita. Nu suporta mai mult de 10 inregistrari.
+     * [EN] List orders for a customer filtered by date. It can be shrunk using a start position and a limit.
+     * It can hold a maximum of 10 records.
      * @param $start
      * @param $limit
-     * @param $data
-     * @param $sign
-     * @param $customer
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param $options
      */
     public function listOrders($start, $limit, $options){
         // Sanity check

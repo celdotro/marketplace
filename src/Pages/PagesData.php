@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class PagesData {
 
     /**
-     * Get all pages
+     * [RO] Returneaza toate paginile
+     * [EN] Get all pages
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getPages(){

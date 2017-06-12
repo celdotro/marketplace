@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class ProductsBonus {
 
     /**
-     * Adds bonuses for a product
+     * [RO] Adauga bonusul pentru un produs
+     * [EN] Adds bonuses for a product
      * @param $model
      * @param array $bonus
      * @return \Psr\Http\Message\ResponseInterface

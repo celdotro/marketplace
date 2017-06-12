@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class ProductsList
 {
     /**
-     * Get all categories
+     * [RO] Returneaza toate categoriile
+     * [EN] Get all categories
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getCategories()
@@ -25,6 +26,16 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza produsele. Lista poate fi scurtata folosind o valoare de start si o limita. De asemenea, produsele
+     * pot fi filtrate in functie de nume.
+     * [EN] Lists products. The list can be shrunk using a start and limit value. Also, the products can be filtered
+     * based on their name
+     * @param $start
+     * @param $limit
+     * @param null $search
+     * @throws \Exception
+     */
     public function listProducts($start, $limit, $search = null){
         // Sanity check
         if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');

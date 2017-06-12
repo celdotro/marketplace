@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class CampaignsCreate {
 
     /**
-     * Creates a new campaign and sets its name, start date and end date
+     * [RO] Creaza o noua campanie si ii seteaza numele, data de inceput si data de sfarsit
+     * [EN] Creates a new campaign and sets its name, start date and end date
      * @param $name
      * @param $dateStart
      * @param $dateEnd

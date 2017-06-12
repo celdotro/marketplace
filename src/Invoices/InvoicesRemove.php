@@ -6,6 +6,12 @@ use celmarket\Dispatcher;
 
 class InvoicesRemove {
 
+    /**
+     * [RO] Elimina factura unei comenzi
+     * [EN] Removes an order's invoice
+     * @param $cmd
+     * @throws \Exception
+     */
     public function removeInvoice($cmd){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');

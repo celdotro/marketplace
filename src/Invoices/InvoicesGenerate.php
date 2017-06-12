@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class InvoicesGenerate {
 
     /**
-     * Generate the invoice disposition of a specific order
+     * [RO] Genereaza factura pentru o anumita comanda
+     * [EN] Generate the invoice of a specific order
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception

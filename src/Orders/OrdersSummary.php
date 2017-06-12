@@ -6,7 +6,8 @@ use celmarket\Dispatcher;
 class OrdersSummary {
 
     /**
-     * Get orders summary for the last days.
+     * [RO] Returneaza un sumar pentru ultimele zile.
+     * [EN] Get orders summary for the last days.
      * @param int $nrDays
      * @return \Psr\Http\Message\ResponseInterface
      */

@@ -7,9 +7,12 @@ use celmarket\Dispatcher;
 class ProductsData {
 
     /**
-     * Retrieve a category's data.
-     * $modelType = 0 => basic data
-     * $modelType = 1 => full data
+     * [RO] Returneaza datele unei categorii
+     *     $modelType = 0 => datele de baza
+     *     $modelType = 1 => datele complete
+     * [EN] Retrieve a category's data.
+     *     $modelType = 0 => basic data
+     *     $modelType = 1 => full data
      * @param $modelType
      * @param $categoryID
      * @return \Psr\Http\Message\ResponseInterface
