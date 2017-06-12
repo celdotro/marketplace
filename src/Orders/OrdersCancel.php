@@ -7,7 +7,7 @@ use celmarket\Dispatcher;
 class OrdersCancel {
 
     /**
-     * [RO] Anuleaza o anumita factura. Un motiv valid e necesar.
+     * [RO] Anuleaza o anumita comanda. Un motiv valid e necesar.
      * [EN] Cancel a specific order. A valid reason is necessary.
      * @param $cmd
      * @param $reason
