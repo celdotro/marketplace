@@ -6,7 +6,8 @@ use celmarket\Dispatcher;
 class ProductsUpdate {
 
     /**
-     * Update an array of products. Each product has an array of characteristics.
+     * [RO] Actualizeaza un array de produse. Fiecare produs are un array de caracteristici.
+     * [EN] Update an array of products. Each product has an array of characteristics.
      * @param $arrProducts
      * @return \Psr\Http\Message\ResponseInterface
      */

@@ -7,9 +7,10 @@ use celmarket\Dispatcher;
 class ProductsInsert {
 
     /**
-     * Insert/Update an array of products. Each product has an array of relevant data.
+     * [RO] Insereaza/Actualizeaza un array de produse. Fiecare produs are un array de date relevante.
+     * [EN] Insert/Update an array of products. Each product has an array of relevant data.
      * @param array $arrProducts
-     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Exception
      */
     public function importProducts($arrProducts = array()){
         // Sanity check - for older versions of PHP

@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class OrdersAWBInfo {
 
     /**
-     * Set the AWB information for a specific order
+     * [RO] Seteaza informatiile necesare AWB-ului unei anumite comenzi
+     * [EN] Set the AWB information for a specific order
      * @param $cmd
      * @param $courier
      * @param null $plic

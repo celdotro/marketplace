@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class AWBInfo {
 
     /**
-     * Prints the AWB of a specified order
+     * [RO] Printeaza AWB-ul unei comenzi
+     * [EN] Prints the AWB of a specified order
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception

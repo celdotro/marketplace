@@ -7,7 +7,8 @@ use celmarket\Dispatcher;
 class CampaignsEdit {
 
     /**
-     * Updates the campaign details and adds a discount
+     * [RO] Actualizeaza detaliile unei campanii si adauga un discount
+     * [EN] Updates the campaign details and adds a discount
      * @param $name
      * @param $newName
      * @param $dateStart
@@ -49,7 +50,8 @@ class CampaignsEdit {
     }
 
     /**
-     * Updates a product with a promotional price different than the campaign default
+     * [RO] Actualizeaza un produs cu un pret promotional diferit de cel implicit al campaniei
+     * [EN] Updates a product with a promotional price different than the campaign default
      * @param $name
      * @param $model
      * @param $promoPrice
@@ -80,7 +82,8 @@ class CampaignsEdit {
     }
 
     /**
-     * Adds a product to a campaign and applies the campaign's discount
+     * [RO] Adauga un produs unei campanii si ii aplica reducerea acestia
+     * [EN] Adds a product to a campaign and applies the campaign's discount
      * @param $name
      * @param $model
      * @return \Psr\Http\Message\ResponseInterface
@@ -108,7 +111,8 @@ class CampaignsEdit {
     }
 
     /**
-     * Removes a product from any campaign
+     * [RO] Elimina un produs dintr-o campanie
+     * [EN] Removes a product from any campaign
      * @param $name
      * @param $model
      * @return \Psr\Http\Message\ResponseInterface
