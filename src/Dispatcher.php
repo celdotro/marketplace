@@ -41,7 +41,8 @@ class Dispatcher {
         }
 
         // Build URL
-//        $url = Config::MIDDLE_HTTP . $method . '/' . $action . '/';
+        #TODO schimba pentru live
+        //$url = Config::MIDDLE_HTTP . $method . '/' . $action . '/';
         $url = self::URL . $method . '/' . $action . '/';
 
         ### 2. Authenticate user ##
