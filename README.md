@@ -1,42 +1,22 @@
 # marketplace
 CEL.ro Marketplace API wrapper in PHP
-
 ___
-
-## Documentation
+## [RO] Documentare | [EN] Documentation
 > [https://github.com/celdotro/marketplace/wiki](https://github.com/celdotro/marketplace/wiki)
 ___
-## Install 
+## [RO] Instructiuni de instalare si configurare | [EN] Install and configure instructions
 
-### Using composer CLI
->Command
-```
-composer require celdotro/marketplace
-```
+> [RO] [https://github.com/celdotro/marketplace/wiki/Instalare](https://github.com/celdotro/marketplace/wiki/Instalare)
 
-### Using composer.json
->composer.json
-```
-{  
-    "require": {  
-        "celdotro/marketplace": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
-}
-```
-
->Command
-```
-composer install
-```
+> [EN] [https://github.com/celdotro/marketplace/wiki/Install](https://github.com/celdotro/marketplace/wiki/Install)
 ___
-## Configure
-Call **Auth::setUserDetails** with the supplied user name and password before any other method of the API
-```
-use celmarket\Auth;
-Auth::setUserDetails('USERNAME', 'PASSWORD');
-```
+## [RO] Informatii generale | [EN] General information
+> [RO] [https://github.com/celdotro/marketplace/wiki/Informatii-generale](https://github.com/celdotro/marketplace/wiki/Informatii-generale)
+
+> [EN] [https://github.com/celdotro/marketplace/wiki/General-Information](https://github.com/celdotro/marketplace/wiki/General-Information)
 ___
 ## Packagist
-https://packagist.org/packages/celdotro/marketplace
+[https://packagist.org/packages/celdotro/marketplace](https://packagist.org/packages/celdotro/marketplace)
+___
+## Github
+[https://github.com/celdotro/marketplace](https://github.com/celdotro/marketplace)
