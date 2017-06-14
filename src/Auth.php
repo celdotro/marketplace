@@ -12,7 +12,7 @@ class Auth
     private static $password = null;
     private static $token = null;
 
-    const TIMEOUT = 5; // 5s timeout
+    const TIMEOUT = 30; // 30s timeout
 
     private function __construct($regenerate = false)
     {
