@@ -2,8 +2,8 @@
 CEL.ro Marketplace API wrapper in PHP
 ___
 ## [RO + EN] WIKI
-[RO] Pentru a consulta documentatia vizitati pagina de mai jos:  
-[EN] In order to consult the documentation, visit the link below:  
+[RO] Pentru a consulta documentatia, vizitati pagina de mai jos:  
+[EN] In order to read the documentation, visit the link below:  
 > [https://github.com/celdotro/marketplace/wiki](https://github.com/celdotro/marketplace/wiki)
 ___
 ## [RO] Instructiuni de instalare si configurare | [EN] Install and configure instructions
