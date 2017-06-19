@@ -7,9 +7,9 @@ class OrdersList {
 
     /**
      * [RO] Listeaza comenzile unui client filtrate in functie de data. Lista poate fi scurtata folosind o pozitie
-     * de start si o limita. Nu suporta mai mult de 10 inregistrari.
+     * de start si o limita. Nu suporta mai mult de 10 inregistrari. Prima categorie va avea implicit numele "parent".
      * [EN] List orders for a customer filtered by date. It can be shrunk using a start position and a limit.
-     * It can hold a maximum of 10 records.
+     * It can hold a maximum of 10 records. The first category will be named 'parent'.
      * @param $start
      * @param $limit
      * @param $options
