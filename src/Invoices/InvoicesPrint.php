@@ -14,19 +14,16 @@ class InvoicesPrint {
      * @return bool|string
      * @throws \Exception
      */
-    public function printInvoice($cmd, $check){
+    public function printInvoice($cmd){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
-        if(!isset($check)) $check = true;
-        if(!is_bool($check)) throw new \Exception('$skipCheck este boolean');
-        $check = !$check;
 
         // Set method and action
         $method = 'orders';
         $action = 'printInvoice';
 
         // Set data
-        $data = array('order' => $cmd, 'check' => $check);
+        $data = array('order' => $cmd);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
