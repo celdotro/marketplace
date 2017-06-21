@@ -16,8 +16,6 @@ use GuzzleHttp\Client;
 
 class Dispatcher {
 
-    #TODO schimba url pentru live
-    const URL = 'http://192.168.0.85/market_api/'; // Live test API
     const TIMEOUT = 60; // 60s timeout
 
     /**
@@ -41,9 +39,7 @@ class Dispatcher {
         }
 
         // Build URL
-        #TODO schimba pentru live
-        //$url = Config::MIDDLE_HTTP . $method . '/' . $action . '/';
-        $url = self::URL . $method . '/' . $action . '/';
+        $url = Config::API_HTTP . $method . '/' . $action . '/';
 
         ### 2. Authenticate user ##
         // Retrieve token

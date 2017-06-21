@@ -24,7 +24,7 @@ class Auth
             return true;
         }
         $guzzleClient = new Client(array('timeout'  => self::TIMEOUT));
-        $response = $guzzleClient->request('POST', Config::MIDDLE_HTTP . 'login/actionLogin', array('form_params' => array('username' => static::$username, 'password' => static::$password)));
+        $response = $guzzleClient->request('POST', Config::API_HTTP . 'login/actionLogin', array('form_params' => array('username' => static::$username, 'password' => static::$password)));
         $body = $response->getBody()->getContents();
         $res = json_decode($body, true);
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului trimis de serverul de autentificare: ' . $body);
