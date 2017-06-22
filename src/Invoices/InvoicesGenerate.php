@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class InvoicesGenerate {
 
     /**
-     * [RO] Genereaza factura pentru o anumita comanda
-     * [EN] Generate the invoice of a specific order
+     * [RO] Genereaza factura pentru o anumita comanda (https://github.com/celdotro/marketplace/wiki/Generare-factura)
+     * [EN] Generate the invoice of a specific order (https://github.com/celdotro/marketplace/wiki/Generate-invoice)
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
