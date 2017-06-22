@@ -5,6 +5,9 @@ use GuzzleHttp\Client;
 
 /**
  * Class Auth - implements singleton pattern
+ *  WIKI
+ *      [RO]: https://github.com/celdotro/marketplace/wiki/Informatii-generale#auth
+ *      [EN]: https://github.com/celdotro/marketplace/wiki/General-Information#auth
  * @package celmarket
  */
 class Auth

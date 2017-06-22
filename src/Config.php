@@ -4,6 +4,9 @@ namespace celmarket;
 
 /**
  * Class Config - contains constants with general purpose data
+ *  WIKI
+ *      [RO]: https://github.com/celdotro/marketplace/wiki/Informatii-generale#config
+ *      [EN]: https://github.com/celdotro/marketplace/wiki/General-Information#config
  * @package celmarket
  */
 class Config
