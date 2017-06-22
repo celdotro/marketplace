@@ -6,7 +6,8 @@ use celmarket\Dispatcher;
 class ProductsUpdate {
 
     /**
-     * Updates an already existing product's data
+     * [RO] Actualizeaza datele produselor deja existente
+     * [EN] Updates an already existing product's data
      * @param $arrProducts
      * @throws \Exception
      */
