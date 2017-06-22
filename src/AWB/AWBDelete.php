@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class AWBDelete {
 
     /**
-     * [RO] Sterge AWB-ului unei comenzi
-     * [EN] Delete the AWB of a specific order
+     * [RO] Sterge AWB-ului unei comenzi (https://github.com/celdotro/marketplace/wiki/Stergere-AWB)
+     * [EN] Delete the AWB of a specific order (https://github.com/celdotro/marketplace/wiki/AWB-Delete)
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
