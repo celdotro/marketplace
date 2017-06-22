@@ -9,8 +9,10 @@ class CampaignsInfo {
     /**
      * [RO] Returneaza informatii referitoare la o campanie, produsele din ea filtrate in functie
      * de nume, precum si alte produse disponibile care pot, de asemenea, sa fie filtrate in functie de nume
+     * (https://github.com/celdotro/marketplace/wiki/Citire-campanie)
      * [EN] Provides information about a campaign, its products that can be filtered by name
      * and other available products that can also be filtered by name
+     * (https://github.com/celdotro/marketplace/wiki/Read-Campaign)
      * @param $name
      * @param $products
      * @param $availableProducts
@@ -42,8 +44,8 @@ class CampaignsInfo {
 
     /**
      * Listeaza toate campaniile active. Datele pot fi filtrate in functie de data de inceput, data de sfarsit si
-     * numele campaniei
-     * [EN] Lists all active campaigns. Data can be filtered by start date, end date, and campaign name.
+     * numele campaniei (https://github.com/celdotro/marketplace/wiki/Listare-campanii-active)
+     * [EN] Lists all active campaigns. Data can be filtered by start date, end date, and campaign name. (https://github.com/celdotro/marketplace/wiki/List-Active-Campaigns)
      * @param $start
      * @param $limit
      * @param null $dateFrom

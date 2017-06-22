@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class CampaignsEdit {
 
     /**
-     * [RO] Actualizeaza detaliile unei campanii si adauga un discount
-     * [EN] Updates the campaign details and adds a discount
+     * [RO] Actualizeaza detaliile unei campanii si adauga un discount (https://github.com/celdotro/marketplace/wiki/Salvare-campanie)
+     * [EN] Updates the campaign details and adds a discount (https://github.com/celdotro/marketplace/wiki/Save-Campaign)
      * @param $name
      * @param $newName
      * @param $dateStart
@@ -50,8 +50,8 @@ class CampaignsEdit {
     }
 
     /**
-     * [RO] Actualizeaza un produs cu un pret promotional diferit de cel implicit al campaniei
-     * [EN] Updates a product with a promotional price different than the campaign default
+     * [RO] Actualizeaza un produs cu un pret promotional diferit de cel implicit al campaniei (https://github.com/celdotro/marketplace/wiki/Salvare-produs-in-campanie)
+     * [EN] Updates a product with a promotional price different than the campaign default (https://github.com/celdotro/marketplace/wiki/Save-Product-in-Campaign)
      * @param $name
      * @param $model
      * @param $promoPrice
@@ -82,8 +82,8 @@ class CampaignsEdit {
     }
 
     /**
-     * [RO] Adauga un produs unei campanii si ii aplica reducerea acestia
-     * [EN] Adds a product to a campaign and applies the campaign's discount
+     * [RO] Adauga un produs unei campanii si ii aplica reducerea acestia (https://github.com/celdotro/marketplace/wiki/Adaugare-produs-in-campanie)
+     * [EN] Adds a product to a campaign and applies the campaign's discount (https://github.com/celdotro/marketplace/wiki/Add-Product-to-Campaign)
      * @param $name
      * @param $model
      * @return \Psr\Http\Message\ResponseInterface
@@ -111,8 +111,8 @@ class CampaignsEdit {
     }
 
     /**
-     * [RO] Elimina un produs dintr-o campanie
-     * [EN] Removes a product from any campaign
+     * [RO] Elimina un produs dintr-o campanie (https://github.com/celdotro/marketplace/wiki/Eliminare-produs-din-campanie)
+     * [EN] Removes a product from any campaign (https://github.com/celdotro/marketplace/wiki/Remove-Product-from-Campaign)
      * @param $name
      * @param $model
      * @return \Psr\Http\Message\ResponseInterface

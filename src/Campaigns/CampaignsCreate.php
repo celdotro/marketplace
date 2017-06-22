@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class CampaignsCreate {
 
     /**
-     * [RO] Creaza o noua campanie si ii seteaza numele, data de inceput si data de sfarsit
-     * [EN] Creates a new campaign and sets its name, start date and end date
+     * [RO] Creaza o noua campanie si ii seteaza numele, data de inceput si data de sfarsit (https://github.com/celdotro/marketplace/wiki/Adaugare-campanie)
+     * [EN] Creates a new campaign and sets its name, start date and end date (https://github.com/celdotro/marketplace/wiki/Add-Campaign)
      * @param $name
      * @param $dateStart
      * @param $dateEnd
