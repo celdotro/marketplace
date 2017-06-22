@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class OrdersData {
 
     /**
-     * [RO] Preia datele asociate cu o anumita comanda
-     * [EN] Retrieve data associated with an order
+     * [RO] Preia datele asociate cu o anumita comanda (https://github.com/celdotro/marketplace/wiki/Datele-comenzii)
+     * [EN] Retrieve data associated with an order (https://github.com/celdotro/marketplace/wiki/Order-data)
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception

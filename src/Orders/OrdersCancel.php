@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class OrdersCancel {
 
     /**
-     * [RO] Anuleaza o anumita comanda. Un motiv valid e necesar.
-     * [EN] Cancel a specific order. A valid reason is necessary.
+     * [RO] Anuleaza o anumita comanda. Un motiv valid e necesar. (https://github.com/celdotro/marketplace/wiki/Anularea-comenzii)
+     * [EN] Cancel a specific order. A valid reason is necessary. (https://github.com/celdotro/marketplace/wiki/Cancel-Order)
      * @param $cmd
      * @param $reason
      * @return \Psr\Http\Message\ResponseInterface
