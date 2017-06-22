@@ -17,6 +17,9 @@ use GuzzleHttp\Client;
 
 /**
  * Class Dispatcher
+ *  WIKI
+ *      [RO]: https://github.com/celdotro/marketplace/wiki/Informatii-generale#dispatcher
+ *      [EN]: https://github.com/celdotro/marketplace/wiki/General-Information#dispatcher
  * General capabilities:
  * - whitelist methods for unnecessary API calls
  * - build API's URL
@@ -29,7 +32,7 @@ class Dispatcher {
 
     /**
      * Send data to API and retrieve response
-     * 1. Validate method and action, and builds URL based on these
+     * 1. Validate method and action, and build URL based on these
      * 2. Authenticate user
      * 3. Instantiate a guzzleClient object and makes a POST request to the API server
      * 4. Process the response in order to throw relevant error messages or return the correctly formed response
@@ -39,7 +42,7 @@ class Dispatcher {
      * @throws \Exception
      */
     public static function send ($method, $action, $data) {
-        ### 1. Validate method and action, and builds URL based on these ###
+        ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
         if (is_null($method) || empty($method) || !self::whitelistMethod($method)) {
             throw new \Exception('Metoda invalida');
