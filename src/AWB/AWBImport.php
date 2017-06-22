@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class AWBImport {
 
     /**
-     * [RO] Seteaza un AWB pentru o comanda
-     * [EN] Add an AWB for a specific order
+     * [RO] Seteaza un AWB pentru o comanda (https://github.com/celdotro/marketplace/wiki/Creare-AWB)
+     * [EN] Add an AWB for a specific order (https://github.com/celdotro/marketplace/wiki/AWB-Import)
      * @param $cmd
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
