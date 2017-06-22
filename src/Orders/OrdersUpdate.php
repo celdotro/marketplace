@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class OrdersUpdate {
 
     /**
-     * [RO] Actualizeaza produsele pentru o comanda
-     * [EN] Update the products of an order
+     * [RO] Actualizeaza produsele pentru o comanda (https://github.com/celdotro/marketplace/wiki/Actualizare-comenzi)
+     * [EN] Update the products of an order (https://github.com/celdotro/marketplace/wiki/Update-orders)
      * @param $cmd
      * @param $arrProducts
      * @return \Psr\Http\Message\ResponseInterface
