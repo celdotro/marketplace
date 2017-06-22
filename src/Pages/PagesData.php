@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class PagesData {
 
     /**
-     * [RO] Returneaza toate paginile
-     * [EN] Get all pages
+     * [RO] Returneaza toate paginile (https://github.com/celdotro/marketplace/wiki/Listare-Pagini)
+     * [EN] Get all pages (https://github.com/celdotro/marketplace/wiki/List-pages)
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getPages(){
