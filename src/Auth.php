@@ -2,10 +2,13 @@
 namespace celmarket;
 
 use GuzzleHttp\Client;
-use celmarket\Config;
 
+/**
+ * Class Auth - implements singleton pattern
+ * @package celmarket
+ */
 class Auth
-{ // Implements Singleton pattern
+{
     // Singleton instance
     private static $_instance = null;
 
@@ -14,21 +17,22 @@ class Auth
     private static $password = null;
     private static $token = null;
 
-    // Connection timeout for Guzzle
-    const TIMEOUT = 30; // 30s timeout
-
     /**
      * Auth constructor.
+     * 1. Sanity check
+     * 2. Get authentication token
+     * 3. Process response
      * @param bool $regenerate
      * @throws \Exception
      */
     private function __construct($regenerate = false)
     {
-        // Sanity check
+        ### 1. Sanity check ###
         if (empty(static::$username) || empty(static::$password)) {
             throw new \Exception('Username or password is missing');
         }
 
+        ### 2. Get authentication token ###
         // Check if token exists and there is no need to regenerate
         if (file_exists(Config::TOKEN_PATH) && !$regenerate) {
             // Read the token file and set the static attribute $token with the file content
@@ -38,16 +42,19 @@ class Auth
 
         // If token doesn't exist or if regeneration is imposed, then retrieve a new token from the server using Guzzle
         //// New Guzzle client
-        $guzzleClient = new Client(array('timeout'  => self::TIMEOUT));
+        $guzzleClient = new Client(array('timeout'  => Config::TIMEOUT));
         //// Send POST request to the login page
         $response = $guzzleClient->request('POST', Config::API_HTTP . 'login/actionLogin', array('form_params' => array('username' => static::$username, 'password' => static::$password)));
         //// Retrieve response
         $body = $response->getBody()->getContents();
-        //// Decode the response and throw error if the response is not a JSON object
+
+        ### 3. Process response ###
+        // Decode the response
         $res = json_decode($body, true);
+        // Throw error if the response is not a JSON object
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului trimis de serverul de autentificare: ' . $body);
 
-        //// Process response
+        // Further process decoded response
         try{
             if (!is_null($res['tokenStatus']) && !is_null($res['message']) && $res['tokenStatus']) { // Check if the response has a valid form and the token status is true
                 // Write the message content in the token file ($res['message'] is the token)
