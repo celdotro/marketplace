@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class InvoicesPrint {
 
     /**
-     * [RO] Printeaza factura unei anumite comenzi. Daca parametrul $check este false, nu va verifica stocul produsului.
-     * [EN] Print the invoice of a specific order. If the $check parameter is false, it won't check product stocks.
+     * [RO] Printeaza factura unei anumite comenzi. Daca parametrul $check este false, nu va verifica stocul produsului. (https://github.com/celdotro/marketplace/wiki/Printare-factura)
+     * [EN] Print the invoice of a specific order. If the $check parameter is false, it won't check product stocks. (https://github.com/celdotro/marketplace/wiki/Print-Invoice)
      * @param $cmd
      * @return bool|string
      * @throws \Exception

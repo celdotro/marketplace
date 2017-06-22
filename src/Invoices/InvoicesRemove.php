@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class InvoicesRemove {
 
     /**
-     * [RO] Elimina factura unei comenzi
-     * [EN] Removes an order's invoice
+     * [RO] Elimina factura unei comenzi (https://github.com/celdotro/marketplace/wiki/Stergere-factura)
+     * [EN] Removes an order's invoice (https://github.com/celdotro/marketplace/wiki/Remove-Invoice)
      * @param $cmd
      * @throws \Exception
      */
