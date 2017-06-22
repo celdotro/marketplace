@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class PagesDelete {
 
     /**
-     * [RO] Sterge paginile pe baza ID-ului
-     * [EN] Delete page based on ID
+     * [RO] Sterge paginile pe baza ID-ului (https://github.com/celdotro/marketplace/wiki/Stergere-pagini)
+     * [EN] Delete page based on ID (https://github.com/celdotro/marketplace/wiki/Remove-page)
      * @param $pageID
      * @return \Psr\Http\Message\ResponseInterface
      */

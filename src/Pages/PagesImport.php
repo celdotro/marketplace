@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class PagesImport {
 
     /**
-     * [RO] Salveaza datele paginii
-     * [EN] Save page data
+     * [RO] Salveaza datele paginii (https://github.com/celdotro/marketplace/wiki/Salvare-pagina)
+     * [EN] Save page data (https://github.com/celdotro/marketplace/wiki/Save-pages)
      * @param $pageID
      * @param $pageData
      * @return \Psr\Http\Message\ResponseInterface
