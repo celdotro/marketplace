@@ -65,4 +65,18 @@ class Auth
     {
         return file_exists(Config::TOKEN_PATH) ? file_get_contents(Config::TOKEN_PATH) : static::regenerateToken();
     }
+
+    /**
+     * Singleton -> prevent unserializing
+     */
+    private function __wakeup () {
+        return;
+    }
+
+    /**
+     * Singleton -> prevent instance cloning
+     */
+    private function __clone () {
+        return;
+    }
 }
