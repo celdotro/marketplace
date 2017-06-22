@@ -3,23 +3,36 @@
 namespace celmarket;
 
 /**
- * Error reporting for testing purposes
+ * Error reporting for testing purposes - commented out because it contains rarely used code that only adds unnecessary steps.
+ * In order to use this, simply uncomment it and change the TEST constant initialization to true
  */
-define('TEST', false);
-if (defined('TEST') && TEST) {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-}
+//define('TEST', false);
+//if (defined('TEST') && TEST) {
+//    ini_set('display_errors', 1);
+//    ini_set('display_startup_errors', 1);
+//    error_reporting(E_ALL);
+//}
 
 use GuzzleHttp\Client;
 
+/**
+ * Class Dispatcher
+ * General capabilities:
+ * - whitelist methods for unnecessary API calls
+ * - build API's URL
+ * - authenticate
+ * - connect to API
+ * - retrieve and do a basic processing of the response
+ * @package celmarket
+ */
 class Dispatcher {
-
-    const TIMEOUT = 60; // 60s timeout
 
     /**
      * Send data to API and retrieve response
+     * 1. Validate method and action, and builds URL based on these
+     * 2. Authenticate user
+     * 3. Instantiate a guzzleClient object and makes a POST request to the API server
+     * 4. Process the response in order to throw relevant error messages or return the correctly formed response
      * @param $method
      * @param $action
      * @param $data
@@ -42,17 +55,19 @@ class Dispatcher {
         $url = Config::API_HTTP . $method . '/' . $action . '/';
 
         ### 2. Authenticate user ##
-        // Retrieve token
+        // Get Auth instance
         $auth = Auth::getInstance();
         try {
+            // Retrieve token
             $token = $auth->getToken();
         } catch (Exception $e) {
+            // If an Exception was caught, regenerate token
             $token = Auth::regenerateToken();
         }
 
         ### 3. Instantiate a guzzleClient object and makes a POST request to the API server ###
         // New GuzzleHttp client
-        $guzzleClient = new Client(array('timeout' => self::TIMEOUT));
+        $guzzleClient = new Client(array('timeout' => Config::TIMEOUT));
 
         // Build POST request with token placed in bearer authorization header
         $request = $guzzleClient->request('POST', $url, array('form_params' => $data, 'headers' => array('Authorization' => 'Bearer ' . $token)));
