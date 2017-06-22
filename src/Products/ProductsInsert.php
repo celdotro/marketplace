@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class ProductsInsert {
 
     /**
-     * [RO] Insereaza/Actualizeaza un array de produse. Fiecare produs are un array de date relevante.
-     * [EN] Insert/Update an array of products. Each product has an array of relevant data.
+     * [RO] Insereaza/Actualizeaza un array de produse. Fiecare produs are un array de date relevante. (https://github.com/celdotro/marketplace/wiki/Import-produse)
+     * [EN] Insert/Update an array of products. Each product has an array of relevant data. (https://github.com/celdotro/marketplace/wiki/Import-products)
      * @param array $arrProducts
      * @throws \Exception
      */

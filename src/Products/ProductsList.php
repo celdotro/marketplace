@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class ProductsList
 {
     /**
-     * [RO] Returneaza toate categoriile
-     * [EN] Get all categories
+     * [RO] Returneaza toate categoriile (https://github.com/celdotro/marketplace/wiki/Listeaza-categorii)
+     * [EN] Get all categories (https://github.com/celdotro/marketplace/wiki/List-categories)
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getCategories()
@@ -28,9 +28,9 @@ class ProductsList
 
     /**
      * [RO] Listeaza produsele. Lista poate fi scurtata folosind o valoare de start si o limita. De asemenea, produsele
-     * pot fi filtrate in functie de nume.
+     * pot fi filtrate in functie de nume. (https://github.com/celdotro/marketplace/wiki/Listeaza-produse)
      * [EN] Lists products. The list can be shrunk using a start and limit value. Also, the products can be filtered
-     * based on their name
+     * based on their name. (https://github.com/celdotro/marketplace/wiki/List-products)
      * @param $start
      * @param $limit
      * @param null $search
