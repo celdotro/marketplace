@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class ProductsBonus {
 
     /**
-     * [RO] Adauga bonusul pentru un produs
-     * [EN] Adds bonuses for a product
+     * [RO] Adauga bonusul pentru un produs (https://github.com/celdotro/marketplace/wiki/Adauga-bonus)
+     * [EN] Adds bonuses for a product (https://github.com/celdotro/marketplace/wiki/Add-bonus)
      * @param $model
      * @param array $bonus
      * @return \Psr\Http\Message\ResponseInterface
@@ -33,7 +33,8 @@ class ProductsBonus {
     }
 
     /**
-     * Get a products bonuses
+     * [RO] Listeaza bonusurile unui produs (https://github.com/celdotro/marketplace/wiki/Listeaza-bonus)
+     * [EN] Get a product's bonuses (https://github.com/celdotro/marketplace/wiki/List-bonus)
      * @param $model
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
@@ -56,7 +57,8 @@ class ProductsBonus {
     }
 
     /**
-     * Deletes a products bonuses
+     * [RO] Sterge bonusurile unui produs (https://github.com/celdotro/marketplace/wiki/Stergere-bonus)
+     * [EN] Deletes a product's bonuses (https://github.com/celdotro/marketplace/wiki/Delete-bonus)
      * @param $model
      * @param array $bonus
      * @return \Psr\Http\Message\ResponseInterface
