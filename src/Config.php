@@ -2,6 +2,8 @@
 
 namespace celmarket;
 
+define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
+
 /**
  * Class Config - contains constants with general purpose data
  *  WIKI
@@ -15,7 +17,7 @@ class Config
     const API_HTTP = 'http://192.168.0.85/market_api/';
 
     // Path to token file
-    const TOKEN_PATH = './token';
+    const TOKEN_PATH = TOKEN;
 
     // Connection timeout
     const TIMEOUT = 30; // 30 seconds
