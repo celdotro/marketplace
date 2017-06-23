@@ -2,4 +2,4 @@
 /**
  * Dependencies autoloader
  */
-include 'vendor/autoload.php';
+include 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
