@@ -1,5 +1,5 @@
 # marketplace
-##### CEL.ro Marketplace API wrapper in PHP  
+#### CEL.ro Marketplace API wrapper in PHP  
   
 [![Latest Stable Version](https://poser.pugx.org/celdotro/marketplace/v/stable?format=flat-square)](https://packagist.org/packages/celdotro/marketplace)
 [![Total Downloads](https://poser.pugx.org/celdotro/marketplace/downloads?format=flat-square)](https://packagist.org/packages/celdotro/marketplace)
