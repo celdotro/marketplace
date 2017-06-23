@@ -1,10 +1,10 @@
-# marketplace
-#### CEL.ro Marketplace API wrapper in PHP  
+# CEL.ro: Marketplace
+**CEL.ro Marketplace API wrapper in PHP**  
   
 [![Latest Stable Version](https://poser.pugx.org/celdotro/marketplace/v/stable?format=flat-square)](https://packagist.org/packages/celdotro/marketplace)
 [![Total Downloads](https://poser.pugx.org/celdotro/marketplace/downloads?format=flat-square)](https://packagist.org/packages/celdotro/marketplace)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/celdotro/marketplace/master/LICENSE)
-[![Latest Unstable Version](https://poser.pugx.org/celdotro/marketplace/v/unstable?format=flat-square)](https://packagist.org/packages/celdotro/marketplace)
+[![Latest Unstable Version](https://poser.pugx.org/celdotro/marketplace/v/unstable?format=flat-square)](https://packagist.org/packages/celdotro/marketplace#dev-master)
 
 [![GitHub issues](https://img.shields.io/github/issues/celdotro/marketplace.svg?style=flat-square)](https://github.com/celdotro/marketplace/issues)
 [![GitHub stars](https://img.shields.io/github/stars/celdotro/marketplace.svg?style=flat-square)](https://github.com/celdotro/marketplace/stargazers)
