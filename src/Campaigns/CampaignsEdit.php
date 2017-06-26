@@ -58,11 +58,13 @@ class CampaignsEdit {
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception
      */
-    public function saveProduct($name, $model, $promoPrice){
+    public function saveProduct($name, $model, $promoPrice, $start, $end){
         // Sanity check
         if(!isset($name) || $name == '') throw new \Exception('Specificati numele campaniei');
         if(!isset($model) && $model == '') throw new \Exception('Specificati modelul produsului');
         if(!isset($promoPrice) && $promoPrice < 0) throw new \Exception('Specificati pretul promo al produslui');
+        if(!isset($start)) throw new \Exception('Specificati data de start');
+        if(!isset($end)) throw new \Exception('Specificati data de sfarsit');
 
         // Set method and action
         $method = 'campaign';
@@ -72,7 +74,9 @@ class CampaignsEdit {
         $data = array(
             'numecampanie'  =>  $name,
             'model'         =>  $model,
-            'promo'         =>  $promoPrice
+            'promo'         =>  $promoPrice,
+            'start'         =>  $start,
+            'end'           =>  $end
         );
 
         // Send request and retrieve response
