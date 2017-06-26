@@ -63,8 +63,6 @@ class CampaignsEdit {
         if(!isset($name) || $name == '') throw new \Exception('Specificati numele campaniei');
         if(!isset($model) && $model == '') throw new \Exception('Specificati modelul produsului');
         if(!isset($promoPrice) && $promoPrice < 0) throw new \Exception('Specificati pretul promo al produslui');
-        if(!isset($start)) throw new \Exception('Specificati data de start');
-        if(!isset($end)) throw new \Exception('Specificati data de sfarsit');
 
         // Set method and action
         $method = 'campaign';
