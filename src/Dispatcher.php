@@ -32,6 +32,7 @@ class Dispatcher {
 
     /**
      * Send data to API and retrieve response
+     * 0. Check fail count
      * 1. Validate method and action, and build URL based on these
      * 2. Authenticate user
      * 3. Instantiate a guzzleClient object and makes a POST request to the API server
@@ -41,7 +42,10 @@ class Dispatcher {
      * @param $data
      * @throws \Exception
      */
-    public static function send ($method, $action, $data) {
+    public static function send ($method, $action, $data, $failCount = 0) {
+        ### 0. Check fail count ###
+        if($failCount > 2) throw new \Exception('Autentificarea a esuat');
+
         ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
         if (is_null($method) || empty($method) || !self::whitelistMethod($method)) {
@@ -73,12 +77,18 @@ class Dispatcher {
         $guzzleClient = new Client(array('timeout' => Config::TIMEOUT));
 
         // Build POST request with token placed in bearer authorization header
-        $request = $guzzleClient->request('POST', $url, array('form_params' => $data, 'headers' => array('Authorization' => 'Bearer ' . $token)));
+        $request = $guzzleClient->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
 
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
         $contents = json_decode($jsonContents);
+
+        // Check if the response returned a 302 error, in which case rerun this method
+        if($contents->error == 302){
+            $token = Auth::regenerateToken();
+            return self::send($method, $action, $data, $failCount++);
+        }
 
         // Throw customised exception in case decoding fails
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
