@@ -13,6 +13,7 @@ namespace celmarket;
 //    error_reporting(E_ALL);
 //}
 
+use Aura\Filter\Exception;
 use GuzzleHttp\Client;
 
 /**
@@ -21,6 +22,7 @@ use GuzzleHttp\Client;
  *      [RO]: https://github.com/celdotro/marketplace/wiki/Informatii-generale#dispatcher
  *      [EN]: https://github.com/celdotro/marketplace/wiki/General-Information#dispatcher
  * General capabilities:
+ * - instantiates a connection that can be retrieved for further use
  * - whitelist methods for unnecessary API calls
  * - build API's URL
  * - authenticate
@@ -30,21 +32,33 @@ use GuzzleHttp\Client;
  */
 class Dispatcher {
 
+    private static $guzzleClient = NULL;
+    private static $failCount = 0;
+
+    /**
+     * Dispatcher constructor.
+     */
+    private function __construct () {
+        throw new \Exception('Nu puteti instantia un obiect cu clasa Dispatcher');
+    }
+
     /**
      * Send data to API and retrieve response
      * 0. Check fail count
      * 1. Validate method and action, and build URL based on these
      * 2. Authenticate user
-     * 3. Instantiate a guzzleClient object and makes a POST request to the API server
+     * 3. Uses dispatcher's guzzleClient object and makes a POST request to the API server
      * 4. Process the response in order to throw relevant error messages or return the correctly formed response
      * @param $method
      * @param $action
      * @param $data
      * @throws \Exception
      */
-    public static function send ($method, $action, $data, $failCount = 0) {
+    public static function send ($method, $action, $data) {
         ### 0. Check fail count ###
-        if($failCount > 2) throw new \Exception('Autentificarea a esuat');
+        if (is_null(self::$failCount)) self::$failCount = 0;
+        self::$failCount++;
+        if (self::$failCount > Config::MAX_FAILCOUNT) throw new \Exception('Autentificarea a esuat');
 
         ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
@@ -62,36 +76,42 @@ class Dispatcher {
         $url = Config::API_HTTP . $method . '/' . $action . '/';
 
         ### 2. Authenticate user ##
-        // Get Auth instance
-        $auth = Auth::getInstance();
-        try {
-            // Retrieve token
-            $token = $auth->getToken();
-        } catch (Exception $e) {
-            // If an Exception was caught, regenerate token
-            $token = Auth::regenerateToken();
+        $token = '';
+        // Only get another instance if the method is not login
+        if ($method != 'login' && $action != 'actionLogin') {
+            // Get Auth instance
+            $auth = Auth::getInstance();
+            try {
+                // Retrieve token
+                $token = $auth->getToken();
+            } catch (Exception $e) {
+                // If an Exception was caught, regenerate token
+                $token = Auth::regenerateToken();
+            }
         }
 
-        ### 3. Instantiate a guzzleClient object and makes a POST request to the API server ###
-        // New GuzzleHttp client
-        $guzzleClient = new Client(array('timeout' => Config::TIMEOUT));
+        ### 3. Uses dispatcher's guzzleClient object and makes a POST request to the API server ###
+        // Check if test server has to be used
+        if (Config::TEST) $data['test'] = 1;
 
         // Build POST request with token placed in bearer authorization header
-        $request = $guzzleClient->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
+        $request = self::getGuzzleClient()->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
 
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
         $contents = json_decode($jsonContents);
 
-        // Check if the response returned a 302 error, in which case rerun this method
-        if($contents->error == 302){
-            $token = Auth::regenerateToken();
-            return self::send($method, $action, $data, $failCount++);
-        }
-
         // Throw customised exception in case decoding fails
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+
+        // Check if the response returned a 302 error, in which case rerun this method
+        if ($contents->error == 302) {
+            $token = Auth::regenerateToken();
+            return self::send($method, $action, $data);
+        } else {
+            self::$failCount = 0;
+        }
 
         // Return result
         if (is_object($contents)) { // Valid contents
@@ -110,7 +130,7 @@ class Dispatcher {
                 if (isset($contents->message) && $contents->message === 1) { // Standard error
                     throw new \Exception('Eroare: ' . $contents->message);
                 } else { // Exotic error
-                    throw new \Exception('Eroare: ' . $jsonContents);
+                    throw new \Exception('Eroare neasteptata: ' . $jsonContents);
                 }
             }
         } else { // Invalid contents
@@ -124,10 +144,35 @@ class Dispatcher {
      * @return bool
      */
     public static function whitelistMethod ($cName) {
-        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'example', 'campaign'))) {
+        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign'))) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Enforces the use of a single connection
+     * @return Client|null
+     */
+    public static function getGuzzleClient () {
+        if (is_null(self::$guzzleClient))
+            self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT));
+
+        return self::$guzzleClient;
+    }
+
+    /**
+     * Singleton -> prevent unserializing
+     */
+    private function __wakeup () {
+        return;
+    }
+
+    /**
+     * Singleton -> prevent instance cloning
+     */
+    private function __clone () {
+        return;
     }
 }
