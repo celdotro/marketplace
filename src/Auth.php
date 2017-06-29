@@ -1,8 +1,6 @@
 <?php
 namespace celmarket;
 
-use GuzzleHttp\Client;
-
 /**
  * Class Auth - implements singleton pattern
  *  WIKI
@@ -43,31 +41,13 @@ class Auth
             return true;
         }
 
-        // If token doesn't exist or if regeneration is imposed, then retrieve a new token from the server using Guzzle
-        //// New Guzzle client
-        $guzzleClient = new Client(array('timeout'  => Config::TIMEOUT));
-        //// Send POST request to the login page
-        $response = $guzzleClient->request('POST', Config::API_HTTP . 'login/actionLogin', array('form_params' => array('username' => static::$username, 'password' => static::$password)));
-        //// Retrieve response
-        $body = $response->getBody()->getContents();
-
         ### 3. Process response ###
-        // Decode the response
-        $res = json_decode($body, true);
-        // Throw error if the response is not a JSON object
-        if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului trimis de serverul de autentificare: ' . $body);
-
-        // Further process decoded response
+        $res = Dispatcher::send('login', 'actionLogin', array('username' => static::$username, 'password' => static::$password));
         try{
-            if (!is_null($res['tokenStatus']) && !is_null($res['message']) && $res['tokenStatus']) { // Check if the response has a valid form and the token status is true
-                // Write the message content in the token file ($res['message'] is the token)
-                file_put_contents(Config::TOKEN_PATH, $res['message']);
-                // Set the static attribute $token with the message content
-                static::$token = $res['message'];
-            } else {
-                // Throw invalid response exception and add the received response in it's undecoded form
-                throw new \Exception('Raspuns invalid: ' . $body);
+            if(file_put_contents(Config::TOKEN_PATH, $res) === false){
+                throw new \Exception('Fisierul nu poate fi scris: ' . Config::TOKEN_PATH);
             }
+            static::$token = $res;
         } catch (\Exception $e) {
             // Catch all exceptions, add a message for clarification and re-throw them up the stack
             throw new \Exception('Eroare in procesul de autentificare: ' . $e->getMessage());
