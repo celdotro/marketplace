@@ -122,7 +122,7 @@ class Dispatcher {
                 if (isset($contents->message)) { // Has message
                     return $contents->message;
                 } else { // Everything is fine, except the message
-                    throw new \Exception('Eroare: continutul nu a fost primit');
+                    throw new \Exception('Eroare: continutul nu are o forma adecvata : ' . $jsonContents);
                 }
             } elseif (!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
                 throw new \Exception('Eroare: token invalid');
@@ -144,7 +144,7 @@ class Dispatcher {
      * @return bool
      */
     public static function whitelistMethod ($cName) {
-        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign', 'admin'))) {
+        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign', 'admininfo'))) {
             return true;
         }
 
