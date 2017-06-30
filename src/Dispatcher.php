@@ -144,7 +144,7 @@ class Dispatcher {
      * @return bool
      */
     public static function whitelistMethod ($cName) {
-        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign'))) {
+        if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign', 'admin'))) {
             return true;
         }
 
