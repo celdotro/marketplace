@@ -57,7 +57,7 @@ class Payments {
         if (is_null($numInvoice)) throw new \Exception ('Specificati numarul facturii');
         if (is_null($numOrder)) throw new \Exception ('Specificati numarul comenzii');
 
-        // Set// Set method and action
+        // Set method and action
         $method = 'admininfo';
         $action = 'showPayments';
 
