@@ -24,7 +24,7 @@ class Payments {
         if (is_null($paymentStatus) || !in_array($paymentStatus, array(1,2,3))) throw new \Exception('Specificati un status valid al platilor');
 
         // Set method and action
-        $method = 'admin';
+        $method = 'admininfo';
         $action = 'getInvoicesData';
 
         // Set data
@@ -39,6 +39,33 @@ class Payments {
         if(!is_null($endDate_order)) $data['endDate_cmd'] = $endDate_order;
 
         if(!is_null($page)) $data['page'] = $page;
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * Returns an invoice's payments and other relevant data
+     * @param $numInvoice
+     * @param $numOrder
+     * @throws \Exception
+     */
+    public function showPayments($numInvoice, $numOrder){
+        // Sanity check
+        if (is_null($numInvoice)) throw new \Exception ('Specificati numarul facturii');
+        if (is_null($numOrder)) throw new \Exception ('Specificati numarul comenzii');
+
+        // Set// Set method and action
+        $method = 'admininfo';
+        $action = 'showPayments';
+
+        // Set data
+        $data = array(
+            'numInvoice' => $numInvoice,
+            'numOrder' => $numOrder
+        );
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
