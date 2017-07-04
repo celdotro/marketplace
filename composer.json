@@ -9,13 +9,14 @@
             "email": "alin.tanase@cel.ro"
         },
 	{
-	    "name": "fredtux",
+	    "name": "Florin D",
             "homepage": "https://github.com/fredtux"
 	}
     ],
     "support": {
         "issues": "https://github.com/celdotro/marketplace/issues",
-        "source": "https://github.com/celdotro/marketplace"
+        "source": "https://github.com/celdotro/marketplace",
+	"wiki": "https://github.com/celdotro/marketplace/wiki"
     },
     "minimum-stability": "dev",
     "autoload": {
