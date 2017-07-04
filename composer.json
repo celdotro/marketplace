@@ -14,7 +14,12 @@
 	    "name": "Florin D",
             "homepage": "https://github.com/fredtux",
 	    "role": "Developer"
-	}
+	},
+        {
+            "name": "CEL.ro"
+            "homepage": "https://www.cel.ro"
+            "role": "Owner"
+        }
     ],
     "support": {
         "issues": "https://github.com/celdotro/marketplace/issues",
