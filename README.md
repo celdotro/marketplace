@@ -12,6 +12,7 @@
 
 **[RO]** Daca sunteti interesati de crearea unui cont de testare, va rugam sa ne contactati la: **dp [_ AT _] cel.ro**  
 **[EN]** If you are interested in creating an account for testing purposes, please contact us at: **dp [_ AT _] cel.ro**
+
 ___
 ## [RO + EN] WIKI
 [RO] Pentru a consulta documentatia, vizitati pagina de mai jos:  
