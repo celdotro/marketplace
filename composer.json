@@ -1,6 +1,7 @@
 {
     "name": "celdotro/marketplace",
     "description": "CEL.ro Marketplace API wrapper in PHP",
+    "keywords": ["marketplace-api-wrapper", "cel-marketplace", "cel", "marketplace", "api-wrapper", "celdotro", "composer", "packagist", "php", "wiki"],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -16,7 +17,8 @@
     "support": {
         "issues": "https://github.com/celdotro/marketplace/issues",
         "source": "https://github.com/celdotro/marketplace",
-	"wiki": "https://github.com/celdotro/marketplace/wiki"
+	"wiki": "https://github.com/celdotro/marketplace/wiki",
+	"examples": "https://github.com/celdotro/marketplace_examples"
     },
     "minimum-stability": "dev",
     "autoload": {
