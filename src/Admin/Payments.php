@@ -21,7 +21,7 @@ class Payments {
      */
     public function getInvoicesData($paymentStatus, $numInvoice = NULL, $startDate_inv = NULL, $endDate_inv = NULL, $numOrder = NULL, $startDate_order = NULL, $endDate_order = NULL, $page = NULL){
         // Sanity check
-        if (is_null($paymentStatus) || !in_array($paymentStatus, array(1,2,3))) throw new \Exception('Specificati un status valid al platilor');
+        if (!isset($paymentStatus) || is_null($paymentStatus) || !in_array($paymentStatus, array(1,2,3))) throw new \Exception('Specificati un status valid al platilor');
 
         // Set method and action
         $method = 'admininfo';
@@ -54,8 +54,8 @@ class Payments {
      */
     public function showPayments($numInvoice, $numOrder){
         // Sanity check
-        if (is_null($numInvoice)) throw new \Exception ('Specificati numarul facturii');
-        if (is_null($numOrder)) throw new \Exception ('Specificati numarul comenzii');
+        if (!isset($numInvoice) || is_null($numInvoice)) throw new \Exception ('Specificati numarul facturii');
+        if (!isset($numInvoice) || is_null($numOrder)) throw new \Exception ('Specificati numarul comenzii');
 
         // Set method and action
         $method = 'admininfo';

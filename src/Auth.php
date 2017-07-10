@@ -87,8 +87,8 @@ class Auth
     public static function setUserDetails($username, $password)
     {
         // Sanity check
-        if(is_null($username) || empty($username)) throw new \Exception('Specificati un nume de utilizator valid');
-        if(is_null($password) || empty($password)) throw new \Exception('Specificati o parola valida');
+        if(!isset($username) || is_null($username) || empty($username)) throw new \Exception('Specificati un nume de utilizator valid');
+        if(!isset($password) || is_null($password) || empty($password)) throw new \Exception('Specificati o parola valida');
 
         // Set attributes
         self::$username = $username;
