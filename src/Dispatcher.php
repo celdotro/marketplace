@@ -56,19 +56,19 @@ class Dispatcher {
      */
     public static function send ($method, $action, $data) {
         ### 0. Check fail count ###
-        if (is_null(self::$failCount)) self::$failCount = 0;
+        if (!isset(self::$failCount) || is_null(self::$failCount)) self::$failCount = 0;
         self::$failCount++;
         if (self::$failCount > Config::MAX_FAILCOUNT) throw new \Exception('Autentificarea a esuat');
 
         ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
-        if (is_null($method) || empty($method) || !self::whitelistMethod($method)) {
+        if (!isset($method) || is_null($method) || empty($method) || !self::whitelistMethod($method)) {
             throw new \Exception('Metoda invalida');
         }
-        if (is_null($action) || empty($action)) {
+        if (!isset($action) || is_null($action) || empty($action)) {
             throw new \Exception('Actiune invalida');
         }
-        if (is_null($data)) {
+        if (!isset($data) || is_null($data)) {
             throw new \Exception('Datele nu pot fi nule');
         }
 
@@ -156,7 +156,7 @@ class Dispatcher {
      * @return Client|null
      */
     public static function getGuzzleClient () {
-        if (is_null(self::$guzzleClient))
+        if (!isset(self::$guzzleClient) || is_null(self::$guzzleClient))
             self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT));
 
         return self::$guzzleClient;

@@ -15,7 +15,7 @@ class AWBInfo {
      */
     public function printAwb($cmd){
         // Sanity check
-        if(is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
+        if(!isset($cmd) || is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
 
         // Set method and action
         $method = 'orders';
