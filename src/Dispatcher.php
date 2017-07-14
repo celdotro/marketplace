@@ -101,7 +101,7 @@ class Dispatcher {
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
         $contents = json_decode($jsonContents);
-
+      
         // Throw customised exception in case decoding fails
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
 
@@ -127,8 +127,8 @@ class Dispatcher {
             } elseif (!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
                 throw new \Exception('Eroare: token invalid');
             } elseif (!isset($contents->error) || $contents->error !== 0) { // Error returned
-                if (isset($contents->message) && $contents->message === 1) { // Standard error
-                    throw new \Exception('Eroare: ' . $contents->message);
+                if (isset($contents->message)) { // Standard error
+                    return $contents;
                 } else { // Exotic error
                     throw new \Exception('Eroare neasteptata: ' . $jsonContents);
                 }
