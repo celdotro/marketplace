@@ -9,20 +9,19 @@ class History {
     /**
      * [RO] Returneaza date despre istoricul importurilor (https://github.com/celdotro/marketplace/wiki/Istoric-importuri)
      * [EN] Returns data about import history (https://github.com/celdotro/marketplace/wiki/Import-history)
+     *
      * @param null $date_start
      * @param null $date_stop
      * @param null $import_type
      * @param int $page
-     * @throws \Exception
+     * @return mixed
      */
     public function getImportHistory ($date_start = null, $date_stop = null, $import_type = NULL, $page = 0) {
-        // Sanity check
-        if (!isset($date_start) || strtotime($date_start) == false) throw new \Exception('Specificati data de inceput a importului');
-        if (!isset($date_stop) || strtotime($date_stop) == false) throw new \Exception('Specificati data de sfarsit a importului');
-
         // Set method and action
         $method = 'admininfo';
         $action = 'getImportHistory';
+
+        $data = array();
 
         // Set data
         if (!is_null($date_start)) $data['data_start'] = $date_start;
