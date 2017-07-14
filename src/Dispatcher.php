@@ -52,6 +52,7 @@ class Dispatcher {
      * @param $method
      * @param $action
      * @param $data
+     * @return mixed
      * @throws \Exception
      */
     public static function send ($method, $action, $data) {
@@ -101,7 +102,7 @@ class Dispatcher {
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
         $contents = json_decode($jsonContents);
-      
+
         // Throw customised exception in case decoding fails
         if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
 
