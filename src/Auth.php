@@ -35,18 +35,30 @@ class Auth
 
         ### 2. Get authentication token ###
         // Check if token exists and there is no need to regenerate
-        if (file_exists(Config::TOKEN_PATH) && !$regenerate) {
-            // Read the token file and set the static attribute $token with the file content
-            static::$token = file_get_contents(Config::TOKEN_PATH);
-            return true;
+        try {
+            if (file_exists(Config::TOKEN_PATH) && !$regenerate) {
+                // Read the token file and set the static attribute $token with the file content
+                static::$token = file_get_contents(Config::TOKEN_PATH);
+                // If token is not empty, then return true, otherwise delete the token's file and continue
+                if (static::$token !== '') return true;
+                else unlink(Config::TOKEN_PATH);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception('Eroare la procesarea fisierului: ' . Config::TOKEN_PATH);
         }
 
         ### 3. Process response ###
         $res = Dispatcher::send('login', 'actionLogin', array('username' => static::$username, 'password' => static::$password));
         try{
-            if(file_put_contents(Config::TOKEN_PATH, $res) === false){
+            if($res === ''){ // Token is null
+                throw new \Exception('Token-ul primit este null');
+            } elseif(strstr($res, 'Raspuns invalid:') !== false){ // Invalid answer
+                throw new \Exception($res);
+            }elseif(file_put_contents(Config::TOKEN_PATH, $res) === false){ // File can't be written
                 throw new \Exception('Fisierul nu poate fi scris: ' . Config::TOKEN_PATH);
             }
+
+            // Token static attribute gets the value of the response
             static::$token = $res;
         } catch (\Exception $e) {
             // Catch all exceptions, add a message for clarification and re-throw them up the stack
