@@ -35,6 +35,7 @@ class ProductsList
      * @param $limit
      * @param null $search
      * @param bool $forceCount
+     * @return mixed
      * @throws \Exception
      */
     public function listProducts($start, $limit, $search = null, $forceCount = false){
@@ -56,6 +57,13 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza caracteristicile unei categorii (https://github.com/celdotro/marketplace/wiki/Listeaza-caracteristicile-unei-categorii)
+     * [EN] Lists the characteristics of a category (https://github.com/celdotro/marketplace/wiki/List-characteristics-of-a-category)
+     * @param $categID
+     * @return mixed
+     * @throws \Exception
+     */
     public function getCategoryCharacteristics($categID){
         // Sanity check
         if(!isset($categID) || !is_int($categID) || $categID < 0) throw new \Exception('Specificati o categorie valida');

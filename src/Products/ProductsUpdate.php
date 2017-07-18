@@ -9,6 +9,7 @@ class ProductsUpdate {
      * [RO] Actualizeaza datele produselor deja existente (https://github.com/celdotro/marketplace/wiki/Actualizeaza-date-produs)
      * [EN] Updates an already existing product's data (https://github.com/celdotro/marketplace/wiki/Update-product-data)
      * @param $arrProducts
+     * @return mixed
      * @throws \Exception
      */
     public function updateData($arrProducts){
