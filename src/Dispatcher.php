@@ -13,8 +13,8 @@ namespace celmarket;
 //    error_reporting(E_ALL);
 //}
 
-use Aura\Filter\Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Class Dispatcher
@@ -33,7 +33,7 @@ use GuzzleHttp\Client;
 class Dispatcher {
 
     private static $guzzleClient = NULL;
-    private static $failCount = 0;
+    private static $failCount;
 
     /**
      * Dispatcher constructor.
@@ -59,6 +59,7 @@ class Dispatcher {
         ### 0. Check fail count ###
         if (!isset(self::$failCount) || is_null(self::$failCount)) self::$failCount = 0;
         self::$failCount++;
+
         if (self::$failCount > Config::MAX_FAILCOUNT) throw new \Exception('Autentificarea a esuat');
 
         ### 1. Validate method and action, and build URL based on these ###
@@ -85,7 +86,7 @@ class Dispatcher {
             try {
                 // Retrieve token
                 $token = $auth->getToken();
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // If an Exception was caught, regenerate token
                 $token = Auth::regenerateToken();
             }
@@ -96,8 +97,14 @@ class Dispatcher {
         if (Config::TEST) $data['test'] = 1;
 
         // Build POST request with token placed in bearer authorization header
-        $request = self::getGuzzleClient()->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
-
+        try {
+            $request = self::getGuzzleClient()->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
+        } catch (RequestException $e) { // If a request exception is encountered
+           if ($e->getResponse()->getStatusCode() == 400){ // If the exception has code 400, regenerate token
+               $token = Auth::regenerateToken();
+               return self::send($method, $action, $data);
+           }
+        }
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
