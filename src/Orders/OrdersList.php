@@ -15,6 +15,7 @@ class OrdersList {
      * @param $start
      * @param $limit
      * @param $options
+     * @return mixed
      */
     public function listOrders($start, $limit, $options){
         // Sanity check

@@ -10,6 +10,7 @@ class InvoicesRemove {
      * [RO] Elimina factura unei comenzi (https://github.com/celdotro/marketplace/wiki/Stergere-factura)
      * [EN] Removes an order's invoice (https://github.com/celdotro/marketplace/wiki/Remove-Invoice)
      * @param $cmd
+     * @return mixed
      * @throws \Exception
      */
     public function removeInvoice($cmd){
