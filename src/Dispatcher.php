@@ -108,6 +108,7 @@ class Dispatcher {
 
         // Check if the response returned a 302 error, in which case rerun this method
         if ($contents->error == 302) {
+            $token = Auth::regenerateToken();
             return self::send($method, $action, $data);
         } else {
             self::$failCount = 0;
