@@ -4,7 +4,7 @@ namespace celmarket\Admin;
 
 use celmarket\Dispatcher;
 
-class History {
+class AdminHistory {
 
     /**
      * [RO] Returneaza date despre istoricul importurilor (https://github.com/celdotro/marketplace/wiki/Istoric-importuri)

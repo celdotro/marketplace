@@ -4,7 +4,7 @@ namespace celmarket\Admin;
 
 use celmarket\Dispatcher;
 
-class Payments {
+class AdminPayments {
 
     /**
      * [RO] Returneaza date despre platile efectuate catre afiliat pentru fiecare factura (https://github.com/celdotro/marketplace/wiki/Date-plati-facturi)
