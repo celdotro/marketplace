@@ -1,4 +1,5 @@
 <?php
+
 namespace celmarket\Products;
 
 use celmarket\Dispatcher;
@@ -13,9 +14,9 @@ class ProductsInsert {
      * @return mixed
      * @throws \Exception
      */
-    public function importProducts($arrProducts = array()){
+    public function importProducts ($arrProducts = array()) {
         // Sanity check - for older versions of PHP
-        if(!is_array($arrProducts)) throw new \Exception('Functia primeste ca parametru un array cu datele fiecarui produs grupate intr-un sub-array');
+        if (!is_array($arrProducts)) throw new \Exception('Functia primeste ca parametru un array cu datele fiecarui produs grupate intr-un sub-array');
 
         // Set method and action
         $method = 'import';
@@ -23,6 +24,38 @@ class ProductsInsert {
 
         // Set data
         $data = array('products' => $arrProducts);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Adauga noi valori in lista unei caracteristici (https://github.com/celdotro/marketplace/wiki/Adauga-noi-valori-unei-caracteristici)
+     * [EN] Add new values to a characteristic's list (https://github.com/celdotro/marketplace/wiki/Add-new-values-to-a-characteristic)
+     * @param $categID
+     * @param $charactID
+     * @param $charactValues
+     * @return mixed
+     * @throws \Exception
+     */
+    public function addValuesToCharacteristic ($categID, $charactID, $charactValues) {
+        // Sanity check - for older versions of PHP
+        if (!isset($categID)) throw new \Exception('Specificati categoria');
+        if (!isset($charactID)) throw new \Exception('Specificati ID-ul caracteristicii');
+        if (!isset($charactValues) || empty($charactValues)) throw new \Exception('Specificati valorile caracteristicii');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'addValuesToCharacteristic';
+
+        // Set data
+        $data = array(
+            'categID' => $categID,
+            'charactID' => $charactID,
+            'charactValues' => $charactValues
+        );
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
