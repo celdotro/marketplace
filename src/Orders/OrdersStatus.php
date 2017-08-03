@@ -56,4 +56,23 @@ class OrdersStatus {
         return $result;
     }
 
+    /**
+     * [RO] Listeaza statusurile ce pot fi folosite pentru anularea unei comenzi (https://github.com/celdotro/marketplace/wiki/Listare-statusuri-anulare)
+     * [EN] Lists the statuses that can be used for cancelling an order (https://github.com/celdotro/marketplace/wiki/List-order-cancelling-statuses)
+     * @return mixed
+     */
+    public function listCancellingStatuses(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'listCancellingStatuses';
+
+        // Set data
+        $data = array('dummy' => true);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
