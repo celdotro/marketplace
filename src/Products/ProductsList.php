@@ -35,10 +35,11 @@ class ProductsList
      * @param $limit
      * @param null $search
      * @param bool $forceCount
+     * @param bool $bypassLimit
      * @return mixed
      * @throws \Exception
      */
-    public function listProducts($start, $limit, $search = null, $forceCount = false){
+    public function listProducts($start, $limit, $search = null, $forceCount = false, $bypassLimit = false){
         // Sanity check
         if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');
         if(!isset($limit) || !is_int($limit) || $limit < 0) throw new \Exception('Precizati un numar natural pentru limita');
@@ -48,7 +49,7 @@ class ProductsList
         $action = 'readProducts';
 
         // Set data
-        $data = array('start' => $start, 'limit' => $limit, 'forceCount' => $forceCount);
+        $data = array('start' => $start, 'limit' => $limit, 'forceCount' => $forceCount, 'bypassLimit' => $bypassLimit);
         if(!is_null($search)) $data['search'] = $search;
 
         // Send request and retrieve response
