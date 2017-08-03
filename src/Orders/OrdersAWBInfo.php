@@ -9,15 +9,18 @@ class OrdersAWBInfo {
     /**
      * [RO] Seteaza informatiile necesare AWB-ului unei anumite comenzi (https://github.com/celdotro/marketplace/wiki/Setare-date-AWB)
      * [EN] Set the AWB information for a specific order (https://github.com/celdotro/marketplace/wiki/Set-AWB-Info)
+     *
      * @param $cmd
      * @param $courier
+     * @param $idAdresaRidicare
      * @param null $plic
      * @param null $packages
      * @param null $kg
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param int $sambata
+     * @return mixed
      * @throws \Exception
      */
-    public function setAwbInfo($cmd, $courier, $plic = null, $packages = null, $kg = null, $sambata = 0){
+    public function setAwbInfo($cmd, $courier, $idAdresaRidicare, $plic = null, $packages = null, $kg = null, $sambata = 0){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
         if(!isset($courier) || trim($courier) == '') throw new \Exception('Specificati curierul');
@@ -29,6 +32,7 @@ class OrdersAWBInfo {
                 throw new \Exception('Specificati daca este plic sau daca nu, atunci trimiteti numarul de pachete si kg');
             }
         }
+        if(!isset($idAdresaRidicare) || !is_numeric($idAdresaRidicare)) throw new \Exception('Specificati o adresa de ridicare valida');
 
         // Set method and action
         $method = 'orders';
@@ -42,6 +46,7 @@ class OrdersAWBInfo {
             $data['kg'] = $kg;
         }
         $data['sambata'] = $sambata;
+        $data['idAdresaRidicare'] = $idAdresaRidicare;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
