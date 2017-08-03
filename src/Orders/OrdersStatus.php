@@ -4,7 +4,7 @@ namespace celmarket\Orders;
 
 use celmarket\Dispatcher;
 
-class OrdersCancel {
+class OrdersStatus {
 
     /**
      * [RO] Anuleaza o anumita comanda. Un motiv valid e necesar. (https://github.com/celdotro/marketplace/wiki/Anularea-comenzii)
