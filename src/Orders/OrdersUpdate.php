@@ -32,4 +32,30 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * [RO] Adauga noi produse intr-o comanda existenta (https://github.com/celdotro/marketplace/wiki/Adaugarea-de-noi-produse-in-comanda)
+     * [EN] Add new products to an existing order (https://github.com/celdotro/marketplace/wiki/Adaugarea-de-noi-produse-in-comanda)
+     * @param $cmd
+     * @param $arrProducts
+     * @return mixed
+     * @throws \Exception
+     */
+    public function addProductsToOrder($cmd, $arrProducts){
+        // Sanity check
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+        if(!isset($arrProducts) || !is_array($arrProducts) || empty($arrProducts)) throw new \Exception('$arrProducts trebuie sa fie un array care sa contina un alt array cu datele produselor pe care doriti sa le actualizati in comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'addProductsToOrder';
+
+        // Set data
+        $data = array('order' => $cmd, 'data' => json_encode($arrProducts));
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
