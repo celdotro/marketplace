@@ -6,6 +6,8 @@ use celmarket\Dispatcher;
 class EmailOrder {
 
     /**
+     * [RO] Returneaza o lista cu ID-uri si denumirea mesajelor predefinite pentru anumite actiuni legate de comanda (https://github.com/celdotro/marketplace/wiki/Listare-email-uri-predefinite-pentru-comenzi)
+     * [EN] Returns a list of IDs and names of predefined emails for actions related to an order (https://github.com/celdotro/marketplace/wiki/Get-client-emails-for-an-order)
      * @return mixed
      */
     public function getOrderEmailList(){
@@ -23,6 +25,8 @@ class EmailOrder {
     }
 
     /**
+     * [RO] Returneaza un graf cu conversatiile purtate prin intermediul email-ului cu clientii (https://github.com/celdotro/marketplace/wiki/Preia-email-urile-unui-client-pentru-o-comanda)
+     * [EN] Returns a graph with the conversations made through the email with the client (https://github.com/celdotro/marketplace/wiki/Get-client-emails-for-an-order)
      * @param $cmd
      * @return mixed
      * @throws \Exception
@@ -45,6 +49,8 @@ class EmailOrder {
     }
 
     /**
+     * [RO] Trimite clientului un email predefinit aferent unei comenzi (https://github.com/celdotro/marketplace/wiki/Trimitere-email-aferent-comenzii)
+     * [EN] Sends the client a predefined email related to an order (https://github.com/celdotro/marketplace/wiki/Send-predefined-order-email)
      * @param $cmd
      * @param $idEmail
      * @return mixed
@@ -69,6 +75,8 @@ class EmailOrder {
     }
 
     /**
+     * [RO] Trimite clientului un email personalizat aferent unei comenzi (https://github.com/celdotro/marketplace/wiki/Trimitere-email-personalizat-aferent-comenzii)
+     * [EN] Sends the client a custom email related to an order (https://github.com/celdotro/marketplace/wiki/Send-custom-order-email)
      * @param $cmd
      * @param $subject
      * @param $body
