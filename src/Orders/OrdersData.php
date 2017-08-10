@@ -15,7 +15,7 @@ class OrdersData {
      */
     public function getOrderInfo($cmd){
         // Sanity check - for older versions of PHP
-        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('$cmd trebuie sa fie de tip integer');
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
 
         // Set method and action
         $method = 'orders';
