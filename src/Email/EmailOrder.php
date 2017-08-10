@@ -67,4 +67,32 @@ class EmailOrder {
 
         return $result;
     }
+
+    /**
+     * @param $cmd
+     * @param $subject
+     * @param $body
+     * @param null $replyID
+     * @return mixed
+     * @throws \Exception
+     */
+    public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null){
+        // Sanity check
+        if (is_null($cmd) || !is_numeric($cmd)) throw new \Exception('Specificati o comanda valida');
+        if (is_null($subject) || $subject == '') throw new \Exception('Specificati un subiect valid');
+        if (is_null($body) || $body == '') throw new \Exception('Specificati un continut valid');
+
+        // Set method and action
+        $method = 'email';
+        $action = 'sendOrderCustomEmail';
+
+        // Set data
+        $data = array('cmd' => $cmd, 'subject' => $subject, 'body' => $body);
+        if(!is_null($replyID)) $data['replyID'] = $replyID;
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
