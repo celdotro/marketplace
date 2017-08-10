@@ -14,7 +14,8 @@ class AdminAccount {
      * @throws \Exception
      */
     public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL) {
-        // Sanity check
+        // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
+        // All proper checks for data integrity are done on our server
 
         // Set method and action
         $method = 'admininfo';
