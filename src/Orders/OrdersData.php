@@ -30,4 +30,26 @@ class OrdersData {
         return $result;
     }
 
+    /**
+     * @param $cmd
+     * @return mixed
+     * @throws \Exception
+     */
+    public function checkPaymentForOrder($cmd){
+        // Sanity check - for older versions of PHP
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'checkPaymentForOrder';
+
+        // Set data
+        $data = array('cmd' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
