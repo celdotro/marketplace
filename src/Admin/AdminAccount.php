@@ -33,4 +33,18 @@ class AdminAccount {
 
         return $result;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccountInformation(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getAccountInformation';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
