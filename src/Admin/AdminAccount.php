@@ -7,6 +7,8 @@ use celmarket\Dispatcher;
 class AdminAccount {
 
     /**
+     * [RO] Actualizeaza urmatoarele date aferente afiliatului: CIF, IBAN si numar de telefon (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
+     * [EN] Updates the following data of an affiliate: CIF, IBAN, and phone number (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
      * @param null $cif
      * @param null $iban
      * @param null $telephone
