@@ -15,10 +15,9 @@ class OrdersList {
      * @param $start
      * @param $limit
      * @param $options
-     * @param $status
      * @return mixed
      */
-    public function listOrders($start, $limit, $options, $status = null){
+    public function listOrders($start, $limit, $options){
         // Sanity check
         if(!isset($start) || !is_int($start)) throw new Exception('$start trebuie sa fie de tip integer');
         if(!isset($limit) || !is_int($limit)) throw new Exception('$limit trebuie sa fie de tip integer');
@@ -34,8 +33,6 @@ class OrdersList {
             'limit' =>  $limit,
             'filters'  =>  json_encode($options),
         );
-
-        if(!is_null($status)) $data['status'] = $status;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
