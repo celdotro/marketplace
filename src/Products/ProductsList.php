@@ -81,4 +81,33 @@ class ProductsList
         return $result;
     }
 
+    public function listFilters($filters = null){
+        $method = 'products';
+        $action = 'listFilters';
+
+        // Set data
+        $data = array('filters' => $filters);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function listCategoryMandatoryCharacteristics($categID){
+        // Sanity check
+        if(!isset($categID) || !is_int($categID) || $categID < 0) throw new \Exception('Specificati o categorie valida');
+
+        $method = 'products';
+        $action = 'listCategoryMandatoryCharacteristics';
+
+        // Set data
+        $data = array('categ_id' => $categID);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }

@@ -10,21 +10,26 @@ class OrdersStatus {
      * [RO] Anuleaza o anumita comanda. Un motiv valid e necesar. (https://github.com/celdotro/marketplace/wiki/Anularea-comenzii)
      * [EN] Cancel a specific order. A valid reason is necessary. (https://github.com/celdotro/marketplace/wiki/Cancel-Order)
      * @param $cmd
-     * @param $reason
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param int $motiv
+     * @param string $observatii
+     * @return mixed
      * @throws \Exception
      */
-    public function cancelOrder($cmd, $reason){
+    public function cancelOrder($cmd, $motiv = 0, $observatii = ''){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
-        if(!isset($reason) || trim($reason) == '') throw new \Exception('Specificati un motiv pentru anualrea comenzii format din cel putin 1 caracter diferit de spatiu');
 
         // Set method and action
         $method = 'orders';
         $action = 'cancelOrder';
 
         // Set data
-        $data = array('order' => $cmd, 'reason' => $reason);
+        $data = array('order' => $cmd);
+
+        $observatii = trim($observatii);
+        if($observatii != '' && strlen($observatii) > 4) $data['observatii'] = $observatii;
+        elseif($motiv != 0) $data['motiv'] = $motiv;
+        else throw new \Exception('Specificati un motiv sau o observatie pentru anularea comenzii. Observatia trebuie sa fie formata din cel putin 4 caractere, spatiile de la inceput si sfarsit fiind ignorate');
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
@@ -68,6 +73,37 @@ class OrdersStatus {
 
         // Set data
         $data = array('dummy' => true);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function reactivateOrder($cmd){
+        // Sanity check
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'reactivateOrder';
+
+        // Set data
+        $data = array('cmd' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function getOrderStatusList(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'getOrderStatusList';
+
+        // Set data
+        $data = array();
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
