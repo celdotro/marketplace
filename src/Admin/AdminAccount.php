@@ -38,7 +38,8 @@ class AdminAccount {
     }
 
     /**
-     * @return mixed
+     * [RO] Preia o lista cu informatii generale ale contului de afiliat (https://github.com/celdotro/marketplace/wiki/Listeaza-informatiile-contului)
+     * [EN] Retrieves a list of general account information (https://github.com/celdotro/marketplace/wiki/List-account-information)
      */
     public function getAccountInformation(){
         // Set method and action
