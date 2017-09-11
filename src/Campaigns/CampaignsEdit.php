@@ -14,7 +14,7 @@ class CampaignsEdit {
      * @param $dateStart
      * @param $dateEnd
      * @param $discount
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function saveCampaign($name, $newName, $dateStart, $dateEnd, $discount){
@@ -55,7 +55,9 @@ class CampaignsEdit {
      * @param $name
      * @param $model
      * @param $promoPrice
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param $start
+     * @param $end
+     * @return mixed
      * @throws \Exception
      */
     public function saveProduct($name, $model, $promoPrice, $start, $end){
@@ -88,7 +90,7 @@ class CampaignsEdit {
      * [EN] Adds a product to a campaign and applies the campaign's discount (https://github.com/celdotro/marketplace/wiki/Add-Product-to-Campaign)
      * @param $name
      * @param $model
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function addProduct($name, $model){
@@ -117,7 +119,7 @@ class CampaignsEdit {
      * [EN] Removes a product from any campaign (https://github.com/celdotro/marketplace/wiki/Remove-Product-from-Campaign)
      * @param $name
      * @param $model
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function removeProduct($name, $model){

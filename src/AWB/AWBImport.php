@@ -10,7 +10,8 @@ class AWBImport {
      * [RO] Seteaza un AWB pentru o comanda (https://github.com/celdotro/marketplace/wiki/Creare-AWB)
      * [EN] Add an AWB for a specific order (https://github.com/celdotro/marketplace/wiki/AWB-Import)
      * @param $cmd
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param null $idAdresaRidicare
+     * @return mixed
      * @throws \Exception
      */
     public function setAwb($cmd, $idAdresaRidicare = null){

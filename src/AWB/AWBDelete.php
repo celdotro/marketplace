@@ -10,7 +10,7 @@ class AWBDelete {
      * [RO] Sterge AWB-ului unei comenzi (https://github.com/celdotro/marketplace/wiki/Stergere-AWB)
      * [EN] Delete the AWB of a specific order (https://github.com/celdotro/marketplace/wiki/AWB-Delete)
      * @param $cmd
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function deleteAwb($cmd){

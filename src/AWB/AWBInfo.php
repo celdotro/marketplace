@@ -10,7 +10,7 @@ class AWBInfo {
      * [RO] Printeaza AWB-ul unei comenzi (https://github.com/celdotro/marketplace/wiki/Listare-AWB)
      * [EN] Prints the AWB of a specified order (https://github.com/celdotro/marketplace/wiki/AWB-Print)
      * @param $cmd
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function printAwb($cmd){

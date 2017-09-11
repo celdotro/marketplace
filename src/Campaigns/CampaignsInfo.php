@@ -16,7 +16,7 @@ class CampaignsInfo {
      * @param $name
      * @param $products
      * @param $availableProducts
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function readCampaign($name, $products, $availableProducts){
@@ -43,7 +43,7 @@ class CampaignsInfo {
     }
 
     /**
-     * Listeaza toate campaniile active. Datele pot fi filtrate in functie de data de inceput, data de sfarsit si
+     * [RO] Listeaza toate campaniile active. Datele pot fi filtrate in functie de data de inceput, data de sfarsit si
      * numele campaniei (https://github.com/celdotro/marketplace/wiki/Listare-campanii-active)
      * [EN] Lists all active campaigns. Data can be filtered by start date, end date, and campaign name. (https://github.com/celdotro/marketplace/wiki/List-Active-Campaigns)
      * @param $start
@@ -51,23 +51,24 @@ class CampaignsInfo {
      * @param null $dateFrom
      * @param null $dateTo
      * @param null $search
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
+     * @throws \Exception
      */
     public function listActiveCampaigns($start, $limit, $dateFrom = NULL, $dateTo = NULL, $search = NULL){
         // Sanity check
         if(!isset($start) || $start === '' || !is_int($start))
-            throw new Exception('Specificati valoarea de start');
+            throw new \Exception('Specificati valoarea de start');
         if(!isset($limit) || $limit === '' || !is_int($limit))
-            throw new Exception('Specificati o valoare limita');
+            throw new \Exception('Specificati o valoare limita');
         if(isset($dateFrom)){
             if(strtotime($dateFrom) === false)
-                throw new Exception('Specificati o data de inceput valida');
+                throw new \Exception('Specificati o data de inceput valida');
             else // Add to data if everything is OK
                 $data['date_from'] = $dateFrom;
         }
         if(isset($dateTo)){
             if(strtotime($dateTo) === false)
-                throw new Exception('Specificati o data de sfarsit valida');
+                throw new \Exception('Specificati o data de sfarsit valida');
             else // Add to data if everything is OK
                 $data['date_to'] = $dateTo;
         }

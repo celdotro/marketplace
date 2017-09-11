@@ -12,12 +12,12 @@ class CampaignsCreate {
      * @param $name
      * @param $dateStart
      * @param $dateEnd
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function newCampaign($name, $dateStart, $dateEnd){
         // Sanity check
-        if(!isset($name) || $name == '') throw new Exception('Specificati numele campaniei');
+        if(!isset($name) || $name == '') throw new \Exception('Specificati numele campaniei');
         if(!isset($dateStart) || strtotime($dateStart) === false) throw new \Exception('Specificati o data de start valida');
         if(!isset($dateEnd) || strtotime($dateEnd) === false) throw new \Exception('Specficati o data de sfarsit valida');
         if(strtotime($dateStart) > strtotime($dateEnd)) throw new \Exception('Data de inceput trebuie sa fie mai mica sau egala cu data de sfarsit');

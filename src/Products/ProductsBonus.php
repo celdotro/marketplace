@@ -11,7 +11,7 @@ class ProductsBonus {
      * [EN] Adds bonuses for a product (https://github.com/celdotro/marketplace/wiki/Add-bonus)
      * @param $model
      * @param array $bonus
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function addBonus($model, $bonus = array()){
@@ -36,7 +36,7 @@ class ProductsBonus {
      * [RO] Listeaza bonusurile unui produs (https://github.com/celdotro/marketplace/wiki/Listeaza-bonus)
      * [EN] Get a product's bonuses (https://github.com/celdotro/marketplace/wiki/List-bonus)
      * @param $model
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function getBonus($model){
@@ -61,7 +61,7 @@ class ProductsBonus {
      * [EN] Deletes a product's bonuses (https://github.com/celdotro/marketplace/wiki/Delete-bonus)
      * @param $model
      * @param array $bonus
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function deleteBonus($model, $bonus = array()){

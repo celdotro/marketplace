@@ -11,12 +11,13 @@ class PagesImport {
      * [EN] Save page data (https://github.com/celdotro/marketplace/wiki/Save-pages)
      * @param $pageID
      * @param $pageData
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
+     * @throws \Exception
      */
     public function savePage($pageID, $pageData){
         // Sanity check
-        if(!isset($pageID) || !is_int($pageID)) throw new Exception('Specificati un ID al paginii');
-        if(!isset($pageData) || !is_array($pageData) || empty($pageData)) throw new Exception('$pages trebuie sa contina un array cu datele paginii');
+        if(!isset($pageID) || !is_int($pageID)) throw new \Exception('Specificati un ID al paginii');
+        if(!isset($pageData) || !is_array($pageData) || empty($pageData)) throw new \Exception('$pages trebuie sa contina un array cu datele paginii');
 
         // Set method and action
         $method = 'settings';

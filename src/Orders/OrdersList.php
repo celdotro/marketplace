@@ -16,12 +16,13 @@ class OrdersList {
      * @param $limit
      * @param $options
      * @return mixed
+     * @throws \Exception
      */
     public function listOrders($start, $limit, $options){
         // Sanity check
-        if(!isset($start) || !is_int($start)) throw new Exception('$start trebuie sa fie de tip integer');
-        if(!isset($limit) || !is_int($limit)) throw new Exception('$limit trebuie sa fie de tip integer');
-        if(!isset($options) || !is_array($options)) throw new Exception('$options trebuie sa fie un array');
+        if(!isset($start) || !is_int($start)) throw new \Exception('$start trebuie sa fie de tip integer');
+        if(!isset($limit) || !is_int($limit)) throw new \Exception('$limit trebuie sa fie de tip integer');
+        if(!isset($options) || !is_array($options)) throw new \Exception('$options trebuie sa fie un array');
 
         // Set method and action
         $method = 'orders';

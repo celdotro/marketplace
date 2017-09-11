@@ -11,7 +11,7 @@ class OrdersUpdate {
      * [EN] Update the products of an order (https://github.com/celdotro/marketplace/wiki/Update-orders)
      * @param $cmd
      * @param $arrProducts
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      * @throws \Exception
      */
     public function updateProductsFromOrder($cmd, $arrProducts){

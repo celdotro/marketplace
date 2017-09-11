@@ -9,7 +9,7 @@ class ProductsList
     /**
      * [RO] Returneaza toate categoriile (https://github.com/celdotro/marketplace/wiki/Listeaza-categorii)
      * [EN] Get all categories (https://github.com/celdotro/marketplace/wiki/List-categories)
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      */
     public function getCategories()
     {

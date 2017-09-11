@@ -9,11 +9,12 @@ class OrdersSummary {
      * [RO] Returneaza un sumar pentru ultimele zile. (https://github.com/celdotro/marketplace/wiki/Sumar-comenzi)
      * [EN] Get orders summary for the last days. (https://github.com/celdotro/marketplace/wiki/Orders-summary)
      * @param int $nrDays
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
+     * @throws \Exception
      */
     public function getSummary($nrDays = 0){
         // Sanity check
-        if(!isset($nrDays) || !is_int($nrDays)) throw new Exception('$nrDays trebuie sa fie de tip integer');
+        if(!isset($nrDays) || !is_int($nrDays)) throw new \Exception('$nrDays trebuie sa fie de tip integer');
 
         // Set method and action
         $method = 'home';

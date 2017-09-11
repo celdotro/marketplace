@@ -9,7 +9,7 @@ class PagesData {
     /**
      * [RO] Returneaza toate paginile (https://github.com/celdotro/marketplace/wiki/Listare-Pagini)
      * [EN] Get all pages (https://github.com/celdotro/marketplace/wiki/List-pages)
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      */
     public function getPages(){
         // Set method and action
