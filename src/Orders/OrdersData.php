@@ -31,10 +31,13 @@ class OrdersData {
     }
 
     /**
+     * [RO] Verifica daca pentru o anumita comanda a fost efectuata plata (https://github.com/celdotro/marketplace/wiki/Verifica-plata-pentru-comanda)
+     * [EN] Checks if the payment was made for a specific order (https://github.com/celdotro/marketplace/wiki/Check-payment-for-order)
      * @param $cmd
      * @return mixed
      * @throws \Exception
      */
+
     public function checkPaymentForOrder($cmd){
         // Sanity check - for older versions of PHP
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
