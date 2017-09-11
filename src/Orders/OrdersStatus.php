@@ -104,6 +104,11 @@ class OrdersStatus {
         return $result;
     }
 
+    /**
+     * [RO] Preluare lista de statusuri ale comenzilor (https://github.com/celdotro/marketplace/wiki/Preluare-lista-de-statusuri-pentru-comenzi)
+     * [EN] Retrieves the list of statuses for orders (https://github.com/celdotro/marketplace/wiki/Get-status-list-for-orders)
+     * @return mixed
+     */
     public function getOrderStatusList(){
         // Set method and action
         $method = 'orders';
