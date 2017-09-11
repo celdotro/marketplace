@@ -81,6 +81,12 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza filtrele disponibile si datele acestora dupa ce au fost corelate (https://github.com/celdotro/marketplace/wiki/Listeaza-filtre )
+     * [EN] List available filters after correlation (https://github.com/celdotro/marketplace/wiki/List-filters)
+     * @param null $filters
+     * @return mixed
+     */
     public function listFilters($filters = null){
         $method = 'products';
         $action = 'listFilters';
