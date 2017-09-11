@@ -37,7 +37,6 @@ class OrdersData {
      * @return mixed
      * @throws \Exception
      */
-
     public function checkPaymentForOrder($cmd){
         // Sanity check - for older versions of PHP
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');

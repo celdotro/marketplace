@@ -80,6 +80,13 @@ class OrdersStatus {
         return $result;
     }
 
+    /**
+     * [RO] Reactiveaza o comanda anulata (https://github.com/celdotro/marketplace/wiki/Reactiveaza-comanda)
+     * [EN] Reactivates a cancelled order (https://github.com/celdotro/marketplace/wiki/Reactivate-order)
+     * @param $cmd
+     * @return mixed
+     * @throws \Exception
+     */
     public function reactivateOrder($cmd){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
