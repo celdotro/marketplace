@@ -100,6 +100,13 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza caracteristicile obligatorii ale unei categorii (https://github.com/celdotro/marketplace/wiki/Listeaza-caracteristicile-obligatorii-ale-unei-categorii)
+     * [EN] Lists the mandatory characteristics of a category (https://github.com/celdotro/marketplace/wiki/List-mandatory-charactersitics-for-a-category)
+     * @param $categID
+     * @return mixed
+     * @throws \Exception
+     */
     public function listCategoryMandatoryCharacteristics($categID){
         // Sanity check
         if(!isset($categID) || !is_int($categID) || $categID < 0) throw new \Exception('Specificati o categorie valida');
