@@ -123,6 +123,15 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza produsele live dintr-o categorie precizata prin parametru (https://github.com/celdotro/marketplace/wiki/Preluare-produse-live-din-categorie)
+     * [EN] List all live products from a category (https://github.com/celdotro/marketplace/wiki/Retrieve-live-products-from-category)
+     * @param $category
+     * @param null $start
+     * @param null $limit
+     * @return mixed
+     * @throws \Exception
+     */
     public function getLiveProductsFromCategory($category, $start = null, $limit = null){
         // Sanity check
         if(!isset($category) || !is_int($category) || $category < 0) throw new \Exception('Specificati o categorie valida');
