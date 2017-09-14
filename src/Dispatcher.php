@@ -105,6 +105,7 @@ class Dispatcher {
                return self::send($method, $action, $data);
            }
         }
+
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
         // Retrieve and decode contents
         $jsonContents = $request->getBody()->getContents();
