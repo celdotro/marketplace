@@ -6,8 +6,8 @@ use celmarket\Dispatcher;
 class EmailContact {
 
     /**
-     * [RO] Trimite mail continand raportul unui bug intalnit in sistem (https://github.com/celdotro/marketplace/wiki/Trimitere-raport-bug)
-     * [EN] Send an email containing a report about a bug encountered in the system (https://github.com/celdotro/marketplace/wiki/Send-bug-report)
+     * [RO] Returneaza un graf cu conversatiile purtate prin intermediul email-ului cu clientii (hthttps://github.com/celdotro/marketplace/wiki/Trimitere-raport-bug)
+     * [EN] Returns a graph with the conversations made through the email with the client (https://github.com/celdotro/marketplace/wiki/Send-bug-report)
      * @param $message
      * @param $debug
      * @return mixed
