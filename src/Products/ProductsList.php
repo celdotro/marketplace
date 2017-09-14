@@ -123,4 +123,20 @@ class ProductsList
         return $result;
     }
 
+    public function getLiveProductsFromCategory($category){
+        // Sanity check
+        if(!isset($category) || !is_int($category) || $category < 0) throw new \Exception('Specificati o categorie valida');
+
+        $method = 'products';
+        $action = 'getLiveProductsFromCategory';
+
+        // Set data
+        $data = array('category' => $category);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
