@@ -63,7 +63,7 @@ class ProductsInsert {
         return $result;
     }
 
-    public function addToExistingProduct($products_model, $stoc, $pret){
+    public function addOfferToExistingProduct($products_model, $stoc, $pret){
         // Sanity check - for older versions of PHP
         if (!isset($products_model)) throw new \Exception('Specificati un model de produs');
         if (!isset($stoc)) throw new \Exception('Specificati stocul');
@@ -71,7 +71,7 @@ class ProductsInsert {
 
         // Set method and action
         $method = 'products';
-        $action = 'addValuesToCharacteristic';
+        $action = 'addOfferToExistingProduct';
 
         // Set data
         $data = array(
