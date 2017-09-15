@@ -62,4 +62,27 @@ class ProductsInsert {
 
         return $result;
     }
+
+    public function addToExistingProduct($products_model, $stoc, $pret){
+        // Sanity check - for older versions of PHP
+        if (!isset($products_model)) throw new \Exception('Specificati un model de produs');
+        if (!isset($stoc)) throw new \Exception('Specificati stocul');
+        if (!isset($pret) || empty($charactValues)) throw new \Exception('Specificati pretul');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'addValuesToCharacteristic';
+
+        // Set data
+        $data = array(
+            'products_model' => $products_model,
+            'stoc' => $stoc,
+            'pret' => $pret
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
