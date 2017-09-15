@@ -63,6 +63,15 @@ class ProductsInsert {
         return $result;
     }
 
+    /**
+     * [RO] Adauga o noua oferta unui produs existent (https://github.com/celdotro/marketplace/wiki/Adauga-o-noua-oferta-unui-produs-existent)
+     * [EN] Add another offer to an existing product (https://github.com/celdotro/marketplace/wiki/Add-offer-to-existing-product)
+     * @param $products_model
+     * @param $stoc
+     * @param $pret
+     * @return mixed
+     * @throws \Exception
+     */
     public function addOfferToExistingProduct($products_model, $stoc, $pret){
         // Sanity check - for older versions of PHP
         if (!isset($products_model)) throw new \Exception('Specificati un model de produs');
