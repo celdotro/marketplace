@@ -127,12 +127,13 @@ class ProductsList
      * [RO] Listeaza produsele live dintr-o categorie precizata prin parametru (https://github.com/celdotro/marketplace/wiki/Preluare-produse-live-din-categorie)
      * [EN] List all live products from a category (https://github.com/celdotro/marketplace/wiki/Retrieve-live-products-from-category)
      * @param $category
+     * @param null $keyword
      * @param null $start
      * @param null $limit
      * @return mixed
      * @throws \Exception
      */
-    public function getLiveProductsFromCategory($category, $start = null, $limit = null){
+    public function getLiveProductsFromCategory($category, $keyword = null, $start = null, $limit = null){
         // Sanity check
         if(!isset($category) || !is_int($category) || $category < 0) throw new \Exception('Specificati o categorie valida');
 
@@ -141,6 +142,7 @@ class ProductsList
 
         // Set data
         $data = array('category' => $category);
+        if(!is_null($keyword)) $data['keyword'] = $keyword;
         if(!is_null($start)) $data['start'] = $start;
         if(!is_null($limit)) $data['limit'] = $limit;
 
