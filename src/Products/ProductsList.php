@@ -123,7 +123,7 @@ class ProductsList
         return $result;
     }
 
-    public function getLiveProductsFromCategory($category, $start = null, $limit = null){
+    public function getLiveProductsFromCategory($category, $keyword = null, $start = null, $limit = null){
         // Sanity check
         if(!isset($category) || !is_int($category) || $category < 0) throw new \Exception('Specificati o categorie valida');
 
@@ -132,6 +132,7 @@ class ProductsList
 
         // Set data
         $data = array('category' => $category);
+        if(!is_null($keyword)) $data['keyword'] = $keyword;
         if(!is_null($start)) $data['start'] = $start;
         if(!is_null($limit)) $data['limit'] = $limit;
 
