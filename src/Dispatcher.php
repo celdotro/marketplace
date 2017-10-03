@@ -97,6 +97,7 @@ class Dispatcher {
         if (Config::TEST) $data['test'] = 1;
 
         // Build POST request with token placed in bearer authorization header
+        $request = null;
         try {
             $request = self::getGuzzleClient()->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
         } catch (RequestException $e) { // If a request exception is encountered

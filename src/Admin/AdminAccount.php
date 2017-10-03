@@ -15,7 +15,7 @@ class AdminAccount {
      * @return mixed
      * @throws \Exception
      */
-    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL) {
+    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
         // All proper checks for data integrity are done on our server
 
@@ -28,6 +28,7 @@ class AdminAccount {
         if(!is_null($cif)) $data['cif'] = $cif;
         if(!is_null($iban)) $data['iban'] = $iban;
         if(!is_null($telephone)) $data['telephone'] = $telephone;
+        if(!is_null($password)) $data['password'] = $password;
 
         if(empty($data)) throw new \Exception('Specificati cel putin 1 camp');
 
