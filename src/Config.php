@@ -14,7 +14,11 @@ define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
 class Config
 {
     // API's address
-    const API_HTTP = 'http://192.168.0.85/market_api/';
+    public static $API_HTTP = 'http://192.168.0.85/market_api/';
+
+    public static function setDemo(){
+        self::$API_HTTP = 'http://192.168.0.85/market_api/';
+    }
 
     // Path to token file
     const TOKEN_PATH = TOKEN;
