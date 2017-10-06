@@ -14,7 +14,12 @@ define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
 class Config
 {
     // API's address
-    const API_HTTP = 'http://marketplace.cel.ro/market_api/';
+    static $API_HTTP = 'http://marketplace.cel.ro/market_api/';
+
+    // Set demo
+    public static function setDemo(){
+        self::$API_HTTP = 'http://demo.cel.ro/market_api/';
+    }
 
     // Path to token file
     const TOKEN_PATH = TOKEN;

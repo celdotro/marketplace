@@ -75,7 +75,7 @@ class Dispatcher {
         }
 
         // Build URL
-        $url = Config::API_HTTP . $method . '/' . $action . '/';
+        $url = Config::$API_HTTP . $method . '/' . $action . '/';
 
         ### 2. Authenticate user ##
         $token = '';
