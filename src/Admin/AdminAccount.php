@@ -15,7 +15,7 @@ class AdminAccount {
      * @return mixed
      * @throws \Exception
      */
-    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bank = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL) {
+    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
         // All proper checks for data integrity are done on our server
 
@@ -29,7 +29,7 @@ class AdminAccount {
         if(!is_null($iban)) $data['iban'] = $iban;
         if(!is_null($telephone)) $data['telephone'] = $telephone;
         if(!is_null($password)) $data['password'] = $password;
-        if(!is_null($bank)) $data['bank'] = $bank;
+        if(!is_null($bankName)) $data['bankName'] = $bankName;
         if(!is_null($fullName)) $data['fullName'] = $fullName;
         if(!is_null($hqAddress)) $data['hqAddress'] = $hqAddress;
         if(!is_null($description)) $data['description'] = $description;
