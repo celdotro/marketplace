@@ -54,4 +54,32 @@ class OrdersData {
         return $result;
     }
 
+    /**
+     * [RO] Actualizeaza SN-ul unui produs comandat (https://github.com/celdotro/marketplace/wiki/Actualizare-SN)
+     * [EN] Updates an ordered product's SN (https://github.com/celdotro/marketplace/wiki/Update-SN)
+     * @param $id_disp_fact
+     * @param $products
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updatesn($id_disp_fact, $products){
+        // Sanity check
+        if(empty($id_disp_fact)) throw new \Exception('Specificati un ID valid al dispozitiei de facturare');
+        if(empty($products)) throw new \Exception('Specificati o lista valida de produse');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'updateSN';
+
+        // Set data
+        $data = array(
+            'id_disp_fact' => $id_disp_fact,
+            'products' => $products
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
