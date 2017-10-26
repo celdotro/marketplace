@@ -76,7 +76,7 @@ class ProductsInsert {
         // Sanity check - for older versions of PHP
         if (!isset($products_model)) throw new \Exception('Specificati un model de produs');
         if (!isset($stoc)) throw new \Exception('Specificati stocul');
-        if (!isset($pret) || empty($charactValues)) throw new \Exception('Specificati pretul');
+        if (!isset($pret)) throw new \Exception('Specificati pretul');
 
         // Set method and action
         $method = 'products';
