@@ -38,6 +38,13 @@ class AdminReports {
         return $result;
     }
 
+    /**
+     * [RO] Preia cererile de service sau retur ale clientilor (https://github.com/celdotro/marketplace/wiki/Preia-cererile-de-service)
+     * [EN] Retrieve service or return requests (https://github.com/celdotro/marketplace/wiki/Retrieve-service-requests)
+     * @param $type
+     * @param int $page
+     * @return mixed
+     */
     public function getServiceRequests($type, $page = 1){
         // Set method and action
         $method = 'admininfo';
