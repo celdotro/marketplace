@@ -43,4 +43,17 @@ class AdminReports {
         return $result;
     }
 
+    public function getServiceRequests($type, $page = 1){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'GetServiceRequests';
+
+        // Set data
+        $data = array('type' => $type, 'page' => $page);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
