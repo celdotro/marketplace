@@ -14,9 +14,10 @@ class AdminAddress {
      * @return mixed
      * @throws \Exception
      */
-    public function addAddress($address = null){
+    public function addAddress($address = null, $courier = null){
         // Sanity check
         if(is_null($address) || $address === '') throw new \Exception('Specificati o adresa valida');
+        if(is_null($courier)) throw new \Exception('Specificati un curier valid');
 
         // Set method and action
         $method = 'admininfo';
@@ -25,7 +26,7 @@ class AdminAddress {
         $data = array();
 
         // Set data
-        $data = array('address' => $address);
+        $data = array('address' => $address, 'courier' => $courier);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
@@ -42,17 +43,18 @@ class AdminAddress {
      * @return mixed
      * @throws \Exception
      */
-    public function editAddress($id = null, $address = null){
+    public function editAddress($id = null, $address = null, $courier = null){
         // Sanity check
         if(is_null($address) || $address === '') throw new \Exception('Specificati o adresa valida');
         if(is_null($id) || !is_numeric($id)) throw new \Exception('Specificati un ID valid');
+        if(is_null($courier)) throw new \Exception('Specificati un curier valid');
 
         // Set method and action
         $method = 'admininfo';
         $action = 'editAddress';
 
         // Set data
-        $data = array('id' => $id, 'address' => $address);
+        $data = array('id' => $id, 'address' => $address, 'courier' => $courier);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
