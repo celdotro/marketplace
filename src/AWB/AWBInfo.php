@@ -47,4 +47,37 @@ class AWBInfo {
         return $result;
     }
 
+    public function statusAwb2($cmd){
+        // Sanity check
+        if(!isset($cmd) || is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'Statusawbfororder';
+
+        // Set data
+        $data = array('orders_id' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+    public function orderInfoForPrint($cmd){
+        // Sanity check
+        if(!isset($cmd) || is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'Getorderinfoforprint';
+
+        // Set data
+        $data = array('orders_id' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
