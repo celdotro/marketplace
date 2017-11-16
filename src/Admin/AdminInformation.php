@@ -6,6 +6,12 @@ use celmarket\Dispatcher;
 
 class AdminInformation {
 
+    /**
+     * [RO] Preia taxa de transport (https://github.com/celdotro/marketplace/wiki/Preia-taxa-de-transport)
+     * [EN] Retrieves the transport tax (https://github.com/celdotro/marketplace/wiki/Get-transport-tax)
+     * @param null $id
+     * @return mixed
+     */
     public function getTransportTax($id = null){
         // Set method and action
         $method = 'admininfo';
@@ -21,6 +27,15 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Actualizeaza o taxa de transport (https://github.com/celdotro/marketplace/wiki/Actualizeaza-taxa-de-transport)
+     * [EN] Updates a transport tax (https://github.com/celdotro/marketplace/wiki/Update-transport-tax)
+     * @param $id
+     * @param null $newValue
+     * @param null $newLimit
+     * @return mixed
+     * @throws \Exception
+     */
     public function updateTransportTax($id, $newValue = null, $newLimit = null){
         // Sanity check
         if(is_null($newValue) && is_null($newLimit)) throw new \Exception('Limita sau valoarea trebuie sa fie nenule');
@@ -39,6 +54,14 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Actualizeaza in grup toate taxele de transport pentru categoriile disponibile (https://github.com/celdotro/marketplace/wiki/Actualizare-in-grup-a-taxelor-de-transport)
+     * [EN] Updates all transport taxes for available categories (https://github.com/celdotro/marketplace/wiki/Bulk-update-transport-taxes)
+     * @param null $newValue
+     * @param null $newLimit
+     * @return mixed
+     * @throws \Exception
+     */
     public function insertTaxForAllCategories($newValue = null, $newLimit = null){
         // Sanity check
         if(is_null($newValue) && is_null($newLimit)) throw new \Exception('Limita sau valoarea trebuie sa fie nenule');
