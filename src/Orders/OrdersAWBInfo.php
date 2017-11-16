@@ -53,4 +53,18 @@ class OrdersAWBInfo {
         return $result;
     }
 
+    public function getOrderAwbListingInfo($orders_id){
+        // Set method and action
+        $method = 'orders';
+        $action = 'getOrderAwbListingInfo';
+
+        // Set data
+        $data = array('orders_id' => $orders_id);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
