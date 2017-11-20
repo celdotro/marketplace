@@ -79,4 +79,40 @@ class AdminInformation {
         return $result;
     }
 
+    public function updateDeliveryInformation($minimTara = null, $minimBucuresti = null, $kgIncluse = null, $pretKgInPlus = null, $deschidereColet = null){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'updateDeliveryInformation';
+
+        // Set data
+        $data = array();
+        if(!is_null($minimTara)) $data['minim_tara'] = $minimTara;
+        if(!is_null($minimBucuresti)) $data['minim_bucuresti'] = $minimBucuresti;
+        if(!is_null($kgIncluse)) $data['kgincluse'] = $kgIncluse;
+        if(!is_null($pretKgInPlus)) $data['pretkginplus'] = $pretKgInPlus;
+        if(!is_null($deschidereColet)) $data['deschiderecolet'] = $deschidereColet;
+
+        // Late sanity check
+        if(empty($data)) throw new \Exception('Specificati cel putin 1 informatie');
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function getDeliveryInformation($newValue = null, $newLimit = null){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getDeliveryInformation';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
