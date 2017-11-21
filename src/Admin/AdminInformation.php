@@ -36,9 +36,9 @@ class AdminInformation {
      * @return mixed
      * @throws \Exception
      */
-    public function updateTransportTax($id, $newValue = null, $newLimit = null){
+    public function updateTransportTax($id, $newValue = null, $impusa = null){
         // Sanity check
-        if(is_null($newValue) && is_null($newLimit)) throw new \Exception('Limita sau valoarea trebuie sa fie nenule');
+        if(is_null($newValue) && is_null($impusa)) throw new \Exception('Limita sau valoarea trebuie sa fie nenule');
         // Set method and action
         $method = 'admininfo';
         $action = 'updateTransportTax';
@@ -46,7 +46,7 @@ class AdminInformation {
         // Set data
         $data = array('id' => $id);
         if(!is_null($newValue)) $data['newValue'] = $newValue;
-        if(!is_null($newLimit)) $data['newLimit'] = $newLimit;
+        if(!is_null($impusa)) $data['impusa'] = $impusa;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
