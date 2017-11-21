@@ -30,6 +30,13 @@ class AWBInfo {
         return $result;
     }
 
+    /**
+     * [RO] Returneaza statusul unui AWB (https://github.com/celdotro/marketplace/wiki/Status-AWB)
+     * [EN] Returns information about an AWB's status (https://github.com/celdotro/marketplace/wiki/AWB-Status)
+     * @param $cmd
+     * @return mixed
+     * @throws \Exception
+     */
     public function statusAwb($cmd){
         // Sanity check
         if(!isset($cmd) || is_null($cmd) || $cmd === '' || !is_int($cmd)) throw new \Exception('Specificati comanda');
