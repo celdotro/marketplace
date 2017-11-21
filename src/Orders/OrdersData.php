@@ -62,7 +62,7 @@ class OrdersData {
      * @return mixed
      * @throws \Exception
      */
-    public function updatesn($id_disp_fact, $products){
+    public function updatesn($id_disp_fact, $products, $sn, $nr){
         // Sanity check
         if(empty($id_disp_fact)) throw new \Exception('Specificati un ID valid al dispozitiei de facturare');
         if(empty($products)) throw new \Exception('Specificati o lista valida de produse');
@@ -74,7 +74,9 @@ class OrdersData {
         // Set data
         $data = array(
             'id_disp_fact' => $id_disp_fact,
-            'products' => $products
+            'products' => $products,
+            'sn' => $sn,
+            'nr' => $nr
         );
 
         // Send request and retrieve response
