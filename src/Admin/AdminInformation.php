@@ -79,6 +79,17 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Actualizeaza informatiil referitoare la taxele percepute pentru livrare (https://github.com/celdotro/marketplace/wiki/Actualizeaza-informatiile-livrarii)
+     * [EN] Updates information about delivery taxes (https://github.com/celdotro/marketplace/wiki/Update-delivery-information)
+     * @param null $minimTara
+     * @param null $minimBucuresti
+     * @param null $kgIncluse
+     * @param null $pretKgInPlus
+     * @param null $deschidereColet
+     * @return mixed
+     * @throws \Exception
+     */
     public function updateDeliveryInformation($minimTara = null, $minimBucuresti = null, $kgIncluse = null, $pretKgInPlus = null, $deschidereColet = null){
         // Set method and action
         $method = 'admininfo';
@@ -101,6 +112,13 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Preia informatiile despre taxele de livrare (https://github.com/celdotro/marketplace/wiki/Preia-informatii-despre-livrare)
+     * [EN] Get information about delivery taxes (https://github.com/celdotro/marketplace/wiki/Get-delivery-information)
+     * @param null $newValue
+     * @param null $newLimit
+     * @return mixed
+     */
     public function getDeliveryInformation($newValue = null, $newLimit = null){
         // Set method and action
         $method = 'admininfo';
