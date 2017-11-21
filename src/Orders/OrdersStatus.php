@@ -123,4 +123,28 @@ class OrdersStatus {
         return $result;
     }
 
+
+    /**
+     * [RO] Seteaza o comanda ca fiind gata de livrare (https://github.com/celdotro/marketplace/wiki/Seteaza-gata-de-livrare)
+     * [EN] Set an order as ready for delivery (https://github.com/celdotro/marketplace/wiki/Set-order-as-ready-for-delivery)
+     * @param $cmd
+     * @return mixed
+     * @throws \Exception
+     */
+    public function setReadyForDelivery($cmd){
+        // Sanity check
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'SetReadyForDelivery';
+
+        // Set data
+        $data = array('orders_id' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
