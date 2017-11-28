@@ -152,4 +152,17 @@ class ProductsList
         return $result;
     }
 
+    public function getLiveProductsCategory(){
+        $method = 'products';
+        $action = 'getLiveProductsCategory';
+
+        // Set data
+        $data = array('dummy' => true);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
