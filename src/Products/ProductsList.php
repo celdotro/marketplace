@@ -152,17 +152,22 @@ class ProductsList
         return $result;
     }
 
-    public function getLiveProductsCategory(){
-        $method = 'products';
-        $action = 'getLiveProductsCategory';
+    /**
+     * [RO] Preia produsele live pe categorii (https://github.com/celdotro/marketplace/wiki/Preia-produsele-live-pe-categorii)
+     * [EN] Get live products for each category (https://github.com/celdotro/marketplace/wiki/Get-live-products-categories)
+     * @return mixed
+     */
+      public function getLiveProductsCategory(){
+          $method = 'products';
+          $action = 'getLiveProductsCategory';
 
-        // Set data
-        $data = array('dummy' => true);
+          // Set data
+          $data = array('dummy' => true);
 
-        // Send request and retrieve response
-        $result = Dispatcher::send($method, $action, $data);
+          // Send request and retrieve response
+          $result = Dispatcher::send($method, $action, $data);
 
-        return $result;
-    }
+          return $result;
+      }
 
 }
