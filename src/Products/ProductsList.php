@@ -141,6 +141,11 @@ class ProductsList
         return $result;
     }
 
+  /**
+   * [RO] Preia produsele live pe categorii (https://github.com/celdotro/marketplace/wiki/Preia-produsele-live-pe-categorii)
+   * [EN] Get live products for each category (https://github.com/celdotro/marketplace/wiki/Get-live-products-categories)
+   * @return mixed
+   */
     public function getLiveProductsCategory(){
         $method = 'products';
         $action = 'getLiveProductsCategory';
