@@ -14,7 +14,7 @@ class AWBImport {
      * @return mixed
      * @throws \Exception
      */
-    public function setAwb($cmd, $idAdresaRidicare = null){
+    public function importAWB($cmd, $awb, $idAdresaRidicare){
         // Sanity check
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
 
@@ -23,8 +23,7 @@ class AWBImport {
         $action = 'setAwb';
 
         // Set data
-        $data = array('cmd' => $cmd);
-        if(!is_null($idAdresaRidicare)) $data['idAdresaRidicare'] = $idAdresaRidicare;
+        $data = array('cmd' => $cmd, 'awb' => $awb, 'idAdresaRidicare' => $idAdresaRidicare);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
