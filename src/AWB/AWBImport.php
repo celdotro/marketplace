@@ -32,4 +32,21 @@ class AWBImport {
         return $result;
     }
 
+    public function importAwb($cmd, $awb, $idAdresaRidicare){
+      // Sanity check
+      if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+      // Set method and action
+      $method = 'orders';
+      $action = 'importAwb';
+
+      // Set data
+      $data = array('orders_id' => $cmd, 'awb' => $awb, 'idAdresaRidicare' => $idAdresaRidicare);
+
+      // Send request and retrieve response
+      $result = Dispatcher::send($method, $action, $data);
+
+      return $result;
+    }
+
 }
