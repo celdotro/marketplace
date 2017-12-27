@@ -65,6 +65,7 @@ class AdminAddress {
      * [EN] Lists all pick-up points addresses (https://github.com/celdotro/marketplace_examples/blob/master/Admin/6.listAddresses.php)
      *
      * @return mixed
+     * @throws \Exception
      */
     public function listAddresses(){
         // Set method and action
@@ -106,6 +107,14 @@ class AdminAddress {
         return $result;
     }
 
+    /**
+     * [RO] Trimite email pentru adaugarea unui nou curier (https://github.com/celdotro/marketplace/wiki/Adauga-curier)
+     * [EN] Sends an email with a request to add a new courier (https://github.com/celdotro/marketplace/wiki/Add-courier)
+     *
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
     public function addCourier($name){
       // Set method and action
       $method = 'admininfo';
