@@ -61,4 +61,73 @@ class AdminAccount {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia notificarile aferente afiliatului (https://github.com/celdotro/marketplace/wiki/Preia-notificari)
+     * [EN] Retrieves the notifications for the current affiliate (https://github.com/celdotro/marketplace/wiki/Get-notifications)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getNotifications(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getNotifications';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
+
+    /**
+     * [RO] Marcheaza o notificare drept citita (https://github.com/celdotro/marketplace/wiki/Marcheaza-drept-citita)
+     * [EN] Marks a notification as seen (https://github.com/celdotro/marketplace/wiki/Mark-as-seen)
+     * @param $id
+     * @return mixed
+     * @throws \Exception
+     */
+    public function markAsSeen($id){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'markAsSeen';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('id' => $id));
+
+        return $result;
+    }
+
+    /**`
+     * [RO] Preia diverse date despre afiliatul curent (https://github.com/celdotro/marketplace/wiki/Preia-date-despre-afiliat)
+     * [EN] Retrieves miscellaneous data about an affiliate (https://github.com/celdotro/marketplace/wiki/Get-affiliate-data)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function markAllAsSeen(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'markAllAsSeen';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
+
+    /**
+     * [RO] Marcheaza toate mesajele ca fiind citite (https://github.com/celdotro/marketplace/wiki/Marcheaza-toate-ca-fiind-citite)
+     * [EN] Marks all notifications as read (https://github.com/celdotro/marketplace/wiki/Mark-all-as-read)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getAffiliateData(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getAffiliateData';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
