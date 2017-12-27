@@ -106,4 +106,18 @@ class AdminAddress {
         return $result;
     }
 
+    public function addCourier($name){
+      // Set method and action
+      $method = 'admininfo';
+      $action = 'addCourier';
+
+      // Set data
+      $data = array('name' => $name);
+
+      // Send request and retrieve response
+      $result = Dispatcher::send($method, $action, $data);
+
+      return $result;
+    }
+
 }
