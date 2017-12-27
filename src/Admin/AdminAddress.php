@@ -108,4 +108,25 @@ class AdminAddress {
         return $result;
     }
 
+    /**
+     * [RO] Trimite email pentru adaugarea unui nou curier (https://github.com/celdotro/marketplace/wiki/Adauga-curier)
+     * [EN] Sends an email with a request to add a new courier (https://github.com/celdotro/marketplace/wiki/Add-courier)
+     *
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public function addCourier($name){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'addCourier';
+
+        // Set data
+        $data = array('name' => $name);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
