@@ -63,7 +63,7 @@ class ProductsInsert {
         return $result;
     }
 
-    public function addOfferToExistingProduct($products_model, $stoc, $pret){
+    public function addOfferToExistingProduct($products_model, $stoc, $pret, $overridePrice){
         // Sanity check - for older versions of PHP
         if (!isset($products_model)) throw new \Exception('Specificati un model de produs');
         if (!isset($stoc)) throw new \Exception('Specificati stocul');
@@ -77,7 +77,8 @@ class ProductsInsert {
         $data = array(
             'products_model' => $products_model,
             'stoc' => $stoc,
-            'pret' => $pret
+            'pret' => $pret,
+            'overridePrice' => $overridePrice
         );
 
         // Send request and retrieve response
