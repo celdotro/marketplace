@@ -85,6 +85,14 @@ class OrdersData {
         return $result;
     }
 
+    /**
+     * [RO] Adauga observatii comenzii (https://github.com/celdotro/marketplace/wiki/Adauga-observatii-comanda)
+     * [EN] Add order observations (https://github.com/celdotro/marketplace/wiki/Add-Order-Observations)
+     * @param $orders_id
+     * @param $observations
+     * @return mixed
+     * @throws \Exception
+     */
     public function addOrderObservations($orders_id, $observations){
         // Sanity check
         if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
