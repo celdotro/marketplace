@@ -84,4 +84,24 @@ class OrdersData {
 
         return $result;
     }
+
+    public function addOrderObservations($orders_id, $observations){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'addOrderObservations';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'observations' => $observations
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
