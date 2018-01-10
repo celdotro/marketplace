@@ -171,6 +171,8 @@ class ProductsList
           $result = Dispatcher::send($method, $action, $data);
 
           return $result;
-      }
+    }
+
+
 
 }
