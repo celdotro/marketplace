@@ -10,6 +10,7 @@ class ProductsList
      * [RO] Returneaza toate categoriile (https://github.com/celdotro/marketplace/wiki/Listeaza-categorii)
      * [EN] Get all categories (https://github.com/celdotro/marketplace/wiki/List-categories)
      * @return mixed
+     * @throws \Exception
      */
     public function getCategories()
     {
@@ -86,6 +87,7 @@ class ProductsList
      * [EN] List available filters after correlation (https://github.com/celdotro/marketplace/wiki/List-filters)
      * @param null $filters
      * @return mixed
+     * @throws \Exception
      */
     public function listFilters($filters = null){
         $method = 'products';
@@ -156,8 +158,9 @@ class ProductsList
      * [RO] Preia produsele live pe categorii (https://github.com/celdotro/marketplace/wiki/Preia-produsele-live-pe-categorii)
      * [EN] Get live products for each category (https://github.com/celdotro/marketplace/wiki/Get-live-products-categories)
      * @return mixed
+     * @throws \Exception
      */
-      public function getLiveProductsCategory(){
+    public function getLiveProductsCategory(){
           $method = 'products';
           $action = 'getLiveProductsCategory';
 
