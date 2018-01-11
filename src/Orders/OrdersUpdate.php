@@ -84,4 +84,23 @@ class OrdersUpdate {
         return $result;
     }
 
+    public function importInvoice($cmd, $serie, $nr_fact){
+      // Sanity check
+      if(empty($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+      if(empty($serie)) throw new \Exception('Specificati seria facturii');
+      if(empty($nr_fact)) throw new \Exception('Specificati numarul  facturii');
+
+      // Set method and action
+      $method = 'orders';
+      $action = 'importInvoice';
+
+      // Set data
+      $data = array('order' => $cmd, 'data' => json_encode($arrProducts));
+
+      // Send request and retrieve response
+      $result = Dispatcher::send($method, $action, $data);
+
+      return $result;
+    }
+
 }

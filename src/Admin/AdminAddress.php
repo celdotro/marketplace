@@ -43,7 +43,7 @@ class AdminAddress {
      * @return mixed
      * @throws \Exception
      */
-    public function editAddress($id = null, $address = null, $id_curier = null){
+    public function editAddress($id = null, $address = null){
         // Sanity check
         if(is_null($address) || $address === '') throw new \Exception('Specificati o adresa valida');
         if(is_null($id) || !is_numeric($id)) throw new \Exception('Specificati un ID valid');
@@ -54,7 +54,6 @@ class AdminAddress {
 
         // Set data
         $data = array('id' => $id, 'address' => $address);
-        if(!is_null($id_curier)) $data['id_curier'] = $id_curier;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
@@ -67,6 +66,7 @@ class AdminAddress {
      * [EN] Lists all pick-up points addresses (https://github.com/celdotro/marketplace_examples/blob/master/Admin/6.listAddresses.php)
      *
      * @return mixed
+     * @throws \Exception
      */
     public function listAddresses(){
         // Set method and action
