@@ -84,23 +84,36 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * [RO] Permite importul unei facturi (https://github.com/celdotro/marketplace/wiki/Import-factura)
+     * [EN] Imports a new invoice (https://github.com/celdotro/marketplace/wiki/Import-Invoice)
+     * @param $cmd
+     * @param $serie
+     * @param $nr_fact
+     * @return mixed
+     * @throws \Exception
+     */
     public function importInvoice($cmd, $serie, $nr_fact){
-      // Sanity check
-      if(empty($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
-      if(empty($serie)) throw new \Exception('Specificati seria facturii');
-      if(empty($nr_fact)) throw new \Exception('Specificati numarul  facturii');
+        // Sanity check
+        if(empty($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+        if(empty($serie)) throw new \Exception('Specificati seria facturii');
+        if(empty($nr_fact)) throw new \Exception('Specificati numarul  facturii');
 
-      // Set method and action
-      $method = 'orders';
-      $action = 'importInvoice';
+        // Set method and action
+        $method = 'orders';
+        $action = 'importInvoice';
 
-      // Set data
-      $data = array('order' => $cmd, 'data' => json_encode($arrProducts));
+        // Set data
+        $data = array(
+            'orders_id' => $cmd,
+            'serie' => $serie,
+            'nr_fact' => $nr_fact
+        );
 
-      // Send request and retrieve response
-      $result = Dispatcher::send($method, $action, $data);
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
 
-      return $result;
+        return $result;
     }
 
 }
