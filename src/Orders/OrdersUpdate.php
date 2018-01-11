@@ -95,7 +95,11 @@ class OrdersUpdate {
       $action = 'importInvoice';
 
       // Set data
-      $data = array('order' => $cmd, 'data' => json_encode($arrProducts));
+      $data = array(
+          'orders_id' => $cmd,
+          'serie' => $serie,
+          'nr_fact' => $nr_fact
+      );
 
       // Send request and retrieve response
       $result = Dispatcher::send($method, $action, $data);
