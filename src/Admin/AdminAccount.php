@@ -125,4 +125,28 @@ class AdminAccount {
 
       return $result;
     }
+
+    #### DO NOT ADD ####
+    public function syncAff(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'syncAff';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
+
+    #### DO NOT ADD ####
+    public function addQuestion($data){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'addQuestion';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('data' => $data));
+
+        return $result;
+    }
 }

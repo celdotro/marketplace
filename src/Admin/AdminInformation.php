@@ -115,4 +115,18 @@ class AdminInformation {
         return $result;
     }
 
+    public function getCouriers(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCouriers';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
