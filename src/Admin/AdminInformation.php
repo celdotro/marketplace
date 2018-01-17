@@ -11,6 +11,7 @@ class AdminInformation {
      * [EN] Retrieves the transport tax (https://github.com/celdotro/marketplace/wiki/Get-transport-tax)
      * @param null $id
      * @return mixed
+     * @throws \Exception
      */
     public function getTransportTax($id = null){
         // Set method and action
@@ -32,7 +33,7 @@ class AdminInformation {
      * [EN] Updates a transport tax (https://github.com/celdotro/marketplace/wiki/Update-transport-tax)
      * @param $id
      * @param null $newValue
-     * @param null $newLimit
+     * @param null $impusa
      * @return mixed
      * @throws \Exception
      */
@@ -118,11 +119,32 @@ class AdminInformation {
      * @param null $newValue
      * @param null $newLimit
      * @return mixed
+     * @throws \Exception
      */
     public function getDeliveryInformation($newValue = null, $newLimit = null){
         // Set method and action
         $method = 'admininfo';
         $action = 'getDeliveryInformation';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia lista curierilor (https://github.com/celdotro/marketplace/wiki/Preia-lista-curieri)
+     * [EN] Get couriers list (https://github.com/celdotro/marketplace/wiki/Get-couriers)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getCouriers(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCouriers';
 
         // Set data
         $data = array('dummy' => 1);
