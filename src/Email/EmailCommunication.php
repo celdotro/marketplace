@@ -36,7 +36,17 @@ class EmailCommunication {
         return $result;
     }
 
-    public function GetServiceRequests($minDate = null, $maxDate = null, $product_model = null, $start = null){
+    /**
+     * [RO] Preia cererile de service aferente afiliatului (https://github.com/celdotro/marketplace/wiki/Preia-cererile-de-retur)
+     * [EN] Get service requests for the current affiliate (https://github.com/celdotro/marketplace/wiki/Get-return-requests)
+     * @param null $minDate
+     * @param null $maxDate
+     * @param null $product_model
+     * @param null $start
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getServiceRequests($minDate = null, $maxDate = null, $product_model = null, $start = null){
         // Set method and action
         $method = 'email';
         $action = 'GetServiceRequests';
@@ -53,6 +63,14 @@ class EmailCommunication {
         return $result;
     }
 
+    /**
+     * [RO] Raspunde unei cereri de service (https://github.com/celdotro/marketplace/wiki/Raspunde-unei-cereri-de-service)
+     * [EN] Send an answer to a service request (https://github.com/celdotro/marketplace/wiki/Answer-service-request)
+     * @param $id
+     * @param $answer
+     * @return mixed
+     * @throws \Exception
+     */
     public function answerServiceRequest($id, $answer){
         // Set method and action
         $method = 'email';
@@ -69,6 +87,16 @@ class EmailCommunication {
         return $result;
     }
 
+    /**
+     * [RO] Preia cererile de retur aferente afiliatului (https://github.com/celdotro/marketplace/wiki/Preia-cererile-de-retur)
+     * [EN] Get return requests for the current affilaite (https://github.com/celdotro/marketplace/wiki/Get-return-requests)
+     * @param null $minDate
+     * @param null $maxDate
+     * @param null $product_model
+     * @param null $start
+     * @return mixed
+     * @throws \Exception
+     */
     public function getReturnRequests($minDate = null, $maxDate = null, $product_model = null, $start = null){
         // Set method and action
         $method = 'email';
@@ -86,6 +114,14 @@ class EmailCommunication {
         return $result;
     }
 
+    /**
+     * [RO] Raspunde unei cereri de retur (https://github.com/celdotro/marketplace/wiki/Raspunde-cererii-de-retur)
+     * [EN] Send an answer to a return request (https://github.com/celdotro/marketplace/wiki/Retrieve-service-requests)
+     * @param $id
+     * @param $answer
+     * @return mixed
+     * @throws \Exception
+     */
     public function answerReturnRequests($id, $answer){
         // Set method and action
         $method = 'email';
