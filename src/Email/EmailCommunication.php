@@ -10,6 +10,7 @@ class EmailCommunication {
      * [EN] Retrieve all unanswered emails about products (https://github.com/celdotro/marketplace/wiki/Retrieve-products-emails)
      * @param $product_model
      * @return mixed
+     * @throws \Exception
      */
     public function getProductEmails($product_model){
         // Set method and action
