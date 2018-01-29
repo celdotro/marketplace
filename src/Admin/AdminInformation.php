@@ -65,6 +65,7 @@ class AdminInformation {
     public function insertTaxForAllCategories($newValue = null, $newLimit = null){
         // Sanity check
         if(is_null($newValue) && is_null($newLimit)) throw new \Exception('Limita sau valoarea trebuie sa fie nenule');
+
         // Set method and action
         $method = 'admininfo';
         $action = 'insertTaxForAllCategories';
@@ -122,6 +123,37 @@ class AdminInformation {
 
         // Set data
         $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function getCategoriesFaq(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCategoriesFaq';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function getCategoryFaqContent($category){
+        // Sanity check
+        if(empty($category)) throw new \Exception('Categorie invalida');
+
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCategoryFaqContent';
+
+        // Set data
+        $data = array('category' => $category);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
