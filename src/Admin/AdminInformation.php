@@ -154,4 +154,48 @@ class AdminInformation {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia categoriile cu FAQ (https://github.com/celdotro/marketplace/wiki/Preia-FAQ-categorii)
+     * [EN] Retrieves categories with FAQ (https://github.com/celdotro/marketplace/wiki/Get-categories-FAQ)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getCategoriesFaq(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCategoriesFaq';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia continutul FAQ pentru o categorie (https://github.com/celdotro/marketplace/wiki/Continut-FAQ-categorie)
+     * [EN] Retrieve a category's FAQ contents (https://github.com/celdotro/marketplace/wiki/Category-FAQ-contents)
+     * @param $category
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getCategoryFaqContent($category){
+        // Sanity check
+        if(empty($category)) throw new \Exception('Categorie invalida');
+
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCategoryFaqContent';
+
+        // Set data
+        $data = array('category' => $category);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
