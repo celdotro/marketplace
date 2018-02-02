@@ -147,4 +147,28 @@ class OrdersStatus {
 
         return $result;
     }
+
+    /**
+     * [RO] Storneaza comanda (https://github.com/celdotro/marketplace/wiki/Stornare-comanda)
+     * [EN] Order cancellation (https://github.com/celdotro/marketplace/wiki/Order-cancellation)
+     * @param $orders_id
+     * @return mixed
+     * @throws \Exception
+     */
+    public function stornareComanda($orders_id){
+        // Sanity check
+        if(!isset($orders_id) || !is_int($orders_id)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'StornareComanda';
+
+        // Set data
+        $data = array('orders_id' => $orders_id);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
