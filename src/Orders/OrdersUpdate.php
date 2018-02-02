@@ -107,4 +107,33 @@ class OrdersUpdate {
       return $result;
     }
 
+    public function editDeliveryAddress($orders_id, $name, $address, $county, $city, $phone){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Specificati comanda');
+        if(empty($name)) throw new \Exception('Specificati numele');
+        if(empty($address)) throw new \Exception('Specificati adresa');
+        if(empty($county)) throw new \Exception('Specificati judetul');
+        if(empty($city)) throw new \Exception('Specificati orasul');
+        if(empty($phone)) throw new \Exception('Specificati telefonul');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'editDeliveryAddress';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'name' => $name,
+            'address' => $address,
+            'county' => $county,
+            'city' => $city,
+            'phone' => $phone
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }

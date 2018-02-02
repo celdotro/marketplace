@@ -137,4 +137,30 @@ class EmailCommunication {
 
         return $result;
     }
+
+    public function getServiceRequest($uniqueID){
+        // Set method and action
+        $method = 'email';
+        $action = 'GetServiceRequest';
+
+        // Set data
+        $data = array('uniqueID' => $uniqueID);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    public function getReturnRequest($uniqueID){
+        // Set method and action
+        $method = 'email';
+        $action = 'GetReturnRequest';
+
+        // Set data
+        $data = array('uniqueID' => $uniqueID);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
