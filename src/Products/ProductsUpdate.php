@@ -29,4 +29,32 @@ class ProductsUpdate {
         return $result;
     }
 
+    /**
+     * [RO] Actualizeaza statusul unui produs (https://github.com/celdotro/marketplace/wiki/Actualizare-status-produs)
+     * [EN] Update product's status (https://github.com/celdotro/marketplace/wiki/Update-product-status)
+     * @param $model
+     * @param $status
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updateStatus($model, $status){
+        // Sanity check
+        if(empty($model)) throw new \Exception('Specificati modelul produsului');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'updateStatus';
+
+        // Set data
+        $data = array(
+            'model' => $model,
+            'status' => $status
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }

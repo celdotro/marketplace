@@ -15,9 +15,11 @@ class Config
 {
     // API's address
     public static $API_HTTP = 'http://192.168.0.85/market_api/';
+//    public static $API_HTTP = 'http://demo.cel.ro/market_api/';
 
     public static function setDemo(){
         self::$API_HTTP = 'http://192.168.0.85/market_api/';
+//        self::$API_HTTP = 'http://demo.cel.ro/market_api/';
     }
 
     // Path to token file
