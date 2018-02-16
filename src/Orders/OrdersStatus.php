@@ -171,4 +171,21 @@ class OrdersStatus {
 
         return $result;
     }
+
+    /**
+     * [RO] Listeaza statusurile disponibile ale comenzilor (https://github.com/celdotro/marketplace/wiki/Listare-statusuri-comenzi)
+     * [EN] Lists all statuses an order can have (https://github.com/celdotro/marketplace/wiki/List-order-statuses)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function listStatuses(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'ListStatuses';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
 }
