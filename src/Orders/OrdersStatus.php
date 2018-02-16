@@ -188,4 +188,21 @@ class OrdersStatus {
 
         return $result;
     }
+
+    /**
+     * [RO] Listeaza statusurile produselor din comanda (https://github.com/celdotro/marketplace/wiki/Listeaza-statusurile-produselor-din-comanda)
+     * [EN] List order's product statuses (https://github.com/celdotro/marketplace/wiki/List-order-product-statuses)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function listProductStatuses(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'ListProductStatuses';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
 }
