@@ -136,4 +136,33 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * [RO] Schimba statusul unui produs dintr-o comanda (https://github.com/celdotro/marketplace/wiki/Schimba-statusul-unui-produs-din-comanda)
+     * [EN] Changes the status of a product from a specific order (https://github.com/celdotro/marketplace/wiki/Change-order-product-status)
+     * @param $orders_products_id
+     * @param $status
+     * @return mixed
+     * @throws \Exception
+     */
+    public function changeOrderProductStatus($orders_products_id, $status){
+        // Sanity check
+        if(empty($orders_products_id)) throw new \Exception('Specificati ID-ul produsului');
+        if(!isset($status)) throw new \Exception('Specificati statusul produsului');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'changeOrderProductStatus';
+
+        // Set data
+        $data = array(
+            'orders_products_id' => $orders_products_id,
+            'status' => $status
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
