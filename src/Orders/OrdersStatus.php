@@ -174,4 +174,15 @@ class OrdersStatus {
         return $result;
     }
 
+    public function listProductStatuses(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'ListProductStatuses';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
+
 }
