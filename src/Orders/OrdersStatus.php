@@ -174,6 +174,12 @@ class OrdersStatus {
         return $result;
     }
 
+    /**
+     * [RO] Listeaza statusurile produselor din comanda (https://github.com/celdotro/marketplace/wiki/Listeaza-statusurile-produselor-din-comanda)
+     * [EN] List order's product statuses (https://github.com/celdotro/marketplace/wiki/List-order-product-statuses)
+     * @return mixed
+     * @throws \Exception
+     */
     public function listProductStatuses(){
         // Set method and action
         $method = 'orders';
