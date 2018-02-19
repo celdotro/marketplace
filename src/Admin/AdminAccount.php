@@ -7,20 +7,21 @@ use celmarket\Dispatcher;
 class AdminAccount {
 
     /**
-     * [RO] Actualizeaza urmatoarele date aferente afiliatului: CIF, IBAN, numar de telefon, parola, denumirea bancii, denumire completa, adresa sediu si scurta descriere (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
-     * [EN] Updates the following data of an affiliate: CIF, IBAN, phone number, password, bank's name, full name, headquarter's address, and short description (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
+     * [RO] Actualizeaza urmatoarele date aferente afiliatului: CIF, IBAN, numar de telefon, parola, denumirea bancii, denumire completa, adresa sediu, api link si scurta descriere (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
+     * [EN] Updates the following data of an affiliate: CIF, IBAN, phone number, password, bank's name, full name, headquarter's address, api link, and short description (https://github.com/celdotro/marketplace/wiki/Actualizare-informatii-cont)
      * @param null $cif
      * @param null $iban
      * @param null $telephone
      * @param null $password
-     * @param null $bank
+     * @param null $bankName
      * @param null $fullName
      * @param null $hqAddress
      * @param null $description
+     * @param null $apiLink
      * @return mixed
      * @throws \Exception
      */
-    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bank = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL) {
+    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL, $apiLink = NULL) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
         // All proper checks for data integrity are done on our server
 
@@ -34,10 +35,11 @@ class AdminAccount {
         if(!is_null($iban)) $data['iban'] = $iban;
         if(!is_null($telephone)) $data['telephone'] = $telephone;
         if(!is_null($password)) $data['password'] = $password;
-        if(!is_null($bank)) $data['bank'] = $bank;
+        if(!is_null($bankName)) $data['bankName'] = $bankName;
         if(!is_null($fullName)) $data['fullName'] = $fullName;
         if(!is_null($hqAddress)) $data['hqAddress'] = $hqAddress;
         if(!is_null($description)) $data['description'] = $description;
+        if(!is_null($apiLink)) $data['apiLink'] = $apiLink;
 
         if(empty($data)) throw new \Exception('Specificati cel putin 1 camp');
 
