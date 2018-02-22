@@ -140,16 +140,20 @@ class OrdersStatus {
         return $result;
     }
 
-    public function stornareComanda($orders_id){
+    public function stornareComanda($orders_id, $reason){
         // Sanity check
-        if(!isset($orders_id) || !is_int($orders_id)) throw new \Exception('Specificati comanda');
+        if(empty($orders_id) || !is_int($orders_id)) throw new \Exception('Specificati comanda');
+        if(empty($reason)) throw new \Exception('Specificati motivul');
 
         // Set method and action
         $method = 'orders';
         $action = 'StornareComanda';
 
         // Set data
-        $data = array('orders_id' => $orders_id);
+        $data = array(
+            'orders_id' => $orders_id,
+            'reason' => $reason
+        );
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
