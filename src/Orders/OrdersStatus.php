@@ -210,4 +210,21 @@ class OrdersStatus {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia lista cu metodele de plata (https://github.com/celdotro/marketplace/wiki/Preia-metode-de-plata)
+     * [EN] Retrieves a list of payment methods (https://github.com/celdotro/marketplace/wiki/Get-payment-methods)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPaymentMethods(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'GetPaymentMethods';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
 }
