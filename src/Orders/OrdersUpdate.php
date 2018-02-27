@@ -145,4 +145,32 @@ class OrdersUpdate {
         return $result;
     }
 
+    /**
+     * [RO] Schimba modul de plata al unei comenzi (https://github.com/celdotro/marketplace/wiki/Schimba-modul-de-plata-al-unei-comenzi)
+     * [EN] Change an order's payment method (https://github.com/celdotro/marketplace/wiki/Change-order-payment-method)
+     * @param $order
+     * @param $paymentMethod
+     * @return mixed
+     * @throws \Exception
+     */
+    public function changeOrderPaymentMethod($order, $paymentMethod){
+        // Sanity check
+        if(empty($order)) throw new \Exception('Comanda invalida');
+        if(empty($paymentMethod)) throw new \Exception('Mod de plata invalid');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'ChangeOrderPaymentMethod';
+
+        // Set data
+        $data = array(
+            'order_id' => $order,
+            'payment_method' => $paymentMethod
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
