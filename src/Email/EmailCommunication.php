@@ -122,7 +122,7 @@ class EmailCommunication {
      * @return mixed
      * @throws \Exception
      */
-    public function answerReturnRequests($id, $answer){
+    public function answerReturnRequests($id, $answer, $images = null){
         // Set method and action
         $method = 'email';
         $action = 'AnswerReturnRequests';
@@ -133,7 +133,7 @@ class EmailCommunication {
             'answer' => $answer
         );
 
-        $result = Dispatcher::send($method, $action, $data);
+        $result = Dispatcher::send($method, $action, $data, $images);
 
         return $result;
     }

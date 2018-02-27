@@ -165,4 +165,24 @@ class OrdersUpdate {
         return $result;
     }
 
+    public function changeOrderPaymentMethod($order, $paymentMethod){
+        // Sanity check
+        if(empty($order)) throw new \Exception('Comanda invalida');
+        if(empty($paymentMethod)) throw new \Exception('Mod de plata invalid');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'ChangeOrderPaymentMethod';
+
+        // Set data
+        $data = array(
+            'order_id' => $order,
+            'payment_method' => $paymentMethod
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }

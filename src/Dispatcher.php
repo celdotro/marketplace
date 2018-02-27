@@ -55,7 +55,7 @@ class Dispatcher {
      * @return mixed
      * @throws \Exception
      */
-    public static function send ($method, $action, $data) {
+    public static function send ($method, $action, $data, $files = NULL) {
         ### 0. Check fail count ###
         if (!isset(self::$failCount) || is_null(self::$failCount)) self::$failCount = 0;
         self::$failCount++;
@@ -99,11 +99,48 @@ class Dispatcher {
         // Build POST request with token placed in bearer authorization header
         $request = null;
         try {
-            $request = self::getGuzzleClient()->request('POST', $url, array('form_params' => $data, 'headers' => array('AUTH' => 'Bearer ' . $token)));
+            if(is_null($files)) {
+                $request = self::getGuzzleClient()->request(
+                    'POST',
+                    $url,
+                    array(
+                        'form_params' => $data,
+                        'headers' => array('AUTH' => 'Bearer ' . $token)
+                    )
+                );
+            } else {
+//                $options = array(
+//                    'multipart' => array(
+//                    )
+//                );
+                foreach($data as $name => $value){
+                    $options['multipart'][] = array(
+                        'name' => $name,
+                        'contents' => $value
+                    );
+                }
+
+                foreach($files as $fileName => $fileContents){
+                    $options['multipart'][] = array(
+                        'name' => $fileName,
+                        'contents' => $fileContents
+                    );
+                }
+                $options[] = array(
+                    'headers' => array('AUTH' => 'Bearer ' . $token),
+                    'contents' => 'data',
+                    'name' => 'abc'
+                );
+                $request = self::getGuzzleClient()->request(
+                    'POST',
+                    $url,
+                    $options
+                );
+            }
         } catch (RequestException $e) { // If a request exception is encountered
            if ($e->getResponse()->getStatusCode() == 400){ // If the exception has code 400, regenerate token
                $token = Auth::regenerateToken();
-               return self::send($method, $action, $data);
+               return self::send($method, $action, $data, $files);
            }
         }
 

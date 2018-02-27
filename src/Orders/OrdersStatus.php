@@ -195,4 +195,15 @@ class OrdersStatus {
         return $result;
     }
 
+    public function getPaymentMethods(){
+        // Set method and action
+        $method = 'orders';
+        $action = 'GetPaymentMethods';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
+
 }
