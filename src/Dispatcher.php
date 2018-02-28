@@ -100,7 +100,7 @@ class Dispatcher {
         // Build POST request with token placed in bearer authorization header
         $request = null;
         try {
-            if(is_null($files)) {
+            if(is_null($files)) { // No files to upload
                 $request = self::getGuzzleClient()->request(
                     'POST',
                     $url,
@@ -109,10 +109,13 @@ class Dispatcher {
                         'headers' => array('AUTH' => 'Bearer ' . $token)
                     )
                 );
-            } else {
+            } else { // Has files to upload
+                /// Headers
                 $options = array(
                     'headers' => array('AUTH' => 'Bearer ' . $token),
                 );
+
+                /// Regular fields
                 foreach($data as $name => $value){
                     $options['multipart'][] = array(
                         'name' => $name,
@@ -120,6 +123,7 @@ class Dispatcher {
                     );
                 }
 
+                /// Files
                 foreach($files as $fileName => $fileContents){
                     $options['multipart'][] = array(
                         'name' => $fileName,
