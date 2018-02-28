@@ -109,10 +109,9 @@ class Dispatcher {
                     )
                 );
             } else {
-//                $options = array(
-//                    'multipart' => array(
-//                    )
-//                );
+                $options = array(
+                    'headers' => array('AUTH' => 'Bearer ' . $token),
+                );
                 foreach($data as $name => $value){
                     $options['multipart'][] = array(
                         'name' => $name,
@@ -123,14 +122,12 @@ class Dispatcher {
                 foreach($files as $fileName => $fileContents){
                     $options['multipart'][] = array(
                         'name' => $fileName,
-                        'contents' => $fileContents
+                        'contents' => $fileContents,
+                        'FileContents' => $fileContents,
+                        'filename' => $fileName
                     );
                 }
-                $options[] = array(
-                    'headers' => array('AUTH' => 'Bearer ' . $token),
-                    'contents' => 'data',
-                    'name' => 'abc'
-                );
+
                 $request = self::getGuzzleClient()->request(
                     'POST',
                     $url,
