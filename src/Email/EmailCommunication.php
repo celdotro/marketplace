@@ -83,10 +83,11 @@ class EmailCommunication {
      * [EN] Send an answer to a service request (https://github.com/celdotro/marketplace/wiki/Answer-service-request)
      * @param $id
      * @param $answer
+     * @param null $images
      * @return mixed
      * @throws \Exception
      */
-    public function answerServiceRequest($id, $answer){
+    public function answerServiceRequest($id, $answer, $images = null){
         // Set method and action
         $method = 'email';
         $action = 'AnswerServiceRequest';
@@ -97,7 +98,7 @@ class EmailCommunication {
             'answer' => $answer
         );
 
-        $result = Dispatcher::send($method, $action, $data);
+        $result = Dispatcher::send($method, $action, $data, $images);
 
         return $result;
     }
