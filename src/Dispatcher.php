@@ -124,7 +124,6 @@ class Dispatcher {
                     $options['multipart'][] = array(
                         'name' => $fileName,
                         'contents' => $fileContents,
-                        'FileContents' => $fileContents,
                         'filename' => $fileName
                     );
                 }
