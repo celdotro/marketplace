@@ -227,4 +227,28 @@ class OrdersStatus {
 
         return $result;
     }
+
+    /**
+     * [RO] Finalizeaza o comanda (https://github.com/celdotro/marketplace/wiki/Finalizeaza-comanda)
+     * [EN] Finishes an order (https://github.com/celdotro/marketplace/wiki/Finish-order)
+     * @param $orders_id
+     * @return mixed
+     * @throws \Exception
+     */
+    public function finishOrder($orders_id){
+        // Sanity check
+        if(!isset($orders_id) || !is_int($orders_id)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'finishOrder';
+
+        // Set data
+        $data = array('orders_id' => $orders_id);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
