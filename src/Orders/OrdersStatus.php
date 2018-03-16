@@ -206,4 +206,21 @@ class OrdersStatus {
         return $result;
     }
 
+    public function finishOrder($cmd){
+        // Sanity check
+        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'finishOrder';
+
+        // Set data
+        $data = array('orders_id' => $cmd);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }

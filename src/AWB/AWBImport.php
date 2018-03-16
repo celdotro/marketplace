@@ -49,4 +49,22 @@ class AWBImport {
       return $result;
     }
 
+    public function generateAwb($orders_id, $idAddress){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Specificati comanda');
+        if(empty($idAddress)) throw new \Exception('Specificati adresa');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'generateAwb';
+
+        // Set data
+        $data = array('orders_id' => $orders_id, 'idAddress' => $idAddress);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
