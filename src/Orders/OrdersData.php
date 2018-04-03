@@ -112,4 +112,30 @@ class OrdersData {
 
         return $result;
     }
+
+    /**
+     * [RO] Returneaza un document PDF cu datele comenzii (https://github.com/celdotro/marketplace/wiki/Tipareste-comanda)
+     * [EN] Returns a PDF with the order's details (https://github.com/celdotro/marketplace/wiki/Print-order)
+     * @param $orders_id
+     * @return mixed
+     * @throws \Exception
+     */
+    public function printOrder($orders_id){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'printOrder';;
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
