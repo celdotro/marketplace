@@ -36,10 +36,11 @@ class ProductsList
      * @param null $search
      * @param bool $forceCount
      * @param null $filters
+     * @param null $includeTransport
      * @return mixed
      * @throws \Exception
      */
-    public function listProducts($start, $limit, $search = null, $forceCount = false, $filters = null){
+    public function listProducts($start, $limit, $search = null, $forceCount = false, $filters = null, $includeTransport = null){
         // Sanity check
         if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');
         if(!isset($limit) || !is_int($limit) || $limit < 0) throw new \Exception('Precizati un numar natural pentru limita');
@@ -52,6 +53,7 @@ class ProductsList
         $data = array('start' => $start, 'limit' => $limit, 'forceCount' => $forceCount);
         if(!is_null($search)) $data['search'] = $search;
         if(!is_null($filters)) $data['filters'] = $filters;
+        if(!is_null($includeTransport)) $data['includeTransport'] = $includeTransport;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
