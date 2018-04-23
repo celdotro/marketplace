@@ -40,7 +40,7 @@ class ProductsList
      * @return mixed
      * @throws \Exception
      */
-    public function listProducts($start, $limit, $search = null, $forceCount = false, $filters = null, $includeTransport = null){
+    public function listProducts($start, $limit, $search = null, $forceCount = false, $filters = null, $includeTransport = null, $orderByMostViewed = false){
         // Sanity check
         if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');
         if(!isset($limit) || !is_int($limit) || $limit < 0) throw new \Exception('Precizati un numar natural pentru limita');
@@ -50,7 +50,7 @@ class ProductsList
         $action = 'readProducts';
 
         // Set data
-        $data = array('start' => $start, 'limit' => $limit, 'forceCount' => $forceCount);
+        $data = array('start' => $start, 'limit' => $limit, 'forceCount' => $forceCount, 'orderByMostViewed' => $orderByMostViewed);
         if(!is_null($search)) $data['search'] = $search;
         if(!is_null($filters)) $data['filters'] = $filters;
         if(!is_null($includeTransport)) $data['includeTransport'] = $includeTransport;
