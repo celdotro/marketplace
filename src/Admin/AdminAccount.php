@@ -21,7 +21,7 @@ class AdminAccount {
      * @return mixed
      * @throws \Exception
      */
-    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL, $apiLink = NULL, $contactPerson, $county, $city) {
+    public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL, $apiLink = NULL, $contactPerson, $county, $city, $reg) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
         // All proper checks for data integrity are done on our server
 
@@ -43,6 +43,7 @@ class AdminAccount {
         $data['person'] = $contactPerson;
         $data['county'] = $county;
         $data['city'] = $city;
+        $data['reg'] = $reg;
 
         if(empty($data)) throw new \Exception('Specificati cel putin 1 camp');
 
