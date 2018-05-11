@@ -173,4 +173,36 @@ class OrdersUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Marcheaza un produs pentru retur (https://github.com/celdotro/marketplace/wiki/Retur-produs)
+     * [EN] Marks a product for return (https://github.com/celdotro/marketplace/wiki/Product-return)
+     * @param $orderId
+     * @param $reason
+     * @param $model
+     * @return mixed
+     * @throws \Exception
+     */
+    public function returProduct($orderId, $reason, $model){
+        // Sanity check
+        if(empty($orderId)) throw new \Exception('Comanda invalida');
+        if(empty($reason)) throw new \Exception('Motiv invalid');
+        if(empty($model)) throw new \Exception('Model invalid');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'returProduct';
+
+        // Set data
+        $data = array(
+            'orderId' => $orderId,
+            'reason' => $reason,
+            'model' => $model
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
