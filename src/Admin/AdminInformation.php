@@ -11,7 +11,7 @@ class AdminInformation {
      * [EN] Retrieves the transport tax (https://github.com/celdotro/marketplace/wiki/Get-transport-tax)
      * @param null $id
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getTransportTax($id = null){
         // Set method and action
@@ -35,7 +35,7 @@ class AdminInformation {
      * @param null $newValue
      * @param null $impusa
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateTransportTax($id, $newValue = null, $impusa = null){
         // Sanity check
@@ -61,7 +61,7 @@ class AdminInformation {
      * @param null $newValue
      * @param null $newLimit
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function insertTaxForAllCategories($newValue = null, $newLimit = null){
         // Sanity check
@@ -89,7 +89,7 @@ class AdminInformation {
      * @param null $pretKgInPlus
      * @param null $deschidereColet
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateDeliveryInformation($minimTara = null, $minimBucuresti = null, $kgIncluse = null, $pretKgInPlus = null, $deschidereColet = null){
         // Set method and action
@@ -119,7 +119,7 @@ class AdminInformation {
      * @param null $newValue
      * @param null $newLimit
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getDeliveryInformation($newValue = null, $newLimit = null){
         // Set method and action
@@ -139,7 +139,7 @@ class AdminInformation {
      * [RO] Preia lista curierilor (https://github.com/celdotro/marketplace/wiki/Preia-lista-curieri)
      * [EN] Get couriers list (https://github.com/celdotro/marketplace/wiki/Get-couriers)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCouriers(){
         // Set method and action
@@ -159,7 +159,7 @@ class AdminInformation {
      * [RO] Preia categoriile cu FAQ (https://github.com/celdotro/marketplace/wiki/Preia-FAQ-categorii)
      * [EN] Retrieves categories with FAQ (https://github.com/celdotro/marketplace/wiki/Get-categories-FAQ)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCategoriesFaq(){
         // Set method and action
@@ -180,7 +180,7 @@ class AdminInformation {
      * [EN] Retrieve a category's FAQ contents (https://github.com/celdotro/marketplace/wiki/Category-FAQ-contents)
      * @param $category
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCategoryFaqContent($category){
         // Sanity check
@@ -198,4 +198,89 @@ class AdminInformation {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia toate codurile MCC (https://github.com/celdotro/marketplace/wiki/Preia-coduri-MCC)
+     * [EN] Get all MCC Codes (https://github.com/celdotro/marketplace/wiki/Get-MCC-Codes)
+     * @param array $filters
+     * @param int $start
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getMccCodes($filters = array(), $start = 0){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getMccCodes';
+
+        // Set data
+        $data = array('filters' => $filters, 'start' => $start);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Adauga un cod MCC in contul curent (https://github.com/celdotro/marketplace/wiki/Atribuie-cod-MCC)
+     * [EN] Add an MCC code to current account (https://github.com/celdotro/marketplace/wiki/Add-MCC-Code)
+     * @param $mcc
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function addMccCode($mcc){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'addMccCode';
+
+        // Set data
+        $data = array('mcc' => $mcc);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia lista MCC-urilor atribuite (https://github.com/celdotro/marketplace/wiki/Preia-MCC-uri-atribuite)
+     * [EN] Get list of currently used MCC (https://github.com/celdotro/marketplace/wiki/Get-currently-used-MCC)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCurrentMcc(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCurrentMcc';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Elimina un MCC atribuit contului curent (https://github.com/celdotro/marketplace/wiki/Elimina-MCC)
+     * [EN] Remove an MCC code linked to the current account (https://github.com/celdotro/marketplace/wiki/Remove-MCC-Code)
+     * @param $mcc
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function removeMccCode($mcc){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'removeMccCode';
+
+        // Set data
+        $data = array('mcc' => $mcc);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
