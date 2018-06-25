@@ -24,7 +24,7 @@ class AWBImport {
         $action = 'importAWB';
 
         // Set data
-        $data = array('cmd' => $cmd, 'awb' => $awb, 'idAdresaRidicare' => $idAdresaRidicare);
+        $data = array('orders_id' => $cmd, 'awb' => $awb, 'idAdresaRidicare' => $idAdresaRidicare);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
