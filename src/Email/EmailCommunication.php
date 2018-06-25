@@ -10,7 +10,7 @@ class EmailCommunication {
      * [EN] Retrieve all unanswered emails about products (https://github.com/celdotro/marketplace/wiki/Retrieve-products-emails)
      * @param $product_model
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getProductEmails($product_model){
         // Set method and action
@@ -32,7 +32,7 @@ class EmailCommunication {
      * @param $questionID
      * @param $answer
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function answerProductEmail($questionID, $answer){
         // Sanity check
@@ -59,7 +59,7 @@ class EmailCommunication {
      * @param null $product_model
      * @param null $start
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getServiceRequests($minDate = null, $maxDate = null, $product_model = null, $start = null){
         // Set method and action
@@ -85,7 +85,7 @@ class EmailCommunication {
      * @param $answer
      * @param null $images
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function answerServiceRequest($id, $answer, $images = null){
         // Set method and action
@@ -111,7 +111,7 @@ class EmailCommunication {
      * @param null $product_model
      * @param null $start
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getReturnRequests($minDate = null, $maxDate = null, $product_model = null, $start = null){
         // Set method and action
@@ -137,7 +137,7 @@ class EmailCommunication {
      * @param $answer
      * @param null $images
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function answerReturnRequests($id, $answer, $images = null){
         // Set method and action

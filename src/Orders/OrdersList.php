@@ -6,17 +6,13 @@ use celmarket\Dispatcher;
 class OrdersList {
 
     /**
-     * [RO] Listeaza comenzile unui client. Lista este scurtata folosind o pozitie
-     * de start si o limita. Nu suporta mai mult de 50 inregistrari.
-     * (https://github.com/celdotro/marketplace/wiki/Listare-comenzi)
-     * [EN] List orders for a customer. It is shrunk by using a start position and a limit.
-     * It can hold a maximum of 50 records.
-     * (https://github.com/celdotro/marketplace/wiki/List-orders)
+     * [RO] Listeaza comenzile unui client. Lista este scurtata folosind o pozitie de start si o limita. Nu suporta mai mult de 50 inregistrari. (https://github.com/celdotro/marketplace/wiki/Listare-comenzi)
+     * [EN] List orders for a customer. It is shrunk by using a start position and a limit. It can hold a maximum of 50 records. (https://github.com/celdotro/marketplace/wiki/List-orders)
      * @param $start
      * @param $limit
      * @param $options
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listOrders($start, $limit, $options){
         // Sanity check

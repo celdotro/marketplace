@@ -11,7 +11,7 @@ class OrdersData {
      * [EN] Retrieve data associated with an order (https://github.com/celdotro/marketplace/wiki/Order-data)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getOrderInfo($cmd){
         // Sanity check - for older versions of PHP
@@ -35,7 +35,7 @@ class OrdersData {
      * [EN] Checks if the payment was made for a specific order (https://github.com/celdotro/marketplace/wiki/Check-payment-for-order)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function checkPaymentForOrder($cmd){
         // Sanity check - for older versions of PHP
@@ -59,8 +59,10 @@ class OrdersData {
      * [EN] Updates an ordered product's SN (https://github.com/celdotro/marketplace/wiki/Update-SN)
      * @param $id_disp_fact
      * @param $products
+     * @param $sn
+     * @param $nr
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updatesn($id_disp_fact, $products, $sn, $nr){
         // Sanity check
@@ -91,7 +93,7 @@ class OrdersData {
      * @param $orders_id
      * @param $observations
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addOrderObservations($orders_id, $observations){
         // Sanity check
@@ -118,7 +120,7 @@ class OrdersData {
      * [EN] Returns a PDF with the order's details (https://github.com/celdotro/marketplace/wiki/Print-order)
      * @param $orders_id
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function printOrder($orders_id){
         // Sanity check

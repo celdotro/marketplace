@@ -11,7 +11,7 @@ class AWBDelete {
      * [EN] Delete the AWB of a specific order (https://github.com/celdotro/marketplace/wiki/AWB-Delete)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deleteAwb($cmd){
         // Sanity check

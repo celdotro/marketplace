@@ -11,7 +11,7 @@ class PagesDelete {
      * [EN] Delete page based on ID (https://github.com/celdotro/marketplace/wiki/Remove-page)
      * @param $pageID
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deletePage($pageID){
         // Sanity check

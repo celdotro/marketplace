@@ -18,7 +18,7 @@ class AdminPayments {
      * @param null $endDate_order
      * @param null $page
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getInvoicesData($paymentStatus, $numInvoice = NULL, $startDate_inv = NULL, $endDate_inv = NULL, $numOrder = NULL, $startDate_order = NULL, $endDate_order = NULL, $page = NULL){
         // Sanity check
@@ -51,10 +51,9 @@ class AdminPayments {
      * [RO] Returneaza date despre platile efectuate pe baza unei facturi (https://github.com/celdotro/marketplace/wiki/Date-plati-pentru-o-factura)
      * [EN] Returns an invoice's payments and other relevant data (https://github.com/celdotro/marketplace/wiki/Detailed-payment-data-for-an-invoice)
      * @param $numInvoice
-     * @param $numInvoice
      * @param $numOrder
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function showPayments($numInvoice, $numOrder){
         // Sanity check

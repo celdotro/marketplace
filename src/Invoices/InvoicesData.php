@@ -11,7 +11,7 @@ class InvoicesData {
      * [EN] Deletes an order's invoice (https://github.com/celdotro/marketplace/wiki/Remove-Invoice)
      * @param $ordersID
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function removeInvoice($ordersID){
         // Sanity check

@@ -9,10 +9,10 @@ class AdminAddress {
     /**
      * [RO] Adauga o adresa pentru ridicarea coletelor de catre curieri (https://github.com/celdotro/marketplace_examples/blob/master/Admin/4.addAddress.php)
      * [EN] Adds a new pick-up address that will be sent to couriers (https://github.com/celdotro/marketplace_examples/blob/master/Admin/4.addAddress.php)
-     *
      * @param null $address
+     * @param null $id_curier
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addAddress($address = null, $id_curier = null){
         // Sanity check
@@ -37,11 +37,10 @@ class AdminAddress {
     /**
      * [RO] Actualizeaza adresa unui punct de ridicare pentru curieri (https://github.com/celdotro/marketplace_examples/blob/master/Admin/5.editAddress.php)
      * [EN] Updates address information of a pick-up point (https://github.com/celdotro/marketplace_examples/blob/master/Admin/5.editAddress.php)
-     *
      * @param null $id
      * @param null $address
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function editAddress($id = null, $address = null){
         // Sanity check
@@ -64,9 +63,8 @@ class AdminAddress {
     /**
      * [RO] Listeaza toate adresele punctelor de ridicare pentru curieri (https://github.com/celdotro/marketplace_examples/blob/master/Admin/6.listAddresses.php)
      * [EN] Lists all pick-up points addresses (https://github.com/celdotro/marketplace_examples/blob/master/Admin/6.listAddresses.php)
-     *
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listAddresses(){
         // Set method and action
@@ -85,11 +83,10 @@ class AdminAddress {
     /**
      * [RO] Stergerea adresei unui punct de ridicare pentru curieri (https://github.com/celdotro/marketplace_examples/blob/master/Admin/7.deleteAddress.php)
      * [EN] Delete a pick-up point's address (https://github.com/celdotro/marketplace_examples/blob/master/Admin/7.deleteAddress.php)
-     *
      * @param null $id
      * @param null $address
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deleteAddress($id = null, $address = null){
         // Sanity check
@@ -111,10 +108,9 @@ class AdminAddress {
     /**
      * [RO] Trimite email pentru adaugarea unui nou curier (https://github.com/celdotro/marketplace/wiki/Adauga-curier)
      * [EN] Sends an email with a request to add a new courier (https://github.com/celdotro/marketplace/wiki/Add-courier)
-     *
      * @param $name
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addCourier($name){
         // Set method and action

@@ -12,7 +12,7 @@ class ProductsBonus {
      * @param $model
      * @param array $bonus
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addBonus($model, $bonus = array()){
         // Sanity check
@@ -37,7 +37,7 @@ class ProductsBonus {
      * [EN] Get a product's bonuses (https://github.com/celdotro/marketplace/wiki/List-bonus)
      * @param $model
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getBonus($model){
         // Sanity check
@@ -62,7 +62,7 @@ class ProductsBonus {
      * @param $model
      * @param array $bonus
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deleteBonus($model, $bonus = array()){
         // Sanity check

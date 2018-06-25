@@ -11,7 +11,7 @@ class AWBInfo {
      * [EN] Prints the AWB of a specified order (https://github.com/celdotro/marketplace/wiki/AWB-Print)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function printAwb($cmd){
         // Sanity check
@@ -35,7 +35,7 @@ class AWBInfo {
      * [EN] Returns information about an AWB's status (https://github.com/celdotro/marketplace/wiki/AWB-Status)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function statusAwb($cmd){
         // Sanity check

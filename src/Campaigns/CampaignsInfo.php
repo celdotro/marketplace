@@ -7,17 +7,13 @@ use celmarket\Dispatcher;
 class CampaignsInfo {
 
     /**
-     * [RO] Returneaza informatii referitoare la o campanie, produsele din ea filtrate in functie
-     * de nume, precum si alte produse disponibile care pot, de asemenea, sa fie filtrate in functie de nume
-     * (https://github.com/celdotro/marketplace/wiki/Citire-campanie)
-     * [EN] Provides information about a campaign, its products that can be filtered by name
-     * and other available products that can also be filtered by name
-     * (https://github.com/celdotro/marketplace/wiki/Read-Campaign)
+     * [RO] Returneaza informatii referitoare la o campanie, produsele din ea filtrate in functie de nume, precum si alte produse disponibile care pot, de asemenea, sa fie filtrate in functie de nume (https://github.com/celdotro/marketplace/wiki/Citire-campanie)
+     * [EN] Provides information about a campaign, its products that can be filtered by name and other available products that can also be filtered by name (https://github.com/celdotro/marketplace/wiki/Read-Campaign)
      * @param $name
      * @param $products
      * @param $availableProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function readCampaign($name, $products, $availableProducts){
         // Sanity check
@@ -43,8 +39,7 @@ class CampaignsInfo {
     }
 
     /**
-     * [RO] Listeaza toate campaniile active. Datele pot fi filtrate in functie de data de inceput, data de sfarsit si
-     * numele campaniei (https://github.com/celdotro/marketplace/wiki/Listare-campanii-active)
+     * [RO] Listeaza toate campaniile active. Datele pot fi filtrate in functie de data de inceput, data de sfarsit si numele campaniei (https://github.com/celdotro/marketplace/wiki/Listare-campanii-active)
      * [EN] Lists all active campaigns. Data can be filtered by start date, end date, and campaign name. (https://github.com/celdotro/marketplace/wiki/List-Active-Campaigns)
      * @param $start
      * @param $limit
@@ -52,7 +47,7 @@ class CampaignsInfo {
      * @param null $dateTo
      * @param null $search
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listActiveCampaigns($start, $limit, $dateFrom = NULL, $dateTo = NULL, $search = NULL){
         // Sanity check

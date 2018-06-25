@@ -9,6 +9,7 @@ class EmailOrder {
      * [RO] Returneaza o lista cu ID-uri si denumirea mesajelor predefinite pentru anumite actiuni legate de comanda (https://github.com/celdotro/marketplace/wiki/Listare-email-uri-predefinite-pentru-comenzi)
      * [EN] Returns a list of IDs and names of predefined emails for actions related to an order (https://github.com/celdotro/marketplace/wiki/Get-client-emails-for-an-order)
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getOrderEmailList(){
         // Set method and action
@@ -29,7 +30,7 @@ class EmailOrder {
      * [EN] Returns a graph with the conversations made through the email with the client (https://github.com/celdotro/marketplace/wiki/Get-client-emails-for-an-order)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getClientEmailsForOrder($cmd){
         // Sanity check
@@ -54,7 +55,7 @@ class EmailOrder {
      * @param $cmd
      * @param $idEmail
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendOrderEmail($cmd, $idEmail){
         // Sanity check
@@ -82,7 +83,7 @@ class EmailOrder {
      * @param $body
      * @param null $replyID
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null){
         // Sanity check
@@ -110,7 +111,7 @@ class EmailOrder {
      * @param $orders_id
      * @param $reason
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function notifyInvoiceRemoval($orders_id, $reason){
         // Sanity check

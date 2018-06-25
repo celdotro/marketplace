@@ -18,8 +18,12 @@ class AdminAccount {
      * @param null $hqAddress
      * @param null $description
      * @param null $apiLink
+     * @param $contactPerson
+     * @param $county
+     * @param $city
+     * @param $reg
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL, $apiLink = NULL, $contactPerson, $county, $city, $reg) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
@@ -56,6 +60,8 @@ class AdminAccount {
     /**
      * [RO] Preia o lista cu informatii generale ale contului de afiliat (https://github.com/celdotro/marketplace/wiki/Listeaza-informatiile-contului)
      * [EN] Retrieves a list of general account information (https://github.com/celdotro/marketplace/wiki/List-account-information)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAccountInformation(){
         // Set method and action
@@ -72,7 +78,7 @@ class AdminAccount {
      * [RO] Preia notificarile aferente afiliatului (https://github.com/celdotro/marketplace/wiki/Preia-notificari)
      * [EN] Retrieves the notifications for the current affiliate (https://github.com/celdotro/marketplace/wiki/Get-notifications)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getNotifications(){
         // Set method and action
@@ -90,7 +96,7 @@ class AdminAccount {
      * [EN] Marks a notification as seen (https://github.com/celdotro/marketplace/wiki/Mark-as-seen)
      * @param $id
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function markAsSeen($id){
         // Set method and action
@@ -103,11 +109,11 @@ class AdminAccount {
         return $result;
     }
 
-    /**`
+    /**
      * [RO] Preia diverse date despre afiliatul curent (https://github.com/celdotro/marketplace/wiki/Preia-date-despre-afiliat)
      * [EN] Retrieves miscellaneous data about an affiliate (https://github.com/celdotro/marketplace/wiki/Get-affiliate-data)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function markAllAsSeen(){
         // Set method and action
@@ -124,7 +130,7 @@ class AdminAccount {
      * [RO] Marcheaza toate mesajele ca fiind citite (https://github.com/celdotro/marketplace/wiki/Marcheaza-toate-ca-fiind-citite)
      * [EN] Marks all notifications as read (https://github.com/celdotro/marketplace/wiki/Mark-all-as-read)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAffiliateData(){
         // Set method and action

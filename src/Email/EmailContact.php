@@ -11,7 +11,7 @@ class EmailContact {
      * @param $message
      * @param $debug
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendBugReport($message, $debug){
         // Sanity check

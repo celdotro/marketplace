@@ -10,6 +10,7 @@ class AdminReports {
      * [RO] Listeaza produsele facturabile (https://github.com/celdotro/marketplace/wiki/Listeaza-produsele-facturabile)
      * [EN] List all products that can be billed (https://github.com/celdotro/marketplace/wiki/List-billable-products)
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getBillableProducts(){
         // Set method and action
@@ -29,6 +30,7 @@ class AdminReports {
      * [EN] Bills available products (https://github.com/celdotro/marketplace/wiki/Bill-products)
      * @param $products
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function billProducts($products){
         // Set method and action
@@ -49,6 +51,7 @@ class AdminReports {
      * @param $type
      * @param int $page
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getServiceRequests($type, $page = 1){
         // Set method and action

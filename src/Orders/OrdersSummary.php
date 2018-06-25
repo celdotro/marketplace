@@ -10,7 +10,7 @@ class OrdersSummary {
      * [EN] Get orders summary for the last days. (https://github.com/celdotro/marketplace/wiki/Orders-summary)
      * @param int $nrDays
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getSummary($nrDays = 0){
         // Sanity check

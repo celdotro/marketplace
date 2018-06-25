@@ -12,7 +12,7 @@ class ProductsInsert {
      * [EN] Insert/Update an array of products. Each product has an array of relevant data. (https://github.com/celdotro/marketplace/wiki/Import-products)
      * @param array $arrProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function importProducts ($arrProducts = array()) {
         // Sanity check - for older versions of PHP
@@ -38,7 +38,7 @@ class ProductsInsert {
      * @param $charactID
      * @param $charactValues
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addValuesToCharacteristic ($categID, $charactID, $charactValues) {
         // Sanity check - for older versions of PHP
@@ -71,7 +71,7 @@ class ProductsInsert {
      * @param $pret
      * @param $overridePrice
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addOfferToExistingProduct($products_model, $stoc, $pret, $overridePrice){
         // Sanity check - for older versions of PHP

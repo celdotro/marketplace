@@ -15,7 +15,7 @@ class CampaignsEdit {
      * @param $dateEnd
      * @param $discount
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function saveCampaign($name, $newName, $dateStart, $dateEnd, $discount){
         // Sanity check
@@ -58,7 +58,7 @@ class CampaignsEdit {
      * @param $start
      * @param $end
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function saveProduct($name, $model, $promoPrice, $start, $end){
         // Sanity check
@@ -91,7 +91,7 @@ class CampaignsEdit {
      * @param $name
      * @param $model
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addProduct($name, $model){
         // Sanity check
@@ -120,7 +120,7 @@ class CampaignsEdit {
      * @param $name
      * @param $model
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function removeProduct($name, $model){
         // Sanity check

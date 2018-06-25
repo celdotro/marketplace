@@ -13,7 +13,7 @@ class CampaignsCreate {
      * @param $dateStart
      * @param $dateEnd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function newCampaign($name, $dateStart, $dateEnd){
         // Sanity check

@@ -17,7 +17,7 @@ class OrdersAWBInfo {
      * @param null $kg
      * @param int $sambata
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function setAwbInfo($cmd, $courier, $idAdresaRidicare, $plic = null, $packages = null, $kg = null, $sambata = 0){
         // Sanity check

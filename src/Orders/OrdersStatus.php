@@ -13,7 +13,7 @@ class OrdersStatus {
      * @param int $motiv
      * @param string $observatii
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function cancelOrder($cmd, $motiv = 0, $observatii = ''){
         // Sanity check
@@ -42,7 +42,7 @@ class OrdersStatus {
      * [EN] Confirms an existing order (https://github.com/celdotro/marketplace/wiki/Confirm-order)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function confirmOrder($cmd){
         // Sanity check
@@ -65,6 +65,7 @@ class OrdersStatus {
      * [RO] Listeaza statusurile ce pot fi folosite pentru anularea unei comenzi (https://github.com/celdotro/marketplace/wiki/Listare-statusuri-anulare)
      * [EN] Lists the statuses that can be used for cancelling an order (https://github.com/celdotro/marketplace/wiki/List-order-cancelling-statuses)
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listCancellingStatuses(){
         // Set method and action
@@ -85,7 +86,7 @@ class OrdersStatus {
      * [EN] Reactivates a cancelled order (https://github.com/celdotro/marketplace/wiki/Reactivate-order)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function reactivateOrder($cmd){
         // Sanity check
@@ -108,6 +109,7 @@ class OrdersStatus {
      * [RO] Preluare lista de statusuri ale comenzilor (https://github.com/celdotro/marketplace/wiki/Preluare-lista-de-statusuri-pentru-comenzi)
      * [EN] Retrieves the list of statuses for orders (https://github.com/celdotro/marketplace/wiki/Get-status-list-for-orders)
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getOrderStatusList(){
         // Set method and action
@@ -129,7 +131,7 @@ class OrdersStatus {
      * [EN] Set an order as ready for delivery (https://github.com/celdotro/marketplace/wiki/Set-order-as-ready-for-delivery)
      * @param $cmd
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function setReadyForDelivery($cmd){
         // Sanity check
@@ -154,7 +156,7 @@ class OrdersStatus {
      * @param $orders_id
      * @param $reason
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function stornareComanda($orders_id, $reason){
         // Sanity check
@@ -181,7 +183,7 @@ class OrdersStatus {
      * [RO] Listeaza statusurile disponibile ale comenzilor (https://github.com/celdotro/marketplace/wiki/Listare-statusuri-comenzi)
      * [EN] Lists all statuses an order can have (https://github.com/celdotro/marketplace/wiki/List-order-statuses)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listStatuses(){
         // Set method and action
@@ -198,7 +200,7 @@ class OrdersStatus {
      * [RO] Listeaza statusurile produselor din comanda (https://github.com/celdotro/marketplace/wiki/Listeaza-statusurile-produselor-din-comanda)
      * [EN] List order's product statuses (https://github.com/celdotro/marketplace/wiki/List-order-product-statuses)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listProductStatuses(){
         // Set method and action
@@ -215,7 +217,7 @@ class OrdersStatus {
      * [RO] Preia lista cu metodele de plata (https://github.com/celdotro/marketplace/wiki/Preia-metode-de-plata)
      * [EN] Retrieves a list of payment methods (https://github.com/celdotro/marketplace/wiki/Get-payment-methods)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getPaymentMethods(){
         // Set method and action
@@ -233,7 +235,7 @@ class OrdersStatus {
      * [EN] Finishes an order (https://github.com/celdotro/marketplace/wiki/Finish-order)
      * @param $orders_id
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function finishOrder($orders_id){
         // Sanity check

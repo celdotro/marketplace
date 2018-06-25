@@ -10,7 +10,7 @@ class ProductsUpdate {
      * [EN] Updates an already existing product's data (https://github.com/celdotro/marketplace/wiki/Update-product-data)
      * @param $arrProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateData($arrProducts){
         // Sanity check
@@ -35,7 +35,7 @@ class ProductsUpdate {
      * @param $model
      * @param $status
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateStatus($model, $status){
         // Sanity check

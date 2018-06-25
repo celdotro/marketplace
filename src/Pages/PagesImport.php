@@ -12,7 +12,7 @@ class PagesImport {
      * @param $pageID
      * @param $pageData
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function savePage($pageID, $pageData){
         // Sanity check

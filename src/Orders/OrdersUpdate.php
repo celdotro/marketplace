@@ -12,7 +12,7 @@ class OrdersUpdate {
      * @param $cmd
      * @param $arrProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function updateProductsFromOrder($cmd, $arrProducts){
         // Sanity check
@@ -38,7 +38,7 @@ class OrdersUpdate {
      * @param $cmd
      * @param $arrProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addProductsToOrder($cmd, $arrProducts){
         // Sanity check
@@ -64,7 +64,7 @@ class OrdersUpdate {
      * @param $cmd
      * @param $arrProducts
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function removeProductsFromOrder($cmd, $arrProducts){
         // Sanity check
@@ -91,7 +91,7 @@ class OrdersUpdate {
      * @param $serie
      * @param $nr_fact
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function importInvoice($cmd, $serie, $nr_fact){
         // Sanity check
@@ -122,7 +122,7 @@ class OrdersUpdate {
      * @param $orders_products_id
      * @param $status
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function changeOrderProductStatus($orders_products_id, $status){
         // Sanity check
@@ -151,7 +151,7 @@ class OrdersUpdate {
      * @param $order
      * @param $paymentMethod
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function changeOrderPaymentMethod($order, $paymentMethod){
         // Sanity check
@@ -181,7 +181,7 @@ class OrdersUpdate {
      * @param $reason
      * @param $model
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function returProduct($orderId, $reason, $model){
         // Sanity check

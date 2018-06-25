@@ -10,7 +10,7 @@ class ProductsList
      * [RO] Returneaza toate categoriile (https://github.com/celdotro/marketplace/wiki/Listeaza-categorii)
      * [EN] Get all categories (https://github.com/celdotro/marketplace/wiki/List-categories)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCategories()
     {
@@ -28,8 +28,7 @@ class ProductsList
     }
 
     /**
-     * [RO] Listeaza produsele. Lista este scurtata folosind o valoare de start si o limita. De asemenea, produsele
-     * pot fi filtrate. (https://github.com/celdotro/marketplace/wiki/Listeaza-produse)
+     * [RO] Listeaza produsele. Lista este scurtata folosind o valoare de start si o limita. De asemenea, produsele pot fi filtrate. (https://github.com/celdotro/marketplace/wiki/Listeaza-produse)
      * [EN] Lists products. The list is shrunk using a start and limit value. Also, the products can be filtered. (https://github.com/celdotro/marketplace/wiki/List-products)
      * @param $start
      * @param $limit
@@ -37,8 +36,9 @@ class ProductsList
      * @param bool $forceCount
      * @param null $filters
      * @param null $includeTransport
+     * @param bool $orderByMostViewed
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listProducts($start, $limit, $search = null, $forceCount = false, $filters = null, $includeTransport = null, $orderByMostViewed = false){
         // Sanity check
@@ -66,7 +66,7 @@ class ProductsList
      * [EN] Lists the characteristics of a category (https://github.com/celdotro/marketplace/wiki/List-characteristics-of-a-category)
      * @param $categID
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getCategoryCharacteristics($categID){
         // Sanity check
@@ -89,7 +89,7 @@ class ProductsList
      * [EN] List available filters after correlation (https://github.com/celdotro/marketplace/wiki/List-filters)
      * @param null $filters
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listFilters($filters = null){
         $method = 'products';
@@ -109,7 +109,7 @@ class ProductsList
      * [EN] Lists the mandatory characteristics of a category (https://github.com/celdotro/marketplace/wiki/List-mandatory-charactersitics-for-a-category)
      * @param $categID
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function listCategoryMandatoryCharacteristics($categID){
         // Sanity check
@@ -135,7 +135,7 @@ class ProductsList
      * @param null $start
      * @param null $limit
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getLiveProductsFromCategory($category, $keyword = null, $start = null, $limit = null){
         // Sanity check
@@ -160,7 +160,7 @@ class ProductsList
      * [RO] Preia produsele live pe categorii (https://github.com/celdotro/marketplace/wiki/Preia-produsele-live-pe-categorii)
      * [EN] Get live products for each category (https://github.com/celdotro/marketplace/wiki/Get-live-products-categories)
      * @return mixed
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getLiveProductsCategory(){
           $method = 'products';

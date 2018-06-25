@@ -10,6 +10,7 @@ class PagesData {
      * [RO] Returneaza toate paginile (https://github.com/celdotro/marketplace/wiki/Listare-Pagini)
      * [EN] Get all pages (https://github.com/celdotro/marketplace/wiki/List-pages)
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getPages(){
         // Set method and action
