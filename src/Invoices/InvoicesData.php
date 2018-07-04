@@ -54,7 +54,7 @@ class InvoicesData {
       $data = array(
           'orders_id' => $cmd,
           'serie' => $serie,
-          'nr' => $nr_fact
+          'nr_fact' => $nr_fact
       );
 
       // Send request and retrieve response
