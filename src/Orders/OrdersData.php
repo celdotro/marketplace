@@ -140,4 +140,42 @@ class OrdersData {
 
         return $result;
     }
+
+    /**
+     * [RO] Finalizeaza o comanda parcurgand automat toti pasii (https://github.com/celdotro/marketplace/wiki/Finalizere-combinata-a-comenzii)
+     * [EN] Finishes an order by automatically taking all the necessary steps (https://github.com/celdotro/marketplace/wiki/Finish-order-combined)
+     * @param $orders_id
+     * @param $serie
+     * @param $nr_fact
+     * @param $awb
+     * @param $idAdresaRidicare
+     * @param $observations
+     * @param $products
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function finishOrderCombined($orders_id, $serie, $nr_fact, $awb, $idAdresaRidicare, $observations, $products){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'finishOrderCombined';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'serie' => $serie,
+            'nr_fact' => $nr_fact,
+            'awb' => $awb,
+            'idAdresaRidicare' => $idAdresaRidicare,
+            'observations' => $observations,
+            'products' => $products
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
