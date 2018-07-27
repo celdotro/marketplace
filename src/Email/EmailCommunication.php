@@ -154,4 +154,48 @@ class EmailCommunication {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia intrebarile despre o comanda (https://github.com/celdotro/marketplace/wiki/Preia-intrebari-comanda)
+     * [EN] Get order's questions (https://github.com/celdotro/marketplace/wiki/Get-order-questions)
+     * @param $orders_id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getOrderContact($orders_id){
+        // Set method and action
+        $method = 'email';
+        $action = 'GetOrderContact';
+
+        // Set data
+        $data = array('orders_id' => $orders_id);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Trimite raspuns unei intrebari aferenta comenzii (https://github.com/celdotro/marketplace/wiki/Raspunde-intrebarii-comenzii)
+     * [EN] Give an answer to an order's question (https://github.com/celdotro/marketplace/wiki/Answer-order-question)
+     * @param $id
+     * @param $answer
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function answerOrderContact($id, $answer){
+        // Set method and action
+        $method = 'email';
+        $action = 'AnswerOrderContact';
+
+        // Set data
+        $data = array(
+            'id' => $id,
+            'answer' => $answer
+        );
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
