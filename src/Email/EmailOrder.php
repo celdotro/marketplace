@@ -133,4 +133,33 @@ class EmailOrder {
 
         return $result;
     }
+
+    /**
+     * [RO] Descarca un atasament aferent email-ului unei comenzi si informatii relevante despre acesta (https://github.com/celdotro/marketplace/wiki/Descarca-atasamentul-email-ului-comenzii)
+     * [EN] Downloads an attachment belonging to an order's email and other relevant information regarding the attachment (https://github.com/celdotro/marketplace/wiki/Download-order-email-attachment)
+     * @param $emailID
+     * @param $attachmentNumber
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function downloadOrderEmailAttachment($emailID, $attachmentNumber){
+        // Sanity check
+        if (empty($emailID) || !is_numeric($emailID)) throw new \Exception('Specificati o comanda valida');
+        if(empty($attachmentNumber) || !is_numeric($attachmentNumber)) throw new \Exception('Speciificati un numar de atasament valid');
+
+        // Set method and action
+        $method = 'email';
+        $action = 'downloadOrderEmailAttachment';
+
+        // Set data
+        $data = array(
+            'emailID' => $emailID,
+            'attachmentNumber' => $attachmentNumber
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
