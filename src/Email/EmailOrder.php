@@ -106,6 +106,35 @@ class EmailOrder {
     }
 
     /**
+     * [RO] Trimite notificare de stergere a AWB-ului (https://github.com/celdotro/marketplace/wiki/Trimite-notificare-de-stergere-a-AWB-ului)
+     * [EN] Send AWB removal notification (https://github.com/celdotro/marketplace/wiki/Send-notification-for-AWB-removal)
+     * @param $orders_id
+     * @param $reason
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function notifyAWBRemoval($orders_id, $reason){
+        // Sanity check
+        if (empty($orders_id) || !is_numeric($orders_id)) throw new \Exception('Specificati o comanda valida');
+        if (empty($reason)) throw new \Exception('Specificati un motiv valid');
+
+        // Set method and action
+        $method = 'email';
+        $action = 'notifyAWBRemoval';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'reason' => $reason
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
      * [RO] Trimite o notificare prin care se doreste eliminarea facturii (https://github.com/celdotro/marketplace/wiki/Notifica-eliminarea-facturii)
      * [EN] Send a notification in order to ask for an invoice to be removed (https://github.com/celdotro/marketplace/wiki/Notify-invoice-removal)
      * @param $orders_id
