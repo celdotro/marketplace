@@ -324,4 +324,25 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Preia lista ceririlor de acces la categorii (https://github.com/celdotro/marketplace/wiki/Preia-cererile-de-acces-la--categorii)
+     * [EN] Retrieve category access request list (https://github.com/celdotro/marketplace/wiki/Retrieve-access-requests)
+     * @param $availability
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listCategoryRequests($availability){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'listCategoryRequests';
+
+        // Set data
+        $data = array('availability' => $availability);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
