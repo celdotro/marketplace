@@ -283,4 +283,24 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Preia date referitoare la accesul la categorii (https://github.com/celdotro/marketplace/wiki/Preia-accesul-la--categorii)
+     * [EN] Retrieve information about category access (https://github.com/celdotro/marketplace/wiki/Retrieve-category-access)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCategoriesAccess(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getCategoriesAccess';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
