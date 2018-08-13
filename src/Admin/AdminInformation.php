@@ -303,4 +303,25 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Cere acces la o categorie (https://github.com/celdotro/marketplace/wiki/Cere-acces-la-o-categorie)
+     * [EN] Request access to category (https://github.com/celdotro/marketplace/wiki/Request-category-access)
+     * @param $categ_id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function requestCategoryAccess($categ_id){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'requestCategoryAccess';
+
+        // Set data
+        $data = array('categ_id' => $categ_id);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
