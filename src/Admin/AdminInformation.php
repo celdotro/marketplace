@@ -345,4 +345,54 @@ class AdminInformation {
         return $result;
     }
 
+    /**
+     * [RO] Abonare la newsletter-ul despre API (https://github.com/celdotro/marketplace/wiki/Abonare-la-newsletter-API)
+     * [EN] Subscribe to API newsletter (https://github.com/celdotro/marketplace/wiki/Subscribe-to-API-newsletter)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function subscribeToApiNewsletter(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'subscribeToApiNewsletter';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
+
+    /**
+     * [RO] Dezabonare de la newsletter-ul despre API (https://github.com/celdotro/marketplace/wiki/Dezabonare-de-la-newsletter-API)
+     * [EN] Unsubscribe from newsletter about API (https://github.com/celdotro/marketplace/wiki/Unsubscribe-from-API-newsletter)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function removeSubscriptionToApiNewsletter(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'removeSubscriptionToApiNewsletter';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia statusul abonarii la newsletter-ul pentru API (https://github.com/celdotro/marketplace/wiki/Status-abonare-newsletter-API)
+     * [EN] Retrieves the subscription status to API newsletter (https://github.com/celdotro/marketplace/wiki/Subscription-status-to-API-newsletter)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getApiNewsletterSubscriptionStatus(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getApiNewsletterSubscriptionStatus';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
 }
