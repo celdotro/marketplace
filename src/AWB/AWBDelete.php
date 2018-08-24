@@ -22,7 +22,7 @@ class AWBDelete {
         $action = 'deleteAwb';
 
         // Set data
-        $data = array('cmd' => $cmd);
+        $data = array('orders_id' => $cmd);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
