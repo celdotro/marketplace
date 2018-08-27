@@ -41,10 +41,11 @@ class AdminAddress {
      * [EN] Updates address information of a pick-up point (https://github.com/celdotro/marketplace_examples/blob/master/Admin/5.editAddress.php)
      * @param null $id
      * @param null $address
+     * @param $courier
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function editAddress($id = null, $address = null){
+    public function editAddress($id = null, $address = null, $courier){
         // Sanity check
         if(is_null($address) || $address === '') throw new \Exception('Specificati o adresa valida');
         if(is_null($id) || !is_numeric($id)) throw new \Exception('Specificati un ID valid');
@@ -54,7 +55,7 @@ class AdminAddress {
         $action = 'editAddress';
 
         // Set data
-        $data = array('id' => $id, 'address' => $address);
+        $data = array('id' => $id, 'address' => $address, 'courier' => $courier);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
