@@ -11,10 +11,11 @@ class AdminAddress {
      * [EN] Adds a new pick-up address that will be sent to couriers (https://github.com/celdotro/marketplace_examples/blob/master/Admin/4.addAddress.php)
      * @param null $address
      * @param null $id_curier
+     * @param array $accData
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addAddress($address = null, $id_curier = null){
+    public function addAddress($address = null, $id_curier = null, $accData = array()){
         // Sanity check
         if(is_null($address) || $address === '') throw new \Exception('Specificati o adresa valida');
 
@@ -22,11 +23,12 @@ class AdminAddress {
         $method = 'admininfo';
         $action = 'editAddress';
 
-        $data = array();
-
         // Set data
-        $data = array('address' => $address);
-        if(!is_null($id_curier)) $data['id_curier'] = $id_curier;
+        $data = array(
+            'address' => $address,
+            'accData' => $accData
+        );
+        if(!is_null($id_curier)) $data['courier'] = $id_curier;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
