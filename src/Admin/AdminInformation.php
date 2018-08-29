@@ -395,4 +395,26 @@ class AdminInformation {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia o sinteza a informatiilor despre cont (https://github.com/celdotro/marketplace/wiki/Preia-informatii-combinate)
+     * [EN] Retrieve a summary of account information (https://github.com/celdotro/marketplace/wiki/Get-information-combined)
+     * @param $filters
+     * @param $start
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getInformationCombined($filters, $start){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getInformationCombined';
+
+        // Set data
+        $data = array('filters' => $filters, 'start' => $start);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
