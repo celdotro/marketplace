@@ -45,25 +45,4 @@ class AdminReports {
         return $result;
     }
 
-    /**
-     * [RO] Preia cererile de service sau retur ale clientilor (https://github.com/celdotro/marketplace/wiki/Preia-cererile-de-service)
-     * [EN] Retrieve service or return requests (https://github.com/celdotro/marketplace/wiki/Retrieve-service-requests)
-     * @param $type
-     * @param int $page
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getServiceRequests($type, $page = 1){
-        // Set method and action
-        $method = 'admininfo';
-        $action = 'GetServiceRequests';
-
-        // Set data
-        $data = array('type' => $type, 'page' => $page);
-
-        $result = Dispatcher::send($method, $action, $data);
-
-        return $result;
-    }
-
 }
