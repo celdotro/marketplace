@@ -80,6 +80,20 @@ class Auth
     }
 
     /**
+     * @return null
+     */
+    public static function getUsername () {
+        return self::$username;
+    }
+
+    /**
+     * @return null
+     */
+    public static function getPassword () {
+        return self::$password;
+    }
+
+    /**
      * Regenerate authentication token
      * @return null
      */

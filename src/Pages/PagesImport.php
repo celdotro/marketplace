@@ -23,8 +23,15 @@ class PagesImport {
         $method = 'settings';
         $action = 'savePage';
 
+        $data = array(
+            'id' => $pageID
+        );
+        foreach($pageData as $key => $value){
+            $data[$key] = $value;
+        }
+
         // Set data
-        $data = array('id' => $pageID, 'data' => $pageData);
+        $data = array($data);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
