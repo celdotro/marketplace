@@ -194,4 +194,52 @@ class ProductsList
         return $result;
     }
 
+    /**
+     * [RO] Listeaza familiile de produse (https://github.com/celdotro/marketplace/wiki/Listeaza-familiile-de-produse)
+     * [EN] List product families (https://github.com/celdotro/marketplace/wiki/List-product-families)
+     * @param $start
+     * @param $limit
+     * @param $search
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getProductsFamilies($start, $limit, $search){
+        $method = 'products';
+        $action = 'getProductsFamilies';
+
+        // Set data
+        $data = array(
+            'start' => $start,
+            'limit' => $limit,
+        );
+
+        if(!empty($search)) $data['search'] = $search;
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia datele produselor dintr-o familie (https://github.com/celdotro/marketplace/wiki/Preia-produse-din-familie)
+     * [EN] Get product's data for the products that belong to a family (https://github.com/celdotro/marketplace/wiki/Get-product-from-family)
+     * @param $id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getProductsForFamily($id){
+        $method = 'products';
+        $action = 'getProductsForFamily';
+
+        // Set data
+        $data = array(
+            'id' => $id
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
