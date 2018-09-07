@@ -56,4 +56,59 @@ class ProductsUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Adauga un produs intr-o familie de produse (https://github.com/celdotro/marketplace/wiki/Adauga-produs-in-familie)
+     * [EN] Add a product to a product family (https://github.com/celdotro/marketplace/wiki/Add-product-to-family)
+     * @param $familyId
+     * @param $model
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function addProductToFamily($familyId, $model){
+        // Sanity check
+        if(empty($model)) throw new \Exception('Specificati modelul produsului');
+        if(empty($familyId)) throw new \Exception('Specificati familia produsului');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'addProductToFamily';
+
+        // Set data
+        $data = array(
+            'model' => $model,
+            'familyId' => $familyId
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Elimina produs din familie (https://github.com/celdotro/marketplace/wiki/Elimina-produs-din-familie)
+     * [EN] Remove product from family (https://github.com/celdotro/marketplace/wiki/Remove-product-from-family)
+     * @param $model
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function removeProductFromFamily($model){
+        // Sanity check
+        if(empty($model)) throw new \Exception('Specificati modelul produsului');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'removeProductFromFamily';
+
+        // Set data
+        $data = array(
+            'model' => $model
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
