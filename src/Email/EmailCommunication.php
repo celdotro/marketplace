@@ -198,4 +198,44 @@ class EmailCommunication {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia datele unei cereri de service (https://github.com/celdotro/marketplace/wiki/Preia-cerere-service)
+     * [EN] Get the data of a service request (https://github.com/celdotro/marketplace/wiki/Get-service-request)
+     * @param $uniqueID
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getServiceRequest($uniqueID){
+        // Set method and action
+        $method = 'email';
+        $action = 'GetServiceRequest';
+
+        // Set data
+        $data = array('uniqueID' => $uniqueID);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia datele unei cereri de retur (https://github.com/celdotro/marketplace/wiki/Preia-cerere-retur)
+     * [EN] Get the data of a return request (https://github.com/celdotro/marketplace/wiki/Get-return-request)
+     * @param $uniqueID
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getReturnRequest($uniqueID){
+        // Set method and action
+        $method = 'email';
+        $action = 'GetReturnRequest';
+
+        // Set data
+        $data = array('uniqueID' => $uniqueID);
+
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
