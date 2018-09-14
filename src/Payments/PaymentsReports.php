@@ -29,4 +29,26 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Preia lunile aferente platilor cu cardul (https://github.com/celdotro/marketplace/wiki/Preia-lunile-platilor-cu-cardul)
+     * [EN] Retrieve card payment months (https://github.com/celdotro/marketplace/wiki/Retrieve-card-payments-months)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getCardPaymentMonths(){
+        // Sanity check
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'getCardPaymentMonths';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
