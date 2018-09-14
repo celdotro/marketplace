@@ -7,8 +7,8 @@ use celmarket\Dispatcher;
 class PaymentsReports {
 
     /**
-     * [RO] Preia informatii aferente platilor lunare cu cardul
-     * [EN] Retrieve information about monthly card payments
+     * [RO] Preia informatii aferente platilor lunare cu cardul (https://github.com/celdotro/marketplace/wiki/Plati-cu-cardul)
+     * [EN] Retrieve information about monthly card payments (https://github.com/celdotro/marketplace/wiki/Card-payments)
      * @param $month
      * @return mixed
      * @throws \Exception
