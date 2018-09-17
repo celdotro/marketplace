@@ -51,4 +51,26 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Preia lunile in care s-au generat borderouri (https://github.com/celdotro/marketplace/wiki/Preia-lunile-borderourilor)
+     * [EN] Get months in which orders summary was generated (https://github.com/celdotro/marketplace/wiki/Get-summary-months)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getSummaryMonths(){
+        // Sanity check
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'getMonths';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
