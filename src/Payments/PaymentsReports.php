@@ -119,4 +119,33 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Aproba comanda (https://github.com/celdotro/marketplace/wiki/Aproba-comanda)
+     * [EN] Approve order (https://github.com/celdotro/marketplace/wiki/Approve-order)
+     * @param $oid
+     * @param $borderou
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function approveOrder($oid, $borderou){
+        // Sanity check
+        if(empty($oid)) throw new \Exception('Nu ati specificat id-ul comenzii');
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'approveOrder';
+
+        // Set data
+        $data = array(
+            'oid' => $oid,
+            'borderou' => $borderou
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
