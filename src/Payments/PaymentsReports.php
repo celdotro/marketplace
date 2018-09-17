@@ -148,4 +148,36 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Respinge comanda (https://github.com/celdotro/marketplace/wiki/Respinge-comanda)
+     * [EN] Reject order (https://github.com/celdotro/marketplace/wiki/Reject-order)
+     * @param $oid
+     * @param $borderou
+     * @param $reason
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function rejectOrder($oid, $borderou, $reason){
+        // Sanity check
+        if(empty($oid)) throw new \Exception('Nu ati specificat id-ul comenzii');
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+        if(empty($reason)) throw new \Exception('Nu ati specificat problema');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'rejectOrder';
+
+        // Set data
+        $data = array(
+            'oid' => $oid,
+            'borderou' => $borderou,
+            'reason' => $reason
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
