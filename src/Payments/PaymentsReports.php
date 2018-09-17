@@ -73,4 +73,26 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Preia comisioanele nefacturate (https://github.com/celdotro/marketplace/wiki/Preia-comisioanele-nefacturate)
+     * [EN] Get unbilled commissions (https://github.com/celdotro/marketplace/wiki/Get-unbilled-commissions)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getUnbilledCommissions(){
+        // Sanity check
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'getComosioaneNefacturate';
+
+        // Set data
+        $data = array('dummy' => 1);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
