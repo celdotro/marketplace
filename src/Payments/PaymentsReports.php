@@ -180,4 +180,30 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Genereaza factura (https://github.com/celdotro/marketplace/wiki/Genereaza-factura)
+     * [EN] Generate invoice (https://github.com/celdotro/marketplace/wiki/Generate-invoice)
+     * @param $borderou
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function generateInvoice($borderou){
+        // Sanity check
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'generateInvoice';
+
+        // Set data
+        $data = array(
+            'borderou' => $borderou,
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
