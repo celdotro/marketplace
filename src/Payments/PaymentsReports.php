@@ -95,4 +95,28 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Preia comisioanele facturate (https://github.com/celdotro/marketplace/wiki/Preia-comisioane-facturate)
+     * [EN] Retrieve billed commissions (https://github.com/celdotro/marketplace/wiki/Retrieve-billed-commissions)
+     * @param $month
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getBilledCommissions($month){
+        // Sanity check
+        if(empty($month)) throw new \Exception('Nu ati specificat luna');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'getComisioaneFacturate';
+
+        // Set data
+        $data = array('month' => $month);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
