@@ -257,4 +257,30 @@ class PaymentsReports {
 
         return $result;
     }
+
+    /**
+     * [RO] Descarca borderoul in format PDF (https://github.com/celdotro/marketplace/wiki/Descarca-borderou-PDF)
+     * [EN] Download PDF format summary (https://github.com/celdotro/marketplace/wiki/Download-summary-PDF)
+     * @param $borderou
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function downloadSummaryPDF($borderou){
+        // Sanity check
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'downloadPDFBorderou';
+
+        // Set data
+        $data = array(
+            'borderou' => $borderou,
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
