@@ -206,4 +206,29 @@ class PaymentsReports {
         return $result;
     }
 
+    /**
+     * [RO] Descarca factura (https://github.com/celdotro/marketplace/wiki/Descarca-factura)
+     * [EN] Download invoice (https://github.com/celdotro/marketplace/wiki/Download-invoice)
+     * @param $borderou
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function downloadInvoice($borderou){
+        // Sanity check
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'downloadInvoice';
+
+        // Set data
+        $data = array(
+            'borderou' => $borderou,
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
