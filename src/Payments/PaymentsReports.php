@@ -231,4 +231,30 @@ class PaymentsReports {
 
         return $result;
     }
+
+    /**
+     * [RO] Descarca borderoul in format XLSX (https://github.com/celdotro/marketplace/wiki/Descarca-borderou-XLSX)
+     * [EN] Download XLSX format summary (https://github.com/celdotro/marketplace/wiki/Download-summary-XLSX)
+     * @param $borderou
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function downloadSummaryXlsx($borderou){
+        // Sanity check
+        if(empty($borderou)) throw new \Exception('Nu ati specificat borderoul');
+
+        // Set method and action
+        $method = 'commissions';
+        $action = 'downloadXLSBorderou';
+
+        // Set data
+        $data = array(
+            'borderou' => $borderou,
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
