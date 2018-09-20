@@ -31,7 +31,7 @@ class PagesImport {
         }
 
         // Set data
-        $data = array($data);
+//        $data = array($data);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
