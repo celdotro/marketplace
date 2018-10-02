@@ -205,7 +205,7 @@ class Dispatcher {
      */
     public static function getGuzzleClient () {
         if (!isset(self::$guzzleClient) || is_null(self::$guzzleClient))
-            self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT));
+            self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT, 'verify' => self::$IS_LIVE));
 
         return self::$guzzleClient;
     }
