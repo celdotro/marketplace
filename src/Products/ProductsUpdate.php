@@ -111,4 +111,33 @@ class ProductsUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Actualizeaza promotia unui produs (https://github.com/celdotro/marketplace/wiki/Actualizare-promotie-produs)
+     * [EN] Update product's promotion (https://github.com/celdotro/marketplace/wiki/Update-product-promotion)
+     * @param $model
+     * @param $promotion
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updatePromotion($model, $promotion){
+        // Sanity check
+        if(empty($model)) throw new \Exception('Specificati modelul produsului');
+        if(!in_array($promotion, array(0, 1, 2))) throw new \Exception('Specificati o promotie valida');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'updatePromotion';
+
+        // Set data
+        $data = array(
+            'model' => $model,
+            'promotion' => $promotion
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
