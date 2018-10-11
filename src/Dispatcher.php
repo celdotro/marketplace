@@ -96,6 +96,7 @@ class Dispatcher {
         ### 3. Uses dispatcher's guzzleClient object and makes a POST request to the API server ###
         // Check if test server has to be used
         if (Config::TEST) $data['test'] = 1;
+        $data['api_version'] = Config::CURRENT_VERSION;
 
         // Build POST request with token placed in bearer authorization header
         $request = null;
