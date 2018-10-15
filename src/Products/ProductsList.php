@@ -242,4 +242,26 @@ class ProductsList
 
         return $result;
     }
+
+    /**
+     * [RO] Preia ID-ul unui producator (https://github.com/celdotro/marketplace/wiki/Preia-ID-producator)
+     * [EN] Retrieve manufacturer's ID (https://github.com/celdotro/marketplace/wiki/Get-manufacturer-ID)
+     * @param $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getManufacturerID($name){
+        $method = 'products';
+        $action = 'getManufacturerID';
+
+        // Set data
+        $data = array(
+            'name' => $name
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
