@@ -52,7 +52,7 @@ class Auth
         try{
             if($res === ''){ // Token is null
                 throw new \Exception('Token-ul primit este null');
-            } elseif(strstr($res, 'Raspuns invalid:') !== false){ // Invalid answer
+            } elseif(is_string($res) && strstr($res, 'Raspuns invalid:') !== false){ // Invalid answer
                 throw new \Exception($res);
             }elseif(file_put_contents(Config::TOKEN_PATH, $res) === false){ // File can't be written
                 throw new \Exception('Fisierul nu poate fi scris: ' . Config::TOKEN_PATH);
