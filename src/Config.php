@@ -14,7 +14,7 @@ define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
 class Config
 {
     // API's address
-    static $API_HTTP = 'https://marketplace.cel.ro/market_api/';
+    static $API_HTTP = 'https://api-mp.cel.ro/#/';
 
     // Is live
     static $IS_LIVE = true;
@@ -41,5 +41,5 @@ class Config
     const MAX_FAILCOUNT = 10;
 
     // Current version
-    const CURRENT_VERSION = '1.11.1';
+    const CURRENT_VERSION = '1.12.0';
 }
