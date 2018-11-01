@@ -205,4 +205,32 @@ class OrdersUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Permite actualizarea greutatii comenzii (https://github.com/celdotro/marketplace/wiki/Adaugare-greutate)
+     * [EN] Add weight to order (https://github.com/celdotro/marketplace/wiki/Add-weight)
+     * @param $orders_id
+     * @param $weight
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function addWeightToOrder($orders_id, $weight){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Comanda invalida');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'addWeightToOrder';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'weight' => $weight
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
