@@ -142,4 +142,32 @@ class CampaignsEdit {
 
         return $result;
     }
+
+    /**
+     * [RO] Returneaza informatiile aferente unei comenzi specificata prin parametru (https://github.com/celdotro/marketplace/wiki/Datele-comenzii)
+     * [EN] Returns all relevant informations for an order specified as a parameter (https://github.com/celdotro/marketplace/wiki/Order-data)
+     * @param $name
+     * @param $stoc
+     * @return mixed
+     * @throws \Exception
+     */
+    public function setCampaignStoc($name, $stoc){
+        // Sanity check
+        if(!isset($name) || $name == '') throw new \Exception('Specificati numele campaniei');
+
+        // Set method and action
+        $method = 'campaign';
+        $action = 'setCampaignStoc';
+
+        // Set data
+        $data = array(
+            'name'  =>  $name,
+            'stoc'         =>  $stoc,
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
