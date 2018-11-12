@@ -140,4 +140,31 @@ class ProductsUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Adauga o familie de produse (https://github.com/celdotro/marketplace/wiki/Adauga-familie-de-produse)
+     * [EN] Add a products family (https://github.com/celdotro/marketplace/wiki/Add-products-family)
+     * @param $id
+     * @param $name
+     * @param $characts
+     * @return mixed
+     * @throws \Exception
+     */
+    public function addProductsFamily($id, $name, $characts){
+        // Set method and action
+        $method = 'products';
+        $action = 'addProductsFamily';
+
+        // Set data
+        $data = array(
+            'id' => $id,
+            'name' => $name,
+            'characts' => $characts
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
