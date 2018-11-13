@@ -264,4 +264,52 @@ class ProductsList
 
         return $result;
     }
+
+    /**
+     * [RO] Preia lista produselor aflate in asteptare (https://github.com/celdotro/marketplace/wiki/Preia-produse-in-asteptare)
+     * [EN] Get waiting products list (https://github.com/celdotro/marketplace/wiki/Get-waiting-products)
+     * @param $start
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getWaitingProducts($start){
+        // Sanity check
+        if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'getWaitingProducts';
+
+        // Set data
+        $data = array('start' => $start);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia lista produselor respinse (https://github.com/celdotro/marketplace/wiki/Preia-produsele-respinse)
+     * [EN] Get rejected products list (https://github.com/celdotro/marketplace/wiki/Get-rejected-products)
+     * @param $start
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getRejectedProducts($start){
+        // Sanity check
+        if(!isset($start) || !is_int($start) || $start < 0) throw new \Exception('Precizati o valoare de start numar natural');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'getRejectedProducts';
+
+        // Set data
+        $data = array('start' => $start);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
