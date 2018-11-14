@@ -119,6 +119,8 @@ class Auth
         // Set attributes
         self::$username = $username;
         self::$password = $password;
+
+        self::regenerateToken();
     }
 
     /**
