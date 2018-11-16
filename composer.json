@@ -10,11 +10,11 @@
             "email": "alin.tanase@cel.ro",
 	    "role": "Developer"
         },
-	{
-	    "name": "Florin D",
-            "homepage": "https://github.com/fredtux",
-	    "role": "Developer"
-	},
+        {
+            "name": "Florin D",
+                "homepage": "https://github.com/fredtux",
+            "role": "Developer"
+        },
         {
             "name": "CEL.ro",
             "homepage": "https://www.cel.ro",
@@ -24,8 +24,8 @@
     "support": {
         "issues": "https://github.com/celdotro/marketplace/issues",
         "source": "https://github.com/celdotro/marketplace",
-	"wiki": "https://github.com/celdotro/marketplace/wiki",
-	"docs": "https://github.com/celdotro/marketplace_examples"
+        "wiki": "https://github.com/celdotro/marketplace/wiki",
+        "docs": "https://github.com/celdotro/marketplace_examples"
     },
     "minimum-stability": "dev",
     "autoload": {
@@ -34,6 +34,7 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2@dev"
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "phpunit/phpunit": "^7.4"
     }
 }
