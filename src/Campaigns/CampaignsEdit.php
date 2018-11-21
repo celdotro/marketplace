@@ -170,4 +170,65 @@ class CampaignsEdit {
 
         return $result;
     }
+
+    /**
+     * [RO] Generare cupon (https://github.com/celdotro/marketplace/wiki/Genereaza-cupon)
+     * [EN] Coupon generation (https://github.com/celdotro/marketplace/wiki/Generate-coupon)
+     * @param $campaignId
+     * @param $couponsNumber
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function generateCoupons($campaignId, $couponsNumber){
+        // Sanity check
+        if(empty($campaignId)) throw new \Exception('Specificati o campanie valida');
+        if(empty($couponsNumber)) throw new \Exception('Specificati un numar valid de cupoane');
+
+        // Set method and action
+        $method = 'coupons';
+        $action = 'generateCoupons';
+
+        // Set data
+        $data = array(
+            'campaignId'  =>  $campaignId,
+            'couponsNumber' => $couponsNumber
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Schimbare status cupon (https://github.com/celdotro/marketplace/wiki/Schimbare-status-cupon)
+     * [EN] Change coupon status (https://github.com/celdotro/marketplace/wiki/Change-coupon-status)
+     * @param $campaignId
+     * @param $couponId
+     * @param $status
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function toggleCouponStatus($campaignId, $couponId, $status){
+        // Sanity check
+        if(empty($campaignId)) throw new \Exception('Specificati o campanie valida');
+        if(empty($couponId)) throw new \Exception('Specificati un cupon valid');
+        if(is_null($status)) throw new \Exception('Specificati un status valid');
+
+        // Set method and action
+        $method = 'coupons';
+        $action = 'toggleCouponStatus';
+
+        // Set data
+        $data = array(
+            'campaignId'  =>  $campaignId,
+            'couponId' => $couponId,
+            'status' => $status
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }

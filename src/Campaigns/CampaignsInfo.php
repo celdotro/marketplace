@@ -85,4 +85,74 @@ class CampaignsInfo {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia toate campaniile de cupoane (https://github.com/celdotro/marketplace/wiki/Preia-cupoanele-campaniei)
+     * [EN] Retrieves a list of coupon campaigns (https://github.com/celdotro/marketplace/wiki/Get-Coupon-Campaigns)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCouponCampaigns(){
+        // Set method and action
+        $method = 'coupons';
+        $action = 'getCouponCampaigns';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
+
+    /**
+     * [RO] Datele aferente unei campanii de cupoane (https://github.com/celdotro/marketplace/wiki/Date-campanie-cupoane)
+     * [EN] Get coupon campaign data (https://github.com/celdotro/marketplace/wiki/Coupon-Campaign-Data)
+     * @param $id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCouponCampaign($id){
+        // Sanity check
+        if(empty($id)) throw new \Exception('Specificati un ID valid');
+
+        // Set method and action
+        $method = 'coupons';
+        $action = 'getCouponsCampaignData';
+
+        $send = array(
+            'campaignId' => $id
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $send);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Verifica utilizarea cuponului (https://github.com/celdotro/marketplace/wiki/Verifica-utilizarea-cuponului)
+     * [EN] Check coupon's usage (https://github.com/celdotro/marketplace/wiki/Check-coupon-usage)
+     * @param $campaignId
+     * @param $couponId
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function checkCouponUsage($campaignId, $couponId){
+        // Sanity check
+        if(empty($campaignId)) throw new \Exception('Specificati un ID de campanie valid');
+        if(is_null($couponId)) throw new \Exception('Specificati un ID de cupon valid');
+
+        // Set method and action
+        $method = 'coupons';
+        $action = 'checkCouponUsage';
+
+        $send = array(
+            'campaignId' => $campaignId,
+            'couponId' => $couponId
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $send);
+
+        return $result;
+    }
 }
