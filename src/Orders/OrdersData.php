@@ -154,7 +154,7 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function finishOrderCombined($orders_id, $serie, $nr_fact, $awb, $idAdresaRidicare, $observations, $products){
+    public function finishOrderCombined($orders_id, $serie, $nr_fact, $awb, $idAdresaRidicare, $observations, $products, $autogenerateAwb){
         // Sanity check
         if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
 
@@ -170,7 +170,8 @@ class OrdersData {
             'awb' => $awb,
             'idAdresaRidicare' => $idAdresaRidicare,
             'observations' => $observations,
-            'products' => $products
+            'products' => $products,
+            'autogenerateAwb' => $autogenerateAwb
         );
 
         // Send request and retrieve response
