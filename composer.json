@@ -34,7 +34,6 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2@dev",
-        "phpunit/phpunit": "^7.4"
+        "guzzlehttp/guzzle": "^6.2@dev"
     }
 }
