@@ -155,4 +155,29 @@ class CampaignsInfo {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia date cupon (https://github.com/celdotro/marketplace/wiki/Date-cupon)
+     * [EN] Get coupon data (https://github.com/celdotro/marketplace/wiki/Coupon-data)
+     * @param $couponId
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCouponData($couponId){
+        // Sanity check
+        if(is_null($couponId)) throw new \Exception('Specificati un ID de cupon valid');
+
+        // Set method and action
+        $method = 'coupons';
+        $action = 'getCouponData';
+
+        $send = array(
+            'couponId' => $couponId
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $send);
+
+        return $result;
+    }
 }
