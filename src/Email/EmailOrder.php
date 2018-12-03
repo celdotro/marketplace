@@ -191,4 +191,54 @@ class EmailOrder {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia mesajele comenzilor (https://github.com/celdotro/marketplace/wiki/Preia-mesajele-comenzilor)
+     * [EN] Retrieves orders messages (https://github.com/celdotro/marketplace/wiki/Get-orders-messages)
+     * @param null $minDate
+     * @param null $maxDate
+     * @param null $email
+     * @param null $name
+     * @param null $site
+     * @param null $raspuns
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getOrdersContacts($minDate = null, $maxDate = null, $email = null, $name = null, $site = null, $raspuns = null){
+        // Set method and action
+        $method = 'email';
+        $action = 'getOrdersContacts';
+
+        // Set data
+        $data = array(
+            'minDate' => $minDate,
+            'maxDate' => $maxDate,
+            'email' => $email,
+            'name' => $name,
+            'site' => $site,
+            'raspuns' => $raspuns
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
+    /**
+     * [RO] Preia numarul de mesaje fara raspuns (https://github.com/celdotro/marketplace/wiki/Preia-numarul-de-mesaje-fara-raspuns-ale-comenzilor)
+     * [EN] Get unanswered orders messages (https://github.com/celdotro/marketplace/wiki/Get-unanswered-orders-message-number)
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getUnansweredOrderContact(){
+        // Set method and action
+        $method = 'email';
+        $action = 'getUnansweredOrderContact';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array('dummy' => 1));
+
+        return $result;
+    }
 }
