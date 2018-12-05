@@ -152,7 +152,7 @@ class Dispatcher {
         $contents = json_decode($jsonContents);
 
         // Throw customised exception in case decoding fails
-        if (json_last_error() !== 0) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+        if (json_last_error() !== JSON_ERROR_NONE) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
 
         // Check if the response returned a 302 error, in which case rerun this method
         if ($contents->error == 302) {
