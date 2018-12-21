@@ -102,12 +102,13 @@ class Dispatcher {
         $request = null;
         try {
             if(is_null($files)) { // No files to upload
+                if(!Config::$IS_LIVE) $headers['DEMO'] = 1;
                 $request = self::getGuzzleClient()->request(
                     'POST',
                     $url,
                     array(
                         'form_params' => $data,
-                        'headers' => array('AUTH' => 'Bearer ' . $token)
+                        'headers' => $headers,
                     )
                 );
             } else { // Has files to upload
