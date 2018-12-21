@@ -21,7 +21,7 @@ class Config
 
     // Set link to demo server
     public static function setDemo(){
-        self::$API_HTTP = 'https://demo.cel.ro/market_api/';
+        self::$API_HTTP = 'https://api-mp.cel.ro/market_api/';
         self::$IS_LIVE = false;
     }
 
