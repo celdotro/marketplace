@@ -10,10 +10,11 @@ class OrdersData {
      * [RO] Preia datele asociate cu o anumita comanda (https://github.com/celdotro/marketplace/wiki/Datele-comenzii)
      * [EN] Retrieve data associated with an order (https://github.com/celdotro/marketplace/wiki/Order-data)
      * @param $cmd
+     * @param bool $original_delivery
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
-    public function getOrderInfo($cmd){
+    public function getOrderInfo($cmd, $original_delivery = false){
         // Sanity check - for older versions of PHP
         if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
 
@@ -22,7 +23,7 @@ class OrdersData {
         $action = 'getOrder';
 
         // Set data
-        $data = array('order' => $cmd);
+        $data = array('order' => $cmd, 'original_delivery' => $original_delivery);
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data);
