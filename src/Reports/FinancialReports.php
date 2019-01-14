@@ -28,4 +28,20 @@ class FinancialReports {
 
         return $result;
     }
+
+    /**
+     * [RO] Diferente de pret fata de site-uri externe (https://github.com/celdotro/marketplace/wiki/Diferenta-pret)
+     * [EN] Price difference for external sites (https://github.com/celdotro/marketplace/wiki/Price-difference)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function priceDiff(){
+        $method = 'reports';
+        $action = 'priceDiff';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
