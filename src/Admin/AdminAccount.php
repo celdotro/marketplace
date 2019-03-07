@@ -142,4 +142,30 @@ class AdminAccount {
 
         return $result;
     }
+
+    public function testLogin(){
+        $data = array('username' => \celmarket\Auth::$username, 'password' => \celmarket\Auth::$password);
+        $url = \celmarket\Config::$API_HTTP . 'login' . '/' . 'testLogin' . '/';
+
+
+        try {
+            $request = \celmarket\Dispatcher::getGuzzleClient()->request(
+                'POST',
+                $url,
+                array(
+                    'form_params' => $data,
+                )
+            );
+        } catch (Exception $e) {
+            echo '<pre>' . __FILE__ . ':' . __LINE__ . "\n";
+            print_r($e->getResponse()->getStatusCode());
+            echo '</pre>';
+            die();
+        }
+
+        $jsonContents = $request->getBody()->getContents();
+        $contents = json_decode($jsonContents);
+
+        return $contents;
+    }
 }
