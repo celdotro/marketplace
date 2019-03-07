@@ -14,8 +14,8 @@ class Auth
     private static $_instance = null;
 
     // Data necesary for authentication
-    private static $username = null;
-    private static $password = null;
+    public static $username = null;
+    public static $password = null;
     private static $token = null;
 
     /**
