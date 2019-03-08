@@ -178,6 +178,9 @@ class Dispatcher {
                     throw new \Exception('Eroare: continutul nu are o forma adecvata : ' . $jsonContents);
                 }
             } elseif (!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
+                if(isset($contents->error) && $contents->error == 405) throw new \Exception('Date de autentificare incorecte');
+                $token = Auth::regenerateToken();
+                return self::send($method, $action, $data);
                 throw new \Exception('Eroare: token invalid');
             } elseif (!isset($contents->error) || $contents->error !== 0) { // Error returned
                 if (isset($contents->message)) { // Standard error

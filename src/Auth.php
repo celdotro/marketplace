@@ -120,7 +120,7 @@ class Auth
         self::$username = $username;
         self::$password = $password;
 
-        self::regenerateToken();
+        self::getToken();
     }
 
     /**
