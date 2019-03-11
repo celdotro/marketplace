@@ -127,7 +127,7 @@ class Auth
      * Token retrieval logic
      * @return bool|null|string
      */
-    public function getToken()
+    public static function getToken()
     {
         return file_exists(Config::TOKEN_PATH) ? file_get_contents(Config::TOKEN_PATH) : static::regenerateToken();
     }
