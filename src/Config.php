@@ -2,8 +2,6 @@
 
 namespace celmarket;
 
-define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
-
 /**
  * Class Config - contains constants with general purpose data
  *  WIKI
@@ -14,19 +12,17 @@ define('TOKEN',  '.' . DIRECTORY_SEPARATOR . 'token');
 class Config
 {
     // API's address
-    static $API_HTTP = 'https://api-mp.cel.ro/market_api/';
+    public static $API_HTTP = 'https://api-mp.cel.ro/market_api/';
 
     // Is live
-    static $IS_LIVE = true;
+    public static $IS_LIVE = true;
 
     // Set link to demo server
-    public static function setDemo(){
+    public static function setDemo()
+    {
         self::$API_HTTP = 'https://api-mp.cel.ro/market_api/';
         self::$IS_LIVE = false;
     }
-
-    // Path to token file
-    const TOKEN_PATH = TOKEN;
 
     // Response timeout
     const TIMEOUT = 30; // 30 seconds

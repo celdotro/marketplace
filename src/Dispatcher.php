@@ -30,15 +30,17 @@ use GuzzleHttp\Exception\RequestException;
  * - retrieve and do a basic processing of the response
  * @package celmarket
  */
-class Dispatcher {
-
-    private static $guzzleClient = NULL;
+class Dispatcher
+{
+    private static $guzzleClient = null;
     private static $failCount;
+    private static $provider;
 
     /**
      * Dispatcher constructor.
      */
-    private function __construct () {
+    private function __construct()
+    {
         throw new \Exception('Nu puteti instantia un obiect cu clasa Dispatcher');
     }
 
@@ -56,12 +58,27 @@ class Dispatcher {
      * @return mixed
      * @throws \Exception
      */
-    public static function send ($method, $action, $data, $files = NULL) {
+    public static function send($method, $action, $data, $files = null, $retryResponse = null)
+    {
         ### 0. Check fail count ###
-        if (!isset(self::$failCount) || is_null(self::$failCount)) self::$failCount = 0;
-        self::$failCount++;
+        if (!isset(self::$failCount) || is_null(self::$failCount)) {
+            self::$failCount = 0;
+        }
+        
+        if (is_null(self::$provider)) {
+            throw new \Exception('Eroare la accesarea clasei derivate AuthProvider');
+        }
 
-        if (self::$failCount > Config::MAX_FAILCOUNT) throw new \Exception('Autentificarea a esuat');
+        self::$failCount++;
+        $isLogin = false;
+
+        if (self::$failCount > Config::MAX_FAILCOUNT) {
+            if (!empty($retryResponse)) {
+                throw new \Exception($retryResponse);
+            } else {
+                throw new \Exception('Autentificarea a esuat');
+            }
+        }
 
         ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
@@ -83,26 +100,25 @@ class Dispatcher {
         // Only get another instance if the method is not login
         if ($method != 'login' && $action != 'actionLogin') {
             // Get Auth instance
-            $auth = Auth::getInstance();
-            try {
-                // Retrieve token
-                $token = $auth->getToken();
-            } catch (\Exception $e) {
-                // If an Exception was caught, regenerate token
-                $token = Auth::regenerateToken();
-            }
+            $token = self::$provider::getToken();
+        } else {
+            $isLogin = true;
         }
 
         ### 3. Uses dispatcher's guzzleClient object and makes a POST request to the API server ###
         // Check if test server has to be used
-        if (Config::TEST) $data['test'] = 1;
+        if (Config::TEST) {
+            $data['test'] = 1;
+        }
         $data['api_version'] = Config::CURRENT_VERSION;
 
         // Build POST request with token placed in bearer authorization header
         $request = null;
         try {
-            if(is_null($files)) { // No files to upload
-                if(!Config::$IS_LIVE) $headers['DEMO'] = 1;
+            if (is_null($files)) { // No files to upload
+                if (!Config::$IS_LIVE) {
+                    $headers['DEMO'] = 1;
+                }
 
                 $headers['AUTH'] = 'Bearer ' . $token;
 
@@ -121,7 +137,7 @@ class Dispatcher {
                 );
 
                 /// Regular fields
-                foreach($data as $name => $value){
+                foreach ($data as $name => $value) {
                     $options['multipart'][] = array(
                         'name' => $name,
                         'contents' => $value
@@ -129,7 +145,7 @@ class Dispatcher {
                 }
 
                 /// Files
-                foreach($files as $fileName => $fileContents){
+                foreach ($files as $fileName => $fileContents) {
                     $options['multipart'][] = array(
                         'name' => $fileName,
                         'contents' => $fileContents,
@@ -144,8 +160,10 @@ class Dispatcher {
                 );
             }
         } catch (RequestException $e) { // If a request exception is encountered
-            if ($e->getResponse()->getStatusCode() == 400){ // If the exception has code 400, regenerate token
-                $token = Auth::regenerateToken();
+            if ($e->getResponse()->getStatusCode() == 400) { // If the exception has code 400, regenerate token
+                if (!$isLogin) {
+                    $token = self::$provider::regenerateToken();
+                }
                 return self::send($method, $action, $data, $files);
             }
         }
@@ -156,12 +174,17 @@ class Dispatcher {
         $contents = json_decode($jsonContents);
 
         // Throw customised exception in case decoding fails
-        if (json_last_error() !== JSON_ERROR_NONE) throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+        }
 
         // Check if the response returned a 302 error, in which case rerun this method
-        if ($contents->error == 302) {
-            $token = Auth::regenerateToken();
-            return self::send($method, $action, $data);
+        if ($contents->error == 302 || $contents->error == 403 || $contents->error == 405) {
+            $message = !empty($contents->message) && is_string($contents->message) ? $contents->message : null;
+            if (!$isLogin) {
+                $token = self::$provider::regenerateToken();
+            }
+            return self::send($method, $action, $data, null, $message);
         } else {
             self::$failCount = 0;
         }
@@ -178,9 +201,17 @@ class Dispatcher {
                     throw new \Exception('Eroare: continutul nu are o forma adecvata : ' . $jsonContents);
                 }
             } elseif (!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
-                if(isset($contents->error) && $contents->error == 405) throw new \Exception('Date de autentificare incorecte');
-                $token = Auth::regenerateToken();
-                return self::send($method, $action, $data);
+                if (isset($contents->error) && ($contents->error == 405 || $contents->error == 403)) {
+                    if (!empty($contents->message) && is_string($contents->message)) {
+                        throw new \Exception($contents->message);
+                    } else {
+                        throw new \Exception('Date de autentificare incorecte');
+                    }
+                }
+                if (!$isLogin) {
+                    $token = self::$provider::regenerateToken();
+                }
+                return self::send($method, $action, $data, null, $message);
                 throw new \Exception('Eroare: token invalid');
             } elseif (!isset($contents->error) || $contents->error !== 0) { // Error returned
                 if (isset($contents->message)) { // Standard error
@@ -199,7 +230,8 @@ class Dispatcher {
      * @param $cName
      * @return bool
      */
-    public static function whitelistMethod ($cName) {
+    public static function whitelistMethod($cName)
+    {
         if (in_array($cName, array('home', 'products', 'orders', 'settings', 'import', 'login', 'campaign', 'admininfo', 'email', 'reports', 'commissions'))) {
             return true;
         }
@@ -211,24 +243,33 @@ class Dispatcher {
      * Enforces the use of a single connection
      * @return Client|null
      */
-    public static function getGuzzleClient () {
-        if (!isset(self::$guzzleClient) || is_null(self::$guzzleClient))
+    public static function getGuzzleClient()
+    {
+        if (!isset(self::$guzzleClient) || is_null(self::$guzzleClient)) {
             self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT, 'verify' => Config::$IS_LIVE));
+        }
 
         return self::$guzzleClient;
+    }
+    
+    public static function setProvider($class)
+    {
+        self::$provider = $class;
     }
 
     /**
      * Singleton -> prevent unserializing
      */
-    private function __wakeup () {
+    private function __wakeup()
+    {
         return;
     }
 
     /**
      * Singleton -> prevent instance cloning
      */
-    private function __clone () {
+    private function __clone()
+    {
         return;
     }
 }
