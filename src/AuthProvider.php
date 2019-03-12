@@ -20,7 +20,7 @@ class AuthProvider
     public static function checkToken()
     {
         self::$_TOKEN_PATH = __DIR__ . '/' . md5(self::$user . self::$password);
-        return file_exists(self::$_TOKEN_PATH) ? $token : self::regenerateToken();
+        return file_exists(self::$_TOKEN_PATH) ? static::$token : self::regenerateToken();
     }
     
     public static function getToken()
