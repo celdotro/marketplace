@@ -1,7 +1,7 @@
 <?php
 namespace celmarket;
 
-use celmarket\AuthProvider;
+use celmarket\AuthProviderFile;
 use celmarket\Dispatcher;
 
 /**
@@ -41,7 +41,7 @@ class Auth
         self::$password = $password;
                 
         if (is_null($class)) {
-            $authProvider = new AuthProvider($username, $password);
+            $authProvider = new AuthProviderFile($username, $password);
         } else {
             $authProvider = new $class($username, $password);
             if (!($authProvider instanceof AuthProvider)) {
