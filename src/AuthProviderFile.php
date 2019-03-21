@@ -17,6 +17,7 @@ class AuthProviderFile extends AuthProvider
     private static $user;
     private static $password;
     private static $providerID;
+    private static $_ABS_PATH;
 
     public function __construct($userName = '', $password = '')
     {
@@ -25,6 +26,7 @@ class AuthProviderFile extends AuthProvider
         }
         self::$user = trim($userName);
         self::$password = trim($password);
+        static::$_ABS_PATH = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? dirname($_SERVER['SCRIPT_NAME']) : '/tmp';
     }
     
     public static function setProviderID($providerID = '')
@@ -34,7 +36,7 @@ class AuthProviderFile extends AuthProvider
 
     public static function checkToken()
     {
-        self::$_TOKEN_PATH = __DIR__ . '/' . (!empty(self::$providerID) ? self::$providerID : md5(self::$user . self::$password));
+        self::$_TOKEN_PATH = static::$_ABS_PATH . '/' . (!empty(self::$providerID) ? self::$providerID : md5(self::$user . self::$password));
         return file_exists(self::$_TOKEN_PATH) ? static::$token : self::regenerateToken();
     }
     
@@ -44,7 +46,7 @@ class AuthProviderFile extends AuthProvider
             return static::$token;
         }
         if (empty(self::$_TOKEN_PATH)) {
-            self::$_TOKEN_PATH = __DIR__ . '/' . md5(self::$user . self::$password);
+            self::$_TOKEN_PATH = static::$_ABS_PATH . '/' . (!empty(self::$providerID) ? self::$providerID : md5(self::$user . self::$password));
         }
         if (file_exists(self::$_TOKEN_PATH)) {
             return file_get_contents(self::$_TOKEN_PATH);
