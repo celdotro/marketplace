@@ -37,5 +37,5 @@ class Config
     const MAX_FAILCOUNT = 10;
 
     // Current version
-    const CURRENT_VERSION = '1.17.1';
+    const CURRENT_VERSION = '1.18.2';
 }

@@ -94,13 +94,14 @@ class Dispatcher
 
         // Build URL
         $url = Config::$API_HTTP . $method . '/' . $action . '/';
+        $provider = self::$provider;
 
         ### 2. Authenticate user ##
         $token = '';
         // Only get another instance if the method is not login
         if ($method != 'login' && $action != 'actionLogin') {
             // Get Auth instance
-            $token = self::$provider::getToken();
+            $token = $provider::getToken();
         } else {
             $isLogin = true;
         }
@@ -162,7 +163,7 @@ class Dispatcher
         } catch (RequestException $e) { // If a request exception is encountered
             if ($e->getResponse()->getStatusCode() == 400) { // If the exception has code 400, regenerate token
                 if (!$isLogin) {
-                    $token = self::$provider::regenerateToken();
+                    $token = $provider::regenerateToken();
                 }
                 return self::send($method, $action, $data, $files);
             }
@@ -182,7 +183,7 @@ class Dispatcher
         if ($contents->error == 302 || $contents->error == 403 || $contents->error == 405) {
             $message = !empty($contents->message) && is_string($contents->message) ? $contents->message : null;
             if (!$isLogin) {
-                $token = self::$provider::regenerateToken();
+                $token = $provider::regenerateToken();
             }
             return self::send($method, $action, $data, null, $message);
         } else {
@@ -209,7 +210,7 @@ class Dispatcher
                     }
                 }
                 if (!$isLogin) {
-                    $token = self::$provider::regenerateToken();
+                    $token = $provider::regenerateToken();
                 }
                 return self::send($method, $action, $data, null, $message);
                 throw new \Exception('Eroare: token invalid');
