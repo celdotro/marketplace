@@ -168,4 +168,15 @@ class AdminAccount {
 
         return $contents;
     }
+
+    public function checkMandatoryInfo(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'checkMandatoryInfo';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
