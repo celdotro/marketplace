@@ -169,6 +169,12 @@ class AdminAccount {
         return $contents;
     }
 
+    /**
+     * [RO] Verifica paginile obligatorii (https://github.com/celdotro/marketplace/wiki/Verifica-pagini-obligatorii)
+     * [EN] Checks the mandatory pages (https://github.com/celdotro/marketplace/wiki/Check-mandatory-pages)
+     * @return mixed
+     * @throws \Exception
+     */
     public function checkMandatoryInfo(){
         // Set method and action
         $method = 'admininfo';
