@@ -10,8 +10,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/celdotro/marketplace.svg?style=flat-square)](https://github.com/celdotro/marketplace/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/celdotro/marketplace.svg?style=flat-square)](https://github.com/celdotro/marketplace/network)
 
-**[RO]** Daca sunteti interesati de crearea unui cont de testare, va rugam sa ne contactati la: **dp [_ AT _] cel.ro**  
-**[EN]** If you are interested in creating an account for testing purposes, please contact us at: **dp [_ AT _] cel.ro**
+**[RO]** Daca sunteti interesati de crearea unui cont de testare, va rugam sa ne contactati la: **mp [_ AT _] cel.ro**  
+**[EN]** If you are interested in creating an account for testing purposes, please contact us at: **mp [_ AT _] cel.ro**
 ___
 ## [RO] Postman
 Pentru informatii referitoare la Postman, accesati: [https://github.com/celdotro/marketplace/wiki/PostmanRO](https://github.com/celdotro/marketplace/wiki/PostmanRO)
