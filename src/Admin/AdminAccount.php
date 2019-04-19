@@ -185,4 +185,21 @@ class AdminAccount {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia adresele de contact (https://github.com/celdotro/marketplace/wiki/Preia-adrese-contact)
+     * [EN] Get contact addresses (https://github.com/celdotro/marketplace/wiki/Get-contact)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getContact(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getContact';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
