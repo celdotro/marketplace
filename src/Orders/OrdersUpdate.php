@@ -233,4 +233,32 @@ class OrdersUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Inregistreaza o data personalizata a finalizarii comenzii (https://github.com/celdotro/marketplace/wiki/Schimba-data-finalizarii)
+     * [EN] Submits a custom date for order finishing (https://github.com/celdotro/marketplace/wiki/Change-finishing-date)
+     * @param $orders_id
+     * @param $date
+     * @return mixed
+     * @throws \Exception
+     */
+    public function changeFinishingDate($orders_id, $date){
+        // Sanity check
+        if(empty($orders_id)) throw new \Exception('Comanda invalida');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'changeFinishingDate';
+
+        // Set data
+        $data = array(
+            'orders_id' => $orders_id,
+            'date' => $date
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
