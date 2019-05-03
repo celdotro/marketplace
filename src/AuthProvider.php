@@ -8,11 +8,19 @@ abstract class AuthProvider
 {
     abstract public function __construct($userName = '', $password = '');
 
-    abstract public static function checkToken();
+    public static function checkToken()
+    {
+    }
     
-    abstract public static function getToken();
+    public static function getToken()
+    {
+    }
     
-    abstract public static function regenerateToken();
+    public static function regenerateToken()
+    {
+    }
     
-    abstract public static function setProviderID($providerID = '');
+    public static function setProviderID($providerID = '')
+    {
+    }
 }
