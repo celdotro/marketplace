@@ -202,4 +202,21 @@ class AdminAccount {
 
         return $result;
     }
+
+    /**
+     * [RO] Preia prefixul pentru adaugarea de produse cu acelasi model, dar producator sau categorie diferite (https://github.com/celdotro/marketplace/wiki/Preluare-prefix)
+     * [EN] Get the product adding prefix for cases with the same model but different manufacturer or category (https://github.com/celdotro/marketplace/wiki/Get-prefix)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPrefix(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getPrefix';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
