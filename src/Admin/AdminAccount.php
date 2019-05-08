@@ -219,4 +219,21 @@ class AdminAccount {
 
         return $result;
     }
+
+    /**
+     * [RO] Listeaza paginile cu incalcari ale contractului (https://github.com/celdotro/marketplace/wiki/Listare-pagini-cu-incalcari-de-contract)
+     * [EN] List pages that breach the contract (https://github.com/celdotro/marketplace/wiki/List-pages-that-breach-the-contract)
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPagesWithContractBreaches(){
+        // Set method and action
+        $method = 'admininfo';
+        $action = 'getPagesWithContractBreaches';
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, array());
+
+        return $result;
+    }
 }
