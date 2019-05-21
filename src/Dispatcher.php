@@ -65,7 +65,7 @@ class Dispatcher
             self::$failCount = 0;
         }
         
-        if (is_null(self::$provider)) {
+        if (is_null(self::$provider) || empty(self::$provider)) {
             throw new \Exception('Eroare la accesarea clasei derivate AuthProvider');
         }
 
