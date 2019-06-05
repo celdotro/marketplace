@@ -261,4 +261,30 @@ class OrdersUpdate {
 
         return $result;
     }
+
+    /**
+     * [RO] Marcheaza o comanda ca fiind disputata (https://github.com/celdotro/marketplace/wiki/Disputa-comanda)
+     * [EN] Mark an order as disputed (https://github.com/celdotro/marketplace/wiki/Dispute-order)
+     * @param $order_id
+     * @return mixed
+     * @throws \Exception
+     */
+    public function makeOrderDisputed($order_id){
+        // Sanity check
+        if(empty($order_id)) throw new \Exception('Comanda invalida');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'makeOrderDisputed';
+
+        // Set data
+        $data = array(
+            'order_id' => $order_id
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
