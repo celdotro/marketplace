@@ -231,4 +231,39 @@ class CampaignsEdit {
 
         return $result;
     }
+
+    /**
+     * [RO] Adaugarea unui grup de produse intr-o campanie (https://github.com/celdotro/marketplace/wiki/Adaugare-grup-de-produse-in-campanie)
+     * [EN] Adds a group of products to a campaign (https://github.com/celdotro/marketplace/wiki/Add-products-group-to-campaign)
+     * @param $name
+     * @param $manufacturer
+     * @param $categories
+     * @param $idcampanie
+     * @param $numecampanie
+     * @return mixed
+     * @throws \Exception
+     */
+    public function addAllUsingFilters($name, $manufacturer, $categories, $idcampanie, $numecampanie){
+        // Sanity check
+        if(empty($idcampanie)) throw new \Exception('Folositi un ID valid de campanie');
+        if(empty($numecampanie)) throw new \Exception('Folositi un nume valid de campanie');
+
+        // Set method and action
+        $method = 'campaign';
+        $action = 'addAllUsingFilters';
+
+        // Set data
+        $data = array(
+            'name'  =>  $name,
+            'manufacturer' => $manufacturer,
+            'categories' => $categories,
+            'idcampanie' => $idcampanie,
+            'numecampanie' => $numecampanie
+        );
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
