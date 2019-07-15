@@ -22,8 +22,9 @@ class AdminAccount {
      * @param $county
      * @param $city
      * @param $reg
+     * @param int $timpProcesareImplicit
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
     public function updateAccountInformation ($cif = NULL, $iban = NULL, $telephone = NULL, $password = NULL, $bankName = NULL, $fullName = NULL, $hqAddress = NULL, $description = NULL, $apiLink = NULL, $contactPerson, $county, $city, $reg, $timpProcesareImplicit = 0) {
         // Sanity check - skip it because it needs additional methods and packages which will just bloat this project
