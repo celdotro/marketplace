@@ -32,4 +32,30 @@ class AWBImport {
         return $result;
     }
 
+    /**
+     * [RO] Generare AWB (https://github.com/celdotro/marketplace/wiki/Generare-AWB)
+     * [EN] Generate AWB (https://github.com/celdotro/marketplace/wiki/Generate-AWB)
+     * @param $orders_id
+     * @param $idAddress
+     * @return mixed
+     * @throws \Exception
+     */
+    public function generateAwb($orders_id, $idAddress){
+        // Sanity check
+        if(!isset($orders_id) || !is_int($orders_id)) throw new \Exception('Specificati comanda');
+        if(!isset($idAddress) || !is_int($idAddress)) throw new \Exception('Specificati adresa');
+
+        // Set method and action
+        $method = 'orders';
+        $action = 'generateAwb';
+
+        // Set data
+        $data = array('orders_id' => $orders_id, 'idAddress' => $idAddress);
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
+
 }
