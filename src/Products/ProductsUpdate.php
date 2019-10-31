@@ -167,4 +167,30 @@ class ProductsUpdate {
 
         return $result;
     }
+
+
+    /**
+     * [RO] Actualizeaza pret client, pret vechi, stoc, status si timp procesare (https://github.com/celdotro/marketplace/wiki/Actualizare-pret,-stoc,-status)
+     * [EN] Update price, old price, stock, status, processing time (https://github.com/celdotro/marketplace/wiki/Update-price,-old-price,-stock,-status)
+     * @param $arrProducts
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updateStockAndPrice($arrProducts) {
+        // Sanity check
+        if(!is_array($arrProducts) || empty($arrProducts)) throw new \Exception('Functia primeste ca parametru un array cu datele fiecarui produs grupate intr-un sub-array');
+
+        // Set method and action
+        $method = 'products';
+        $action = 'updateStockAndPrice';
+
+        // Set data
+        $data = array('products' => json_encode($arrProducts));
+
+        // Send request and retrieve response
+        $result = Dispatcher::send($method, $action, $data);
+
+        return $result;
+    }
 }
