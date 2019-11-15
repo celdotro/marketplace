@@ -161,12 +161,15 @@ class Dispatcher
                 );
             }
         } catch (RequestException $e) { // If a request exception is encountered
-            if ($e->getResponse()->getStatusCode() == 400) { // If the exception has code 400, regenerate token
-                if (!$isLogin) {
-                    $token = $provider::regenerateToken();
+            if ($e->hasResponse()) {
+                if ($e->getResponse()->getStatusCode() == 400) { // If the exception has code 400, regenerate token
+                    if (!$isLogin) {
+                        $token = $provider::regenerateToken();
+                    }
+                    return self::send($method, $action, $data, $files);
                 }
-                return self::send($method, $action, $data, $files);
             }
+            throw new \Exception('Eroare la apelarea API-ului. Trimite-ti pe dp@cel.ro stack trace-ul acestei exceptii.', 500);
         }
 
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
