@@ -27,6 +27,11 @@ class AuthProviderFile extends AuthProvider
         self::$user = trim($userName);
         self::$password = trim($password);
         static::$_ABS_PATH = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? dirname($_SERVER['SCRIPT_NAME']) : '/tmp';
+        if (!is_dir(static::$_ABS_PATH) && is_writable(dirname(static::$_ABS_PATH))) {
+            if (!mkdir(static::$_ABS_PATH, 0777, true)) {
+                throw new \Exception('Failed to crate directory for token. Check permissions and path.');
+            }
+        }
     }
     
     public static function setProviderID($providerID = '')
