@@ -3,17 +3,13 @@
     "description": "CEL.ro Marketplace API wrapper in PHP",
     "keywords": ["marketplace-api-wrapper", "cel-marketplace", "cel", "marketplace", "api-wrapper", "celdotro", "php", "wiki"],
     "type": "library",
-    "license": "MIT",
+	"license": "MIT",
+	"version": "1.19.3",
     "authors": [
         {
-            "name": "alint",
-            "email": "alin.tanase@cel.ro",
-	    "role": "Developer"
-        },
-        {
-            "name": "Florin D",
-                "homepage": "https://github.com/fredtux",
-            "role": "Developer"
+			"name": "Alin Tanase",
+			"email": "dp@cel.ro",
+			"role": "Lead Developer"
         },
         {
             "name": "CEL.ro",
