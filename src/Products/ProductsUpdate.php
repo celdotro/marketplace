@@ -150,7 +150,7 @@ class ProductsUpdate {
      * @return mixed
      * @throws \Exception
      */
-    public function addProductsFamily($id, $name, $characts){
+    public function addProductsFamily($id, $categ_id, $name, $characts){
         // Set method and action
         $method = 'products';
         $action = 'addProductsFamily';
@@ -159,7 +159,8 @@ class ProductsUpdate {
         $data = array(
             'id' => $id,
             'name' => $name,
-            'characts' => $characts
+            'characts' => $characts,
+            'categ_id' => $categ_id
         );
 
         // Send request and retrieve response
