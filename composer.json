@@ -4,7 +4,7 @@
     "keywords": ["marketplace-api-wrapper", "cel-marketplace", "cel", "marketplace", "api-wrapper", "celdotro", "php", "wiki"],
     "type": "library",
 	"license": "MIT",
-	"version": "1.19.4",
+	"version": "1.20",
     "authors": [
         {
 			"name": "Alin Tanase",
@@ -30,6 +30,7 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2@dev"
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "sentry/sdk": "2.1.0"
     }
 }

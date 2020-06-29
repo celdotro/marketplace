@@ -1,6 +1,10 @@
 <?php
-
 namespace celmarket;
+
+ini_set('xdebug.var_display_max_depth', '10');
+ini_set('xdebug.var_display_max_children', '256');
+ini_set('xdebug.var_display_max_data', '1024');
+
 
 /**
  * Error reporting for testing purposes - commented out because it contains rarely used code that only adds unnecessary steps.

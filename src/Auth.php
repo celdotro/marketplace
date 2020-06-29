@@ -39,7 +39,9 @@ class Auth
         // Set attributes
         self::$username = $username;
         self::$password = $password;
-                
+        
+        $GLOBALS['username'] = $username;
+
         if (is_null($class)) {
             $authProvider = new AuthProviderFile($username, $password);
         } else {
@@ -48,6 +50,7 @@ class Auth
                 throw new \Exception('Clasa specificata trebuie sa extinda celmarket\AuthProvider.');
             }
         }
+
         Dispatcher::setProvider($authProvider);
         $authProvider::checkToken();
     }
