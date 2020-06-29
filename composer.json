@@ -4,7 +4,7 @@
     "keywords": ["marketplace-api-wrapper", "cel-marketplace", "cel", "marketplace", "api-wrapper", "celdotro", "php", "wiki"],
     "type": "library",
     "license": "MIT",
-    "version": "1.2",
+    "version": "2.0.0",
     "authors": [
         {
          "name": "Alin Tanase",
