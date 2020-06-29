@@ -37,5 +37,20 @@ class Config
     const MAX_FAILCOUNT = 10;
 
     // Current version
-    const CURRENT_VERSION = '1.18.2';
+    const CURRENT_VERSION = '1.21';
 }
+
+$version = !empty(Config::CURRENT_VERSION) ? Config::CURRENT_VERSION : 'UNKWN';
+
+\Sentry\init(['dsn' => 'https://e25a0133dc72473b96b7aa7b04fdf067@sentry.cel.ro/5' , 'release' => $version]);
+
+
+\Sentry\configureScope(function (\Sentry\State\Scope $scope): void {
+    $scope->setExtra('argv', $_SERVER['argv']);
+    $scope->setExtra('scriptName', $_SERVER['SCRIPT_NAME']);
+
+    if(!empty($_SERVER['ap'])) $scope->setExtra('authProvider', $_SERVER['ap']);
+    if(!empty($_SERVER['PWD'])) $scope->setExtra('pwd', $_SERVER['PWD']);
+    if(!empty($_SERVER['username'])) $scope->setExtra('username', $_SERVER['username']);
+    if(!empty($_SERVER['authprovider'])) $scope->setExtra('authProvider', $_SERVER['authprovider']);
+});

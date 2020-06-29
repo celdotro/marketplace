@@ -40,7 +40,7 @@ class Auth
         self::$username = $username;
         self::$password = $password;
         
-        $GLOBALS['username'] = $username;
+        $_SERVER['username'] = $username;
 
         if (is_null($class)) {
             $authProvider = new AuthProviderFile($username, $password);
@@ -50,6 +50,8 @@ class Auth
                 throw new \Exception('Clasa specificata trebuie sa extinda celmarket\AuthProvider.');
             }
         }
+
+        $_SERVER['authprovider'] = get_class($authProvider);
 
         Dispatcher::setProvider($authProvider);
         $authProvider::checkToken();
