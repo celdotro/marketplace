@@ -37,7 +37,7 @@ class Config
     const MAX_FAILCOUNT = 10;
 
     // Current version
-    const CURRENT_VERSION = '1.30';
+    const CURRENT_VERSION = '1.2';
 }
 
 $version = !empty(Config::CURRENT_VERSION) ? Config::CURRENT_VERSION : 'UNKWN';
