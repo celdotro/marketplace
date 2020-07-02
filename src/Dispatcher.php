@@ -5,6 +5,7 @@ ini_set('xdebug.var_display_max_depth', '10');
 ini_set('xdebug.var_display_max_children', '256');
 ini_set('xdebug.var_display_max_data', '1024');
 
+include_once __DIR__ . '/Sentry.php';
 
 /**
  * Error reporting for testing purposes - commented out because it contains rarely used code that only adds unnecessary steps.
@@ -119,6 +120,7 @@ class Dispatcher
 
         // Build POST request with token placed in bearer authorization header
         $request = null;
+        $headers = [];
         try {
             if (is_null($files)) { // No files to upload
                 if (!Config::$IS_LIVE) {

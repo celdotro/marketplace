@@ -3,6 +3,7 @@ namespace celmarket;
 
 use celmarket\AuthProviderFile;
 use celmarket\Dispatcher;
+include_once __DIR__ . '/Sentry.php';
 
 /**
  * Class Auth - implements singleton pattern

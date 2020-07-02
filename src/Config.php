@@ -9,6 +9,7 @@ namespace celmarket;
  *      [EN]: https://github.com/celdotro/marketplace/wiki/General-Information#config
  * @package celmarket
  */
+
 class Config
 {
     // API's address
@@ -36,21 +37,9 @@ class Config
     // Maximum number of times Dispatcher is allowed to fail
     const MAX_FAILCOUNT = 10;
 
+    // Sentry reporting DNS
+    const SENTRY_DNS = 'https://e25a0133dc72473b96b7aa7b04fdf067@sentry.cel.ro/5';
+
     // Current version
-    const CURRENT_VERSION = '2.0.0';
+    const CURRENT_VERSION = '2.0.1';
 }
-
-$version = !empty(Config::CURRENT_VERSION) ? Config::CURRENT_VERSION : 'UNKWN';
-
-\Sentry\init(['dsn' => 'https://e25a0133dc72473b96b7aa7b04fdf067@sentry.cel.ro/5' , 'release' => $version]);
-
-
-\Sentry\configureScope(function (\Sentry\State\Scope $scope): void {
-    $scope->setExtra('argv', $_SERVER['argv']);
-    $scope->setExtra('scriptName', $_SERVER['SCRIPT_NAME']);
-
-    if(!empty($_SERVER['ap'])) $scope->setExtra('authProvider', $_SERVER['ap']);
-    if(!empty($_SERVER['PWD'])) $scope->setExtra('pwd', $_SERVER['PWD']);
-    if(!empty($_SERVER['username'])) $scope->setExtra('username', $_SERVER['username']);
-    if(!empty($_SERVER['authprovider'])) $scope->setExtra('authProvider', $_SERVER['authprovider']);
-});

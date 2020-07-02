@@ -3,6 +3,8 @@ namespace celmarket;
 
 use celmarket\AuthProvider;
 
+include_once __DIR__ . '/Sentry.php';
+
 /**
  * AuthProvider class example
  * It saves the tokens by default in files based on provider ID set by user

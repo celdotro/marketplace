@@ -1,5 +1,6 @@
 <?php
 namespace celmarket;
+include_once __DIR__ . '/Sentry.php';
 
 /**
  * For custom authentication methods user need to extend this class
