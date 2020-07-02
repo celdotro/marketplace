@@ -20,6 +20,7 @@ include_once __DIR__ . '/Sentry.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use celmarket\ResponseException;
 
 /**
  * Class Dispatcher
@@ -46,7 +47,7 @@ class Dispatcher
      */
     private function __construct()
     {
-        throw new \Exception('Nu puteti instantia un obiect cu clasa Dispatcher');
+        throw new ResponseException('Nu puteti instantia un obiect cu clasa Dispatcher');
     }
 
     /**
@@ -71,7 +72,7 @@ class Dispatcher
         }
         
         if (is_null(self::$provider) || empty(self::$provider)) {
-            throw new \Exception('Eroare la accesarea clasei derivate AuthProvider');
+            throw new ResponseException('Eroare la accesarea clasei derivate AuthProvider');
         }
 
         self::$failCount++;
@@ -79,22 +80,22 @@ class Dispatcher
 
         if (self::$failCount > Config::MAX_FAILCOUNT) {
             if (!empty($retryResponse)) {
-                throw new \Exception($retryResponse);
+                throw new ResponseException($retryResponse, ['method' => $method, 'data' => $data, 'action' => $action]);
             } else {
-                throw new \Exception('Autentificarea a esuat');
+                throw new ResponseException('Autentificarea a esuat', ['method' => $method, 'data' => $data, 'action' => $action]);
             }
         }
 
         ### 1. Validate method and action, and build URL based on these ###
         // Sanity check
         if (!isset($method) || is_null($method) || empty($method) || !self::whitelistMethod($method)) {
-            throw new \Exception('Metoda invalida');
+            throw new ResponseException('Metoda invalida', ['method' => $method, 'data' => $data, 'action' => $action]);
         }
         if (!isset($action) || is_null($action) || empty($action)) {
-            throw new \Exception('Actiune invalida');
+            throw new ResponseException('Actiune invalida', ['method' => $method, 'data' => $data, 'action' => $action]);
         }
         if (!isset($data) || is_null($data)) {
-            throw new \Exception('Datele nu pot fi nule');
+            throw new ResponseException('Datele nu pot fi nule', ['method' => $method, 'data' => $data, 'action' => $action]);
         }
 
         // Build URL
@@ -117,6 +118,10 @@ class Dispatcher
             $data['test'] = 1;
         }
         $data['api_version'] = Config::CURRENT_VERSION;
+
+        $_SERVER['reqData'] = $data;
+        $_SERVER['reqAction'] = $action;
+        $_SERVER['reqMethod'] = $method;
 
         // Build POST request with token placed in bearer authorization header
         $request = null;
@@ -175,7 +180,7 @@ class Dispatcher
                     return self::send($method, $action, $data, $files);
                 }
             }
-            throw new \Exception('Eroare la apelarea API-ului. Trimite-ti pe dp@cel.ro stack trace-ul acestei exceptii.', 500);
+            throw new ResponseException('Eroare la apelarea API-ului. Trimite-ti pe dp@cel.ro stack trace-ul acestei exceptii.', ['method' => $method, 'data' => $data, 'action' => $action, 'e' => $e]);
         }
 
         ### 4. Process the response in order to throw relevant error messages or return the correctly formed response ###
@@ -185,7 +190,7 @@ class Dispatcher
 
         // Throw customised exception in case decoding fails
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \Exception('Eroare la parsarea raspunsului: ' . $jsonContents);
+            throw new ResponseException('Eroare la parsarea raspunsului: ' . $jsonContents, ['method' => $method, 'data' => $data, 'action' => $action]);
         }
 
         // Check if the response returned a 302 error, in which case rerun this method
@@ -208,30 +213,30 @@ class Dispatcher
                 if (isset($contents->message)) { // Has message
                     return $contents->message;
                 } else { // Everything is fine, except the message
-                    throw new \Exception('Eroare: continutul nu are o forma adecvata : ' . $jsonContents);
+                    throw new ResponseException('Eroare: continutul nu are o forma adecvata : ' . $jsonContents, ['method' => $method, 'data' => $data, 'action' => $action]);
                 }
             } elseif (!isset($contents->tokenStatus) || $contents->tokenStatus === 0) { // Token problems
                 if (isset($contents->error) && ($contents->error == 405 || $contents->error == 403)) {
                     if (!empty($contents->message) && is_string($contents->message)) {
-                        throw new \Exception($contents->message);
+                        throw new ResponseException($contents->message, ['method' => $method, 'data' => $data, 'action' => $action]);
                     } else {
-                        throw new \Exception('Date de autentificare incorecte');
+                        throw new ResponseException('Date de autentificare incorecte', ['method' => $method, 'data' => $data, 'action' => $action]);
                     }
                 }
                 if (!$isLogin) {
                     $token = $provider::regenerateToken();
                 }
                 return self::send($method, $action, $data, null, $message);
-                throw new \Exception('Eroare: token invalid');
+                throw new ResponseException('Eroare: token invalid', ['method' => $method, 'data' => $data, 'action' => $action]);
             } elseif (!isset($contents->error) || $contents->error !== 0) { // Error returned
                 if (isset($contents->message)) { // Standard error
                     return $contents;
                 } else { // Exotic error
-                    throw new \Exception('Eroare neasteptata: ' . $jsonContents);
+                    throw new ResponseException('Eroare neasteptata: ' . $jsonContents, ['method' => $method, 'data' => $data, 'action' => $action]);
                 }
             }
         } else { // Invalid contents
-            throw new \Exception('Eroare: continutul are un format invalid: ' . $jsonContents);
+            throw new ResponseException('Eroare: continutul are un format invalid: ' . $jsonContents, ['method' => $method, 'data' => $data, 'action' => $action]);
         }
     }
 

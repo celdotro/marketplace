@@ -2,6 +2,7 @@
 namespace celmarket;
 
 use celmarket\AuthProvider;
+use celmarket\ResponseException;
 
 include_once __DIR__ . '/Sentry.php';
 
@@ -31,7 +32,7 @@ class AuthProviderFile extends AuthProvider
         static::$_ABS_PATH = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? dirname($_SERVER['SCRIPT_NAME']) : '/tmp';
         if (!is_dir(static::$_ABS_PATH) && is_writable(dirname(static::$_ABS_PATH))) {
             if (!mkdir(static::$_ABS_PATH, 0777, true)) {
-                throw new \Exception('Failed to crate directory for token. Check permissions and path.');
+                throw new ResponseException('Failed to crate directory for token. Check permissions and path.', ['abs' => static::$_ABS_PATH]);
             }
         }
     }
@@ -71,11 +72,11 @@ class AuthProviderFile extends AuthProvider
 
         try {
             if ($res === '') { // Token is null
-                throw new \Exception('Token-ul primit este null');
+                throw new ResponseException('Token-ul primit este null');
             } elseif (is_string($res) && strstr($res, 'Raspuns invalid:') !== false) { // Invalid answer
-                throw new \Exception($res);
+                throw new ResponseException($res);
             } elseif (file_put_contents(self::$_TOKEN_PATH, $res) === false) { // File can't be written
-                throw new \Exception('Fisierul nu poate fi scris: ' . self::$_TOKEN_PATH);
+                throw new ResponseException('Fisierul nu poate fi scris: ' . self::$_TOKEN_PATH);
             }
 
             // Token static attribute gets the value of the response
@@ -83,7 +84,7 @@ class AuthProviderFile extends AuthProvider
             return self::$token;
         } catch (\Exception $e) {
             // Catch all exceptions, add a message for clarification and re-throw them up the stack
-            throw new \Exception('Eroare in procesul de autentificare: ' . $e->getMessage());
+            throw new ResponseException('Eroare in procesul de autentificare: ' . $e->getMessage());
         }
     }
 }

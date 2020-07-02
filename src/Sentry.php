@@ -23,4 +23,7 @@ $version = !empty(Config::CURRENT_VERSION) ? Config::CURRENT_VERSION : 'UNKWN';
     if(!empty($_SERVER['PWD'])) $scope->setExtra('pwd', $_SERVER['PWD']);
     if(!empty($_SERVER['username'])) $scope->setExtra('username', $_SERVER['username']);
     if(!empty($_SERVER['authprovider'])) $scope->setExtra('authProvider', $_SERVER['authprovider']);
+    if(!empty($_SERVER['reqData'])) $scope->setExtra('reqData', $_SERVER['reqData']);
+    if(!empty($_SERVER['reqAction'])) $scope->setExtra('reqAction', $_SERVER['reqAction']);
+    if(!empty($_SERVER['reqMethod'])) $scope->setExtra('reqMethod', $_SERVER['reqMethod']);
 });

@@ -41,5 +41,5 @@ class Config
     const SENTRY_DNS = 'https://e25a0133dc72473b96b7aa7b04fdf067@sentry.cel.ro/5';
 
     // Current version
-    const CURRENT_VERSION = '2.0.1';
+    const CURRENT_VERSION = '2.0.2';
 }

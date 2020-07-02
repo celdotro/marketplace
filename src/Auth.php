@@ -3,6 +3,8 @@ namespace celmarket;
 
 use celmarket\AuthProviderFile;
 use celmarket\Dispatcher;
+use celmarket\ResponseException;
+
 include_once __DIR__ . '/Sentry.php';
 
 /**
@@ -31,10 +33,10 @@ class Auth
     {
         // Sanity check
         if (!isset($username) || is_null($username) || empty($username)) {
-            throw new \Exception('Specificati un nume de utilizator valid');
+            throw new ResponseException('Specificati un nume de utilizator valid');
         }
         if (!isset($password) || is_null($password) || empty($password)) {
-            throw new \Exception('Specificati o parola valida');
+            throw new ResponseException('Specificati o parola valida', ['username' => $username]);
         }
 
         // Set attributes
@@ -48,7 +50,7 @@ class Auth
         } else {
             $authProvider = new $class($username, $password);
             if (!($authProvider instanceof AuthProvider)) {
-                throw new \Exception('Clasa specificata trebuie sa extinda celmarket\AuthProvider.');
+                throw new ResponseException('Clasa specificata trebuie sa extinda celmarket\AuthProvider.', ['username' => $username]);
             }
         }
 
