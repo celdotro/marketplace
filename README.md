@@ -11,10 +11,10 @@
 [![GitHub forks](https://img.shields.io/github/forks/celdotro/marketplace.svg?style=flat-square)](https://github.com/celdotro/marketplace/network)
 
 ## Requirements
-###API Wrapper 2.X
+#### API Wrapper 2.X
 PHP >= 7.2.5
 
-### API Wrapper 1.X
+#### API Wrapper 1.X
 PHP >= 5.6
 
 **[RO]** Daca sunteti interesati de crearea unui cont de testare, va rugam sa ne contactati la: **mp [_ AT _] cel.ro**  
