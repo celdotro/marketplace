@@ -82,10 +82,12 @@ class EmailOrder {
      * @param $subject
      * @param $body
      * @param null $replyID
+     * @param array @attachments
+     * @param null @emailTest
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null){
+    public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null, $attachments = array(), $emailTest = null){
         // Sanity check
         if (is_null($cmd) || !is_numeric($cmd)) throw new \Exception('Specificati o comanda valida');
         if (is_null($subject) || $subject == '') throw new \Exception('Specificati un subiect valid');
@@ -98,9 +100,10 @@ class EmailOrder {
         // Set data
         $data = array('cmd' => $cmd, 'subject' => $subject, 'body' => $body);
         if(!is_null($replyID)) $data['replyID'] = $replyID;
+        if(!is_null($emailTest)) $data['emailTest'] = $emailTest;
 
         // Send request and retrieve response
-        $result = Dispatcher::send($method, $action, $data);
+        $result = Dispatcher::send($method, $action, $data, $attachments);
 
         return $result;
     }
