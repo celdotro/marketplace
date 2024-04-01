@@ -4,7 +4,8 @@ namespace celmarket\Orders;
 
 use celmarket\Dispatcher;
 
-class OrdersData {
+class OrdersData
+{
 
     /**
      * [RO] Preia datele asociate cu o anumita comanda (https://github.com/celdotro/marketplace/wiki/Datele-comenzii)
@@ -14,9 +15,10 @@ class OrdersData {
      * @return mixed
      * @throws \Exception
      */
-    public function getOrderInfo($cmd, $original_delivery = false){
+    public function getOrderInfo($cmd, $original_delivery = false)
+    {
         // Sanity check - for older versions of PHP
-        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
+        if (!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
 
         // Set method and action
         $method = 'orders';
@@ -38,9 +40,10 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function checkPaymentForOrder($cmd){
+    public function checkPaymentForOrder($cmd)
+    {
         // Sanity check - for older versions of PHP
-        if(!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
+        if (!isset($cmd) || !is_int($cmd)) throw new \Exception('Specificati un ID valid al comenzii');
 
         // Set method and action
         $method = 'orders';
@@ -65,10 +68,11 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updatesn($id_disp_fact, $products, $sn, $nr){
+    public function updatesn($id_disp_fact, $products, $sn, $nr)
+    {
         // Sanity check
-        if(empty($id_disp_fact)) throw new \Exception('Specificati un ID valid al dispozitiei de facturare');
-        if(empty($products)) throw new \Exception('Specificati o lista valida de produse');
+        if (empty($id_disp_fact)) throw new \Exception('Specificati un ID valid al dispozitiei de facturare');
+        if (empty($products)) throw new \Exception('Specificati o lista valida de produse');
 
         // Set method and action
         $method = 'orders';
@@ -96,9 +100,10 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addOrderObservations($orders_id, $observations){
+    public function addOrderObservations($orders_id, $observations)
+    {
         // Sanity check
-        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+        if (empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
 
         // Set method and action
         $method = 'orders';
@@ -123,9 +128,10 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function printOrder($orders_id){
+    public function printOrder($orders_id)
+    {
         // Sanity check
-        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+        if (empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
 
         // Set method and action
         $method = 'orders';
@@ -155,9 +161,10 @@ class OrdersData {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function finishOrderCombined($orders_id, $serie, $nr_fact, $awb, $idAdresaRidicare, $observations, $products, $autogenerateAwb){
+    public function finishOrderCombined($orders_id, $serie, $nr_fact, $awb, $idAdresaRidicare, $observations, $products, $autogenerateAwb)
+    {
         // Sanity check
-        if(empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
+        if (empty($orders_id)) throw new \Exception('Specificati un ID valid de comanda');
 
         // Set method and action
         $method = 'orders';
@@ -180,4 +187,28 @@ class OrdersData {
 
         return $result;
     }
+
+
+
+    /**
+     * [RO] Obtine emailul asociat comenzii
+     * [EN] Get the email associated with the order
+     * @param $orders_id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getOrderEmail($orders_id)
+    {
+        // Set method and action
+        $method = 'orders';
+        $action = 'getOrderEmail';
+
+        $data = array(
+            'oid' => $orders_id
+        );
+
+        $result = Dispatcher::send($method, $action, $data);
+        return $result;
+    }
 }
+

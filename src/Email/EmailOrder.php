@@ -1,9 +1,11 @@
 <?php
+
 namespace celmarket\Email;
 
 use celmarket\Dispatcher;
 
-class EmailOrder {
+class EmailOrder
+{
 
     /**
      * [RO] Returneaza o lista cu ID-uri si denumirea mesajelor predefinite pentru anumite actiuni legate de comanda (https://github.com/celdotro/marketplace/wiki/Listare-email-uri-predefinite-pentru-comenzi)
@@ -11,7 +13,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getOrderEmailList(){
+    public function getOrderEmailList()
+    {
         // Set method and action
         $method = 'email';
         $action = 'getOrderEmailList';
@@ -32,7 +35,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getClientEmailsForOrder($cmd){
+    public function getClientEmailsForOrder($cmd)
+    {
         // Sanity check
         if (is_null($cmd) || !is_numeric($cmd)) throw new \Exception('Specificati o comanda valida');
 
@@ -57,7 +61,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendOrderEmail($cmd, $idEmail){
+    public function sendOrderEmail($cmd, $idEmail)
+    {
         // Sanity check
         if (is_null($cmd) || !is_numeric($cmd)) throw new \Exception('Specificati o comanda valida');
         if (is_null($idEmail) || !is_numeric($idEmail)) throw new \Exception('Specificati un ID valid de email');
@@ -87,7 +92,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null, $attachments = array(), $emailTest = null){
+    public function sendOrderCustomEmail($cmd, $subject, $body, $replyID = null, $attachments = array(), $emailTest = null)
+    {
         // Sanity check
         if (is_null($cmd) || !is_numeric($cmd)) throw new \Exception('Specificati o comanda valida');
         if (is_null($subject) || $subject == '') throw new \Exception('Specificati un subiect valid');
@@ -99,8 +105,8 @@ class EmailOrder {
 
         // Set data
         $data = array('cmd' => $cmd, 'subject' => $subject, 'body' => $body);
-        if(!is_null($replyID)) $data['replyID'] = $replyID;
-        if(!is_null($emailTest)) $data['emailTest'] = $emailTest;
+        if (!is_null($replyID)) $data['replyID'] = $replyID;
+        if (!is_null($emailTest)) $data['emailTest'] = $emailTest;
 
         // Send request and retrieve response
         $result = Dispatcher::send($method, $action, $data, $attachments);
@@ -116,7 +122,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function notifyAWBRemoval($orders_id, $reason){
+    public function notifyAWBRemoval($orders_id, $reason)
+    {
         // Sanity check
         if (empty($orders_id) || !is_numeric($orders_id)) throw new \Exception('Specificati o comanda valida');
         if (empty($reason)) throw new \Exception('Specificati un motiv valid');
@@ -145,7 +152,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function notifyInvoiceRemoval($orders_id, $reason){
+    public function notifyInvoiceRemoval($orders_id, $reason)
+    {
         // Sanity check
         if (empty($orders_id) || !is_numeric($orders_id)) throw new \Exception('Specificati o comanda valida');
         if (empty($reason)) throw new \Exception('Specificati un motiv valid');
@@ -174,10 +182,11 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function downloadOrderEmailAttachment($emailID, $attachmentNumber){
+    public function downloadOrderEmailAttachment($emailID, $attachmentNumber)
+    {
         // Sanity check
         if (empty($emailID) || !is_numeric($emailID)) throw new \Exception('Specificati o comanda valida');
-        if(empty($attachmentNumber) || !is_numeric($attachmentNumber)) throw new \Exception('Speciificati un numar de atasament valid');
+        if (empty($attachmentNumber) || !is_numeric($attachmentNumber)) throw new \Exception('Speciificati un numar de atasament valid');
 
         // Set method and action
         $method = 'email';
@@ -207,7 +216,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getOrdersContacts($minDate = null, $maxDate = null, $email = null, $name = null, $site = null, $raspuns = null){
+    public function getOrdersContacts($minDate = null, $maxDate = null, $email = null, $name = null, $site = null, $raspuns = null)
+    {
         // Set method and action
         $method = 'email';
         $action = 'getOrdersContacts';
@@ -234,7 +244,8 @@ class EmailOrder {
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getUnansweredOrderContact(){
+    public function getUnansweredOrderContact()
+    {
         // Set method and action
         $method = 'email';
         $action = 'getUnansweredOrderContact';
@@ -245,3 +256,4 @@ class EmailOrder {
         return $result;
     }
 }
+
