@@ -255,17 +255,40 @@ class Dispatcher
 		return false;
 	}
 
-	/**
+		/**
 	 * Enforces the use of a single connection
 	 * @return Client|null
 	 */
 	public static function getGuzzleClient()
 	{
 		if (!isset(self::$guzzleClient) || is_null(self::$guzzleClient)) {
-			self::$guzzleClient = new Client(array('timeout' => Config::TIMEOUT, 'connection_timeout' => Config::CONN_TIMEOUT, 'verify' => Config::$IS_LIVE));
+			$options = array(
+				'timeout' => Config::TIMEOUT,
+				'connection_timeout' => Config::CONN_TIMEOUT,
+				'verify' => Config::$IS_LIVE
+			);
+
+			// Client certificate (mTLS), when one was set through Config::setCertificate()
+			$certificate = Config::getCertificateOption();
+			if (!is_null($certificate)) {
+				$options['cert'] = $certificate;
+			}
+
+			self::$guzzleClient = new Client($options);
 		}
 
 		return self::$guzzleClient;
+	}
+
+	/**
+	 * Drop the current connection so the next call rebuilds it with the current
+	 * configuration. The client is a singleton built once, with the options
+	 * available at that moment - without this, a certificate set after the first
+	 * call would never be presented.
+	 */
+	public static function resetGuzzleClient()
+	{
+		self::$guzzleClient = null;
 	}
 
 	public static function setProvider($class)
