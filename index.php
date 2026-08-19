@@ -23,9 +23,9 @@ use celmarket\Config;
  *      The call below automatically switches the API address to
  *      https://apimtls-mp.cel.ro/, the only one requiring it.
  */
-//Config::setCertificate('/path/to/xplm.pem');
+//Config::setCertificate('/path/to/cel-mp-12345-20260819.pem');
 
 // [RO] Daca cheia privata are parola | [EN] If the private key has a passphrase
-//Config::setCertificate('/path/to/xplm.pem', 'parola-cheii');
+//Config::setCertificate('/path/to/cel-mp-12345-20260819.pem', 'parola-cheii');
 
 Auth::setUserDetails('XXXX', 'XXXX');
